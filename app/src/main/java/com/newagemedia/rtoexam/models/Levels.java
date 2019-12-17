@@ -6,7 +6,7 @@ public class Levels implements Serializable {
 
     public String level;
 
-    public Levels(String level) {
+    public Levels() {
         this.level = level;
     }
 
