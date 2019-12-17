@@ -13,6 +13,7 @@ public class LevelsListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_levels);
 
+        //Access to parse, where the levels (questions and answers) is stored
        Parse.initialize(new Parse.Configuration.Builder(this)
                .applicationId("lmj5p9coFxtlfHx5EY6ZMZEmZwZkB6UqSM7tP5vj")
                .clientKey("1lD4V2Nbw6KwnG8FUbUAM56KsvwMYlxEVK89Py6d")
