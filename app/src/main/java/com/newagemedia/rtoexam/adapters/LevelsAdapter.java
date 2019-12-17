@@ -1,5 +1,6 @@
 package com.newagemedia.rtoexam.adapters;
 
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -95,4 +96,5 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.ViewHolder
     public interface ItemClickListener {
         void onItemClick(View view, int position);
     }
+
 }
