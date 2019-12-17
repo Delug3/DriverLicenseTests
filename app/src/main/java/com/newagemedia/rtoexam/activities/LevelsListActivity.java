@@ -43,6 +43,8 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
                .server("https://parseapi.back4app.com")
                .build()
        );
+
+       recyclerViewLevels = findViewById(R.id.recycler_view_levels);
        recyclerViewLevels.setLayoutManager(new LinearLayoutManager(this));
        levelsAdapter = new LevelsAdapter(this,dataLevels);
        recyclerViewLevels.setHasFixedSize(true);
