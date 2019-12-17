@@ -4,21 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activities.core.MainActivity">
 
     <TextView
         android:id="@+id/text_view_main_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="82dp"
-        android:layout_marginLeft="82dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="148dp"
-        android:text="MAIN MENU"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        android:text="Main Menu"
         android:textAllCaps="false"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/text_view_practice"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,28 +25,21 @@
         android:id="@+id/text_view_practice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="170dp"
-        android:layout_marginRight="170dp"
-        android:layout_marginBottom="21dp"
+        android:layout_marginTop="8dp"
         android:text="Practice"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/image_view_test"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image_view_practice"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_main_menu" />
+        app:layout_constraintTop_toTopOf="@+id/image_view_practice" />
 
     <TextView
         android:id="@+id/text_view_test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:layout_marginEnd="200dp"
-        android:layout_marginRight="200dp"
+        android:layout_marginTop="8dp"
         android:text="Test"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image_view_test"
         app:layout_constraintTop_toTopOf="@+id/image_view_test" />
 
@@ -55,84 +47,67 @@
         android:id="@+id/text_view_reading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="171dp"
-        android:layout_marginRight="171dp"
-        android:layout_marginBottom="35dp"
+        android:layout_marginTop="8dp"
         android:text="Reading"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/text_view_settings"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image_view_reading"
-        app:layout_constraintTop_toBottomOf="@+id/image_view_test" />
+        app:layout_constraintTop_toTopOf="@+id/image_view_reading" />
 
     <TextView
         android:id="@+id/text_view_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="169dp"
-        android:layout_marginRight="169dp"
-        android:layout_marginBottom="307dp"
+        android:layout_marginTop="8dp"
         android:text="Settings"
         android:textAllCaps="false"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image_view_settings"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_reading" />
+        app:layout_constraintTop_toTopOf="@+id/image_view_settings" />
 
     <ImageView
         android:id="@+id/image_view_practice"
-        android:layout_width="0dp"
+        android:layout_width="64dp"
         android:layout_height="52dp"
-        android:layout_marginStart="109dp"
-        android:layout_marginLeft="109dp"
-        android:layout_marginTop="133dp"
-        android:layout_marginBottom="131dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="60dp"
         android:src="@drawable/help_outline"
-        app:layout_constraintBottom_toTopOf="@+id/image_view_settings"
-        app:layout_constraintEnd_toStartOf="@+id/text_view_practice"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_view_main_menu" />
 
     <ImageView
         android:id="@+id/image_view_test"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="109dp"
-        android:layout_marginLeft="109dp"
-        android:layout_marginBottom="23dp"
+        android:layout_width="64dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/directions"
-        app:layout_constraintBottom_toTopOf="@+id/text_view_reading"
-        app:layout_constraintEnd_toStartOf="@+id/text_view_test"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_practice" />
+        app:layout_constraintTop_toBottomOf="@+id/image_view_practice" />
 
     <ImageView
         android:id="@+id/image_view_reading"
-        android:layout_width="0dp"
+        android:layout_width="64dp"
         android:layout_height="52dp"
-        android:layout_marginStart="109dp"
-        android:layout_marginLeft="109dp"
-        android:layout_marginTop="62dp"
-        android:layout_marginBottom="61dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/money"
-        app:layout_constraintBottom_toBottomOf="@+id/image_view_settings"
-        app:layout_constraintEnd_toStartOf="@+id/text_view_reading"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/image_view_test" />
+        app:layout_constraintTop_toBottomOf="@+id/image_view_test" />
 
     <ImageView
         android:id="@+id/image_view_settings"
-        android:layout_width="0dp"
+        android:layout_width="64dp"
         android:layout_height="52dp"
-        android:layout_marginStart="109dp"
-        android:layout_marginLeft="109dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/settings"
-        app:layout_constraintEnd_toStartOf="@+id/text_view_settings"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_reading" />
+        app:layout_constraintTop_toBottomOf="@+id/image_view_reading" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
