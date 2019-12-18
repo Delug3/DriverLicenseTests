@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -56,44 +55,36 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
 
        findLevels();
     }
-    @Override
-    public void onItemClick(View view, int position) {
-        //Toast.makeText(this, "You clicked " + levelsAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
-        Intent i = new Intent(LevelsListActivity.this, QuizActivity.class);
-        i.putExtra("LEVEL_NAME", dataLevels.get(position).getLevel());
-        i.putStringArrayListExtra("LEVEL_QUIZ", (ArrayList<String>) dataLevels.get(position).getQuiz());
-        startActivity(i);
 
-    }
     public void findLevels() {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Levels");
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
-            public void done(List<ParseObject> listLevels, ParseException e) {
+            public void done(List<ParseObject> result, ParseException e) {
 
                 if (e == null) {
 
-                    for (int i = 0; i < listLevels.size(); i++) {
+                    for (int i = 0; i < result.size(); i++) {
 
                         Levels levels = new Levels();
 
-                        levels.level = listLevels.get(i).getString("level");
+                        levels.level = result.get(i).getString("level");
 
-                       // levels.quiz = listLevels.get(i).getList("quiz");
+                        levels.quiz = result.get(i).getList("quiz");
  /*
-                        levels.question = listLevels.get(i).getString("question");
-                        levels.answer_one = listLevels.get(i).getString("answer_one");
-                        levels.answer_two = listLevels.get(i).getString("answer_two");
-                        levels.answer_three = listLevels.get(i).getString("answer_three");
-                        levels.answer_four = listLevels.get(i).getString("answer_four");
-                        levels.correct_answer = listLevels.get(i).getString("correct_answer");
+                        levels.question = result.get(i).getString("question");
+                        levels.answer_one = result.get(i).getString("answer_one");
+                        levels.answer_two = result.get(i).getString("answer_two");
+                        levels.answer_three = result.get(i).getString("answer_three");
+                        levels.answer_four = result.get(i).getString("answer_four");
+                        levels.correct_answer = result.get(i).getString("correct_answer");
                         */
 
 
-                        String name = listLevels.get(i).getString("level");
+                        String name = result.get(i).getString("level");
                         Log.e(TAG, "Title: " + name);
 
-                        //send listLevels data to adapter->recyclerView
+                        //send result data to adapter->recyclerView
 
                         dataLevels.add(levels);
 
@@ -109,7 +100,15 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
 
     }
 
+    @Override
+    public void onItemClick(View view, int position) {
+        //Toast.makeText(this, "You clicked " + levelsAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(LevelsListActivity.this, QuizActivity.class);
+        i.putExtra("LEVEL_NAME", dataLevels.get(position).getLevel());
+        i.putStringArrayListExtra("LEVEL_QUIZ", (ArrayList<String>) dataLevels.get(position).getQuiz());
+        startActivity(i);
 
+    }
 
 
 
