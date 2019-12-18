@@ -20,7 +20,7 @@ public class Levels implements Serializable {
     //quiz: array of objects containing the questions,answers and correct answer
     public List<String> quiz;
 
-    public Levels(String level, String question, String answer_one, String answer_two, String answer_three, String answer_four, String correct_answer, List<String> quiz) {
+    public Levels() {
         this.level = level;
         this.question = question;
         this.answer_one = answer_one;
