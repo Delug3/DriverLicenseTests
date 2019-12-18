@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.LevelsListActivity"/>
+        <activity android:name=".activities.QuizActivity"/>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

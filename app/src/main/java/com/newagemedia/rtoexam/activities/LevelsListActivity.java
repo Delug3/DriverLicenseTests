@@ -1,5 +1,6 @@
 package com.newagemedia.rtoexam.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -57,12 +58,11 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
     }
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(this, "You clicked " + levelsAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
-        //Intent i = new Intent(LevelsListActivity.this, LevelsQuizActivity.class);
-
+        //Toast.makeText(this, "You clicked " + levelsAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(LevelsListActivity.this, QuizActivity.class);
         //i.putExtra("LEVEL_NAME", dataLevels.get(position).getLevel());
         //i.putStringArrayListExtra("LEVEL_INFO", (ArrayList<String>) dataLevels.get(position).getInformation());
-        //startActivity(i);
+        startActivity(i);
 
 
     }

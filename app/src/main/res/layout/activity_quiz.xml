@@ -13,7 +13,7 @@
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="24dp"
-        android:text="Level"
+        android:text="Level 1"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,9 +23,12 @@
         android:id="@+id/text_view_quiz_question"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
         android:layout_marginTop="50dp"
         android:text="When parking uphill on a roadway that has a curb, turn the front wheels:"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_view_quiz_level_name" />
 
@@ -93,10 +96,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="36dp"
-        android:src="@drawable/number_one"
+        android:src="@drawable/one"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_quiz_question"
-         />
+        app:layout_constraintTop_toBottomOf="@+id/text_view_quiz_question" />
 
     <ImageView
         android:id="@+id/image_view_quiz_number_2"
@@ -105,9 +107,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
+        android:src="@drawable/two"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_view_quiz_number_1"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toBottomOf="@+id/image_view_quiz_number_1" />
 
     <ImageView
         android:id="@+id/image_view_quiz_number_3"
@@ -116,9 +118,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
+        android:src="@drawable/three"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_view_quiz_number_2"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toBottomOf="@+id/image_view_quiz_number_2" />
 
     <ImageView
         android:id="@+id/image_view_quiz_number_4"
@@ -127,7 +129,18 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
+        android:src="@drawable/four"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_view_quiz_number_3"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toBottomOf="@+id/image_view_quiz_number_3" />
+
+    <ImageView
+        android:id="@+id/image_view_quiz_left_arrow"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_view_quiz_level_name"
+        app:layout_constraintEnd_toStartOf="@+id/text_view_quiz_level_name"
+        app:layout_constraintTop_toTopOf="@+id/text_view_quiz_level_name"
+        app:srcCompat="@drawable/left_arrow" />
 </androidx.constraintlayout.widget.ConstraintLayout>
