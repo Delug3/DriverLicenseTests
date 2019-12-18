@@ -19,6 +19,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,7 +70,6 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
                         Levels levels = new Levels();
 
                         levels.level = result.get(i).getString("level");
-
                         levels.quiz = result.get(i).getList("quiz");
  /*
                         levels.question = result.get(i).getString("question");

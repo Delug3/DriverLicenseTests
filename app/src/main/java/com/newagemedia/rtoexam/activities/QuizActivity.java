@@ -8,6 +8,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.newagemedia.rtoexam.R;
 import com.newagemedia.rtoexam.models.Levels;
+import com.parse.ParseObject;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +19,7 @@ import java.util.logging.Level;
 
 public class QuizActivity extends AppCompatActivity {
 
-    final List<Levels> questionsAndAnswers = new ArrayList<>();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,32 +28,32 @@ public class QuizActivity extends AppCompatActivity {
         TextView textViewLevelName = findViewById(R.id.text_view_quiz_level_name);
 
         String levelName;
-        List<String> quiz = null;
+       // List<String> quiz = null;
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if (extras == null) {
                 levelName = null;
-                quiz = null;
+                //quiz = null;
 
             } else {
                 levelName = extras.getString("LEVEL_NAME");
-                quiz = getIntent().getStringArrayListExtra("LEVEL_QUIZ");
+                //quiz = getIntent().getStringArrayListExtra("LEVEL_QUIZ");
                 textViewLevelName.setText(levelName);
             }
         }
 
-        loadQuestionAndAnswers(quiz);
+        loadQuestionAndAnswers();
     }
 
     //each time we call this method, will load the next question & answers
-    private void loadQuestionAndAnswers(List<String>quiz)
+    private void loadQuestionAndAnswers()
     {
+
+        List<String> quiz = getIntent().getStringArrayListExtra("LEVEL_QUIZ");
+
         for (int i = 0; i < quiz.size(); i++) {
 
             Levels levels = new Levels();
-            levels.question = getString("question");
-
-
 
 
 
