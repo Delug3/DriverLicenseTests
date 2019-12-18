@@ -1,6 +1,7 @@
 package com.newagemedia.rtoexam.activities;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,12 +15,23 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
+        TextView textViewLevelName = findViewById(R.id.text_view_quiz_level_name);
+
+        String levelName;
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if (extras == null) {
+                levelName = null;
 
 
+            } else {
+                levelName = extras.getString("LEVEL_NAME");
+                textViewLevelName.setText(levelName);
+
+            }
 
 
-
-
-
+        }
     }
 }
