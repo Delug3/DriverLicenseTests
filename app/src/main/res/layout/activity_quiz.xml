@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/text_view_quiz_level_name" />
 
     <TextView
-        android:id="@+id/text_view_quiz_option_1"
+        android:id="@+id/text_view_quiz_answer_1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
@@ -44,7 +44,7 @@
         app:layout_constraintTop_toTopOf="@+id/image_view_quiz_number_1" />
 
     <TextView
-        android:id="@+id/text_view_quiz_option_2"
+        android:id="@+id/text_view_quiz_answer_2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
@@ -59,7 +59,7 @@
         app:layout_constraintTop_toTopOf="@+id/image_view_quiz_number_2" />
 
     <TextView
-        android:id="@+id/text_view_quiz_option_3"
+        android:id="@+id/text_view_quiz_answer_3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
@@ -73,7 +73,7 @@
         app:layout_constraintTop_toTopOf="@+id/image_view_quiz_number_3" />
 
     <TextView
-        android:id="@+id/text_view_quiz_option_4"
+        android:id="@+id/text_view_quiz_answer_4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
