@@ -1,5 +1,6 @@
 package com.newagemedia.rtoexam.activities;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -20,7 +21,7 @@ import java.util.List;
 
 public class QuizActivity extends AppCompatActivity {
 
-    final List<Levels> dataQuiz = new ArrayList<>();
+
     private TextView textViewLevelName;
     private CardView cardViewNextQuestion;
     private TextView textViewQuestionName;
@@ -67,19 +68,28 @@ public class QuizActivity extends AppCompatActivity {
         textViewAnswerOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String answerNumber ="one";
 
+                if (answerNumber.equals(correctAnswer)) {
+                    textViewAnswerOne.setTextColor(Color.parseColor("#FF00C853"));
+                }
+                else{
+                    textViewAnswerOne.setTextColor(Color.parseColor("#FFD50000"));
+
+                }
             }
         });
 
         textViewAnswerTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String answer_number="2";
+                String answerNumber ="two";
 
-                if (answer_number.equals(correctAnswer)) {
-
+                if (answerNumber.equals(correctAnswer)) {
+                    textViewAnswerTwo.setTextColor(Color.parseColor("#FF00C853"));
                 }
                 else{
+                    textViewAnswerTwo.setTextColor(Color.parseColor("#FFD50000"));
 
                 }
             }
@@ -88,14 +98,31 @@ public class QuizActivity extends AppCompatActivity {
         textViewAnswerThree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String answerNumber ="three";
 
+                if (answerNumber.equals(correctAnswer)) {
+                    textViewAnswerThree.setTextColor(Color.parseColor("#FF00C853"));
+                }
+                else{
+                    textViewAnswerThree.setTextColor(Color.parseColor("#FFD50000"));
+
+                }
             }
         });
 
         textViewAnswerFour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String answerNumber ="four";
 
+                if (answerNumber.equals(correctAnswer)) {
+                    textViewAnswerFour.setTextColor(Color.parseColor("#FF00C853"));
+                }
+                else{
+                    textViewAnswerFour.setTextColor(Color.parseColor("#FFD50000"));
+                   //change this
+                    textViewAnswerTwo.setTextColor(Color.parseColor("#FF00C853"));
+                }
             }
         });
 
@@ -121,7 +148,7 @@ public class QuizActivity extends AppCompatActivity {
          try {
         JSONArray jsonArray= new JSONArray(quiz);
 
-                  Levels levels = new Levels();
+                  //Levels levels = new Levels();
 
                   JSONObject json_data = jsonArray.getJSONObject(questionNumber);
                   /*
@@ -139,7 +166,7 @@ public class QuizActivity extends AppCompatActivity {
                   String answerThree = json_data.getString("answer_three");
                   String answerFour = json_data.getString("answer_four");
 
-                  correctAnswer = json_data.getString("correctAnswer");
+                  correctAnswer = json_data.getString("correct_answer");
 
 
                   textViewQuestionName.setText(question);
