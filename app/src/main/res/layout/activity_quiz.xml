@@ -148,15 +148,17 @@
         android:id="@+id/text_view_quiz_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="32dp"
         android:text="NEXT"
         android:textColor="#304FFE"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_quiz_answer_4" />
 
     <ImageView
         android:id="@+id/image_view_quiz_right_arrow"
