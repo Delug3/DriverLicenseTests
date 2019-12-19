@@ -1,5 +1,8 @@
 package com.newagemedia.rtoexam.models;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -17,6 +20,7 @@ public class Levels implements Serializable {
     public String answer_three;
     public String answer_four;
     public String correct_answer;
+
     //quiz: array of objects containing the questions,answers and correct answer
     public List<String> quiz;
 
@@ -30,6 +34,7 @@ public class Levels implements Serializable {
         this.correct_answer = correct_answer;
         this.quiz = quiz;
     }
+
 
     public String getLevel() {
         return level;
