@@ -26,7 +26,6 @@ import java.util.List;
 
 public class LevelsListActivity extends AppCompatActivity implements LevelsAdapter.ItemClickListener {
 
-
     RecyclerView recyclerViewLevels;
     private LevelsAdapter levelsAdapter;
     private static final String TAG = "RTO";
@@ -57,6 +56,11 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
        findLevels();
     }
 
+
+    /** Values are placed in Json Object.
+     * Json Array inside Json Object
+     * Need to retrieve object position from "result" json object parsing it.
+     */
     public void findLevels() {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Levels");
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -71,21 +75,11 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
 
                         levels.level = result.get(i).getString("level");
                         levels.quiz = result.get(i).getList("quiz");
- /*
-                        levels.question = result.get(i).getString("question");
-                        levels.answer_one = result.get(i).getString("answer_one");
-                        levels.answer_two = result.get(i).getString("answer_two");
-                        levels.answer_three = result.get(i).getString("answer_three");
-                        levels.answer_four = result.get(i).getString("answer_four");
-                        levels.correct_answer = result.get(i).getString("correct_answer");
-                        */
-
 
                         String name = result.get(i).getString("level");
                         Log.e(TAG, "Title: " + name);
 
                         //send result data to adapter->recyclerView
-
                         dataLevels.add(levels);
 
                     }
