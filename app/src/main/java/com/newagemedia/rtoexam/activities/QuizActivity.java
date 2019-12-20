@@ -23,7 +23,7 @@ public class QuizActivity extends AppCompatActivity {
 
 
     private TextView textViewLevelName;
-    private CardView cardViewNextQuestion;
+    private ConstraintLayout constraintLayoutNextQuestion;
     private TextView textViewQuestionName;
     private TextView textViewAnswerOne;
     private TextView textViewAnswerTwo;
@@ -44,7 +44,7 @@ public class QuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
 
         textViewLevelName = findViewById(R.id.text_view_quiz_level_name);
-        cardViewNextQuestion = findViewById(R.id.card_view_quiz_next_question);
+        constraintLayoutNextQuestion = findViewById(R.id.constraint_layout_quiz_next_question);
         textViewQuestionName = findViewById(R.id.text_view_quiz_question);
         textViewAnswerOne = findViewById(R.id.text_view_quiz_answer_one);
         textViewAnswerTwo = findViewById(R.id.text_view_quiz_answer_two);
@@ -81,10 +81,10 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (correctAnswer.equals("one")) {
-                    constraintLayoutAnswerOne.setBackgroundColor(Color.parseColor("#FF00C853"));
+                    constraintLayoutAnswerOne.setBackgroundColor(Color.parseColor("#1D00C853"));
                 }
                 else{
-                    constraintLayoutAnswerOne.setBackgroundColor(Color.parseColor("#FFD50000"));
+                    constraintLayoutAnswerOne.setBackgroundColor(Color.parseColor("#23D50000"));
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
@@ -95,10 +95,10 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (correctAnswer.equals("two")) {
-                    constraintLayoutAnswerTwo.setBackgroundColor(Color.parseColor("#FF00C853"));
+                    constraintLayoutAnswerTwo.setBackgroundColor(Color.parseColor("#1D00C853"));
                 }
                 else{
-                    constraintLayoutAnswerTwo.setBackgroundColor(Color.parseColor("#FFD50000"));
+                    constraintLayoutAnswerTwo.setBackgroundColor(Color.parseColor("#23D50000"));
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
@@ -109,10 +109,10 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (correctAnswer.equals("three")) {
-                    constraintLayoutAnswerThree.setBackgroundColor(Color.parseColor("#FF00C853"));
+                    constraintLayoutAnswerThree.setBackgroundColor(Color.parseColor("#1D00C853"));
                 }
                 else{
-                    constraintLayoutAnswerThree.setBackgroundColor(Color.parseColor("#FFD50000"));
+                    constraintLayoutAnswerThree.setBackgroundColor(Color.parseColor("#23D50000"));
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
@@ -123,10 +123,10 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (correctAnswer.equals("four")) {
-                    constraintLayoutAnswerFour.setBackgroundColor(Color.parseColor("#FF00C853"));
+                    constraintLayoutAnswerFour.setBackgroundColor(Color.parseColor("#1D00C853"));
                 }
                 else{
-                    constraintLayoutAnswerFour.setBackgroundColor(Color.parseColor("#FFD50000"));
+                    constraintLayoutAnswerFour.setBackgroundColor(Color.parseColor("#23D50000"));
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
@@ -134,7 +134,7 @@ public class QuizActivity extends AppCompatActivity {
         });
 
 
-        cardViewNextQuestion.setOnClickListener(new View.OnClickListener() {
+        constraintLayoutNextQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loadQuestionAndAnswers();
@@ -195,16 +195,16 @@ public class QuizActivity extends AppCompatActivity {
     private void showCorrectAnswer() {
         switch (correctAnswer) {
             case "one":
-                constraintLayoutAnswerOne.setBackgroundColor(Color.parseColor("#FF00C853"));
+                constraintLayoutAnswerOne.setBackgroundColor(Color.parseColor("#1D00C853"));
                 break;
             case "two":
-                constraintLayoutAnswerTwo.setBackgroundColor(Color.parseColor("#FF00C853"));
+                constraintLayoutAnswerTwo.setBackgroundColor(Color.parseColor("#1D00C853"));
                 break;
             case "three":
-                constraintLayoutAnswerThree.setBackgroundColor(Color.parseColor("#FF00C853"));
+                constraintLayoutAnswerThree.setBackgroundColor(Color.parseColor("#1D00C853"));
                 break;
             case "four":
-                constraintLayoutAnswerFour.setBackgroundColor(Color.parseColor("#FF00C853"));
+                constraintLayoutAnswerFour.setBackgroundColor(Color.parseColor("#1D00C853"));
                 break;
         }
     }
