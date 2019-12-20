@@ -117,7 +117,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -150,13 +150,13 @@
         android:id="@+id/text_view_quiz_level_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:text="Level 1"
         android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/image_view_quiz_left_arrow"
+        app:layout_constraintStart_toEndOf="@+id/image_view_quiz_left_arrow"
+        app:layout_constraintTop_toTopOf="@+id/image_view_quiz_left_arrow" />
 
     <TextView
         android:id="@+id/text_view_quiz_question"
@@ -164,7 +164,7 @@
         android:layout_height="80dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:text="Any direction, but set the parking break.Any direction, but set the parking break."
@@ -178,11 +178,11 @@
         android:id="@+id/image_view_quiz_left_arrow"
         android:layout_width="43dp"
         android:layout_height="43dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/text_view_quiz_level_name"
-        app:layout_constraintEnd_toStartOf="@+id/text_view_quiz_level_name"
-        app:layout_constraintTop_toTopOf="@+id/text_view_quiz_level_name"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/left_arrow" />
 
     <androidx.cardview.widget.CardView
