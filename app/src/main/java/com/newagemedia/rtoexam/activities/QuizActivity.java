@@ -10,7 +10,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.newagemedia.rtoexam.R;
 
@@ -72,8 +71,8 @@ public class QuizActivity extends AppCompatActivity {
                 textViewLevelName.setText(levelName);
             }
         }
-
-        loadNextQuestion();
+        obtainTotalNumberOfQuestions();
+        loadQuestionAndAnswers();
 
         //compare correct answer with answer number, if its the same, then green, not the same, red and method call
         //green:#FF00C853
@@ -138,23 +137,25 @@ public class QuizActivity extends AppCompatActivity {
         cardViewNextQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadNextQuestion();
+                loadQuestionAndAnswers();
                 enableSingleClick();
+
             }
         });
 
 
     }
 
+
     /** Values are placed in Json Array.
      * Json Objects inside Json Array
      * Need to retrieve object position from "quiz" json array via getJSONArray.
      * This method is the responsible for loading new questions in the activity
      */
-    private void loadNextQuestion() {
+    private void loadQuestionAndAnswers() {
 
         List<String> quiz = getIntent().getStringArrayListExtra("LEVEL_QUIZ");
-         try {
+        try {
         JSONArray jsonArray= new JSONArray(quiz);
 
         JSONObject json_data = jsonArray.getJSONObject(questionNumber);
@@ -206,6 +207,12 @@ public class QuizActivity extends AppCompatActivity {
                 constraintLayoutAnswerFour.setBackgroundColor(Color.parseColor("#FF00C853"));
                 break;
         }
+    }
+
+    //obtain total number of question for increasing loading bar
+    private int obtainTotalNumberOfQuestions(){
+        int totalNumberOfQuestions=2;
+        return totalNumberOfQuestions;
     }
 
     //loading default colors of both, constraintLayout background and icon number
