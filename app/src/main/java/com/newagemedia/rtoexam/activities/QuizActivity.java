@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.newagemedia.rtoexam.R;
 
@@ -28,6 +30,10 @@ public class QuizActivity extends AppCompatActivity {
     private TextView textViewAnswerTwo;
     private TextView textViewAnswerThree;
     private TextView textViewAnswerFour;
+    private ConstraintLayout constraintLayoutAnswerOne;
+    private ConstraintLayout constraintLayoutAnswerTwo;
+    private ConstraintLayout constraintLayoutAnswerThree;
+    private ConstraintLayout constraintLayoutAnswerFour;
     private Drawable OriginalBackgroundColor;
     private String correctAnswer;
     //variable to move to the next question
@@ -45,6 +51,10 @@ public class QuizActivity extends AppCompatActivity {
         textViewAnswerTwo = findViewById(R.id.text_view_quiz_answer_two);
         textViewAnswerThree = findViewById(R.id.text_view_quiz_answer_three);
         textViewAnswerFour = findViewById(R.id.text_view_quiz_answer_four);
+        constraintLayoutAnswerOne = findViewById(R.id.constraint_layout_quiz_answer_one);
+        constraintLayoutAnswerTwo = findViewById(R.id.constraint_layout_quiz_answer_two);
+        constraintLayoutAnswerThree = findViewById(R.id.constraint_layout_quiz_answer_three);
+        constraintLayoutAnswerFour = findViewById(R.id.constraint_layout_quiz_answer_four);
 
         OriginalBackgroundColor = textViewQuestionName.getBackground();
 
@@ -72,10 +82,10 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (correctAnswer.equals("one")) {
-                    textViewAnswerOne.setBackgroundColor(Color.parseColor("#FF00C853"));
+                    constraintLayoutAnswerOne.setBackgroundColor(Color.parseColor("#FF00C853"));
                 }
                 else{
-                    textViewAnswerOne.setBackgroundColor(Color.parseColor("#FFD50000"));
+                    constraintLayoutAnswerOne.setBackgroundColor(Color.parseColor("#FFD50000"));
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
@@ -86,10 +96,10 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (correctAnswer.equals("two")) {
-                    textViewAnswerTwo.setBackgroundColor(Color.parseColor("#FF00C853"));
+                    constraintLayoutAnswerTwo.setBackgroundColor(Color.parseColor("#FF00C853"));
                 }
                 else{
-                    textViewAnswerTwo.setBackgroundColor(Color.parseColor("#FFD50000"));
+                    constraintLayoutAnswerTwo.setBackgroundColor(Color.parseColor("#FFD50000"));
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
@@ -100,10 +110,10 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (correctAnswer.equals("three")) {
-                    textViewAnswerThree.setBackgroundColor(Color.parseColor("#FF00C853"));
+                    constraintLayoutAnswerThree.setBackgroundColor(Color.parseColor("#FF00C853"));
                 }
                 else{
-                    textViewAnswerThree.setBackgroundColor(Color.parseColor("#FFD50000"));
+                    constraintLayoutAnswerThree.setBackgroundColor(Color.parseColor("#FFD50000"));
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
@@ -114,10 +124,10 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (correctAnswer.equals("four")) {
-                    textViewAnswerFour.setBackgroundColor(Color.parseColor("#FF00C853"));
+                    constraintLayoutAnswerFour.setBackgroundColor(Color.parseColor("#FF00C853"));
                 }
                 else{
-                    textViewAnswerFour.setBackgroundColor(Color.parseColor("#FFD50000"));
+                    constraintLayoutAnswerFour.setBackgroundColor(Color.parseColor("#FFD50000"));
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
@@ -180,32 +190,32 @@ public class QuizActivity extends AppCompatActivity {
     }
 
 
-    //draw green the background and the answer icon to show the correct answer
+    //draw green the constraintLayout background and the answer icon to show the correct answer
     private void showCorrectAnswer() {
         switch (correctAnswer) {
             case "one":
-                textViewAnswerOne.setBackgroundColor(Color.parseColor("#FF00C853"));
+                constraintLayoutAnswerOne.setBackgroundColor(Color.parseColor("#FF00C853"));
                 break;
             case "two":
-                textViewAnswerTwo.setBackgroundColor(Color.parseColor("#FF00C853"));
+                constraintLayoutAnswerTwo.setBackgroundColor(Color.parseColor("#FF00C853"));
                 break;
             case "three":
-                textViewAnswerThree.setBackgroundColor(Color.parseColor("#FF00C853"));
+                constraintLayoutAnswerThree.setBackgroundColor(Color.parseColor("#FF00C853"));
                 break;
             case "four":
-                textViewAnswerFour.setBackgroundColor(Color.parseColor("#FF00C853"));
+                constraintLayoutAnswerFour.setBackgroundColor(Color.parseColor("#FF00C853"));
                 break;
         }
     }
 
-    //loading default colors of both, background and icon number
+    //loading default colors of both, constraintLayout background and icon number
     private void loadDefaultColors(){
 
         //set default colors every time user press Next
-        textViewAnswerOne.setBackground(OriginalBackgroundColor);
-        textViewAnswerTwo.setBackground(OriginalBackgroundColor);
-        textViewAnswerThree.setBackground(OriginalBackgroundColor);
-        textViewAnswerFour.setBackground(OriginalBackgroundColor);
+        constraintLayoutAnswerOne.setBackground(OriginalBackgroundColor);
+        constraintLayoutAnswerTwo.setBackground(OriginalBackgroundColor);
+        constraintLayoutAnswerThree.setBackground(OriginalBackgroundColor);
+        constraintLayoutAnswerFour.setBackground(OriginalBackgroundColor);
 
     }
 
