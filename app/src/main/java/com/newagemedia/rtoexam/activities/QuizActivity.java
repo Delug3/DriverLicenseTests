@@ -1,6 +1,7 @@
 package com.newagemedia.rtoexam.activities;
 
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -27,7 +28,7 @@ public class QuizActivity extends AppCompatActivity {
     private TextView textViewAnswerTwo;
     private TextView textViewAnswerThree;
     private TextView textViewAnswerFour;
-
+    private Drawable OriginalBackgroundColor;
     private String correctAnswer;
     //variable to move to the next question
     private int questionNumber = 0;
@@ -39,12 +40,13 @@ public class QuizActivity extends AppCompatActivity {
 
         textViewLevelName = findViewById(R.id.text_view_quiz_level_name);
         cardViewNextQuestion = findViewById(R.id.card_view_quiz_next_question);
-
         textViewQuestionName = findViewById(R.id.text_view_quiz_question);
-        textViewAnswerOne = findViewById(R.id.text_view_quiz_answer_1);
-        textViewAnswerTwo = findViewById(R.id.text_view_quiz_answer_2);
-        textViewAnswerThree = findViewById(R.id.text_view_quiz_answer_3);
-        textViewAnswerFour = findViewById(R.id.text_view_quiz_answer_4);
+        textViewAnswerOne = findViewById(R.id.text_view_quiz_answer_one);
+        textViewAnswerTwo = findViewById(R.id.text_view_quiz_answer_two);
+        textViewAnswerThree = findViewById(R.id.text_view_quiz_answer_three);
+        textViewAnswerFour = findViewById(R.id.text_view_quiz_answer_four);
+
+        OriginalBackgroundColor = textViewQuestionName.getBackground();
 
         String levelName;
        // List<String> quiz = null;
@@ -70,10 +72,10 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (correctAnswer.equals("one")) {
-                    textViewAnswerOne.setTextColor(Color.parseColor("#FF00C853"));
+                    textViewAnswerOne.setBackgroundColor(Color.parseColor("#FF00C853"));
                 }
                 else{
-                    textViewAnswerOne.setTextColor(Color.parseColor("#FFD50000"));
+                    textViewAnswerOne.setBackgroundColor(Color.parseColor("#FFD50000"));
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
@@ -84,10 +86,10 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (correctAnswer.equals("two")) {
-                    textViewAnswerTwo.setTextColor(Color.parseColor("#FF00C853"));
+                    textViewAnswerTwo.setBackgroundColor(Color.parseColor("#FF00C853"));
                 }
                 else{
-                    textViewAnswerTwo.setTextColor(Color.parseColor("#FFD50000"));
+                    textViewAnswerTwo.setBackgroundColor(Color.parseColor("#FFD50000"));
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
@@ -98,10 +100,10 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (correctAnswer.equals("three")) {
-                    textViewAnswerThree.setTextColor(Color.parseColor("#FF00C853"));
+                    textViewAnswerThree.setBackgroundColor(Color.parseColor("#FF00C853"));
                 }
                 else{
-                    textViewAnswerThree.setTextColor(Color.parseColor("#FFD50000"));
+                    textViewAnswerThree.setBackgroundColor(Color.parseColor("#FFD50000"));
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
@@ -112,10 +114,10 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (correctAnswer.equals("four")) {
-                    textViewAnswerFour.setTextColor(Color.parseColor("#FF00C853"));
+                    textViewAnswerFour.setBackgroundColor(Color.parseColor("#FF00C853"));
                 }
                 else{
-                    textViewAnswerFour.setTextColor(Color.parseColor("#FFD50000"));
+                    textViewAnswerFour.setBackgroundColor(Color.parseColor("#FFD50000"));
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
@@ -182,16 +184,16 @@ public class QuizActivity extends AppCompatActivity {
     private void showCorrectAnswer() {
         switch (correctAnswer) {
             case "one":
-                textViewAnswerOne.setTextColor(Color.parseColor("#FF00C853"));
+                textViewAnswerOne.setBackgroundColor(Color.parseColor("#FF00C853"));
                 break;
             case "two":
-                textViewAnswerTwo.setTextColor(Color.parseColor("#FF00C853"));
+                textViewAnswerTwo.setBackgroundColor(Color.parseColor("#FF00C853"));
                 break;
             case "three":
-                textViewAnswerThree.setTextColor(Color.parseColor("#FF00C853"));
+                textViewAnswerThree.setBackgroundColor(Color.parseColor("#FF00C853"));
                 break;
             case "four":
-                textViewAnswerFour.setTextColor(Color.parseColor("#FF00C853"));
+                textViewAnswerFour.setBackgroundColor(Color.parseColor("#FF00C853"));
                 break;
         }
     }
@@ -200,12 +202,10 @@ public class QuizActivity extends AppCompatActivity {
     private void loadDefaultColors(){
 
         //set default colors every time user press Next
-        textViewAnswerOne.setTextColor(Color.BLACK);
-        textViewAnswerTwo.setTextColor(Color.BLACK);
-        textViewAnswerThree.setTextColor(Color.BLACK);
-        textViewAnswerFour.setTextColor(Color.BLACK);
-
-
+        textViewAnswerOne.setBackground(OriginalBackgroundColor);
+        textViewAnswerTwo.setBackground(OriginalBackgroundColor);
+        textViewAnswerThree.setBackground(OriginalBackgroundColor);
+        textViewAnswerFour.setBackground(OriginalBackgroundColor);
 
     }
 
@@ -226,4 +226,6 @@ public class QuizActivity extends AppCompatActivity {
         textViewAnswerThree.setClickable(true);
         textViewAnswerFour.setClickable(true);
     }
+
+
 }
