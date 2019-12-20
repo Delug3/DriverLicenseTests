@@ -23,9 +23,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
+        android:fontFamily="@font/roboto"
         android:text="Practice"
+        android:textColor="@color/colorText"
         android:textSize="24sp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/image_view_quiz_left_arrow2"
         app:layout_constraintStart_toEndOf="@+id/image_view_quiz_left_arrow2"
         app:layout_constraintTop_toTopOf="@+id/image_view_quiz_left_arrow2" />
