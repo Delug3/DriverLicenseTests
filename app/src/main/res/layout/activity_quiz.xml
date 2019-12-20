@@ -7,9 +7,114 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_layout_quiz_answer_four"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraint_layout_quiz_answer_three">
+
+        <ImageView
+            android:id="@+id/image_view_quiz_number_four"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:src="@drawable/four"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_view_quiz_answer_four"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:text="Any direction, but set the parking break.Any direction, but set the parking break."
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image_view_quiz_number_four"
+            app:layout_constraintTop_toTopOf="@+id/image_view_quiz_number_four" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_layout_quiz_answer_three"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraint_layout_quiz_answer_two">
+
+        <TextView
+            android:id="@+id/text_view_quiz_answer_three"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:text="Any direction, but set the parking break.Any direction, but set the parking break."
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image_view_quiz_number_three"
+            app:layout_constraintTop_toTopOf="@+id/image_view_quiz_number_three" />
+
+        <ImageView
+            android:id="@+id/image_view_quiz_number_three"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:src="@drawable/three"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_layout_quiz_answer_two"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraint_layout_quiz_answer_one">
+
+        <TextView
+            android:id="@+id/text_view_quiz_answer_two"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:text="Any direction, but set the parking break.Any direction, but set the parking break."
+            app:layout_constraintBottom_toBottomOf="@+id/image_view_quiz_number_two"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image_view_quiz_number_two"
+            app:layout_constraintTop_toTopOf="@+id/image_view_quiz_number_two" />
+
+        <ImageView
+            android:id="@+id/image_view_quiz_number_two"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:src="@drawable/two"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_layout_quiz_answer_one"
-        android:layout_width="363dp"
-        android:layout_height="45dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="8dp"
@@ -25,10 +130,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             android:text="Any direction, but set the parking break.Any direction, but set the parking break."
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/image_view_quiz_number_one"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/image_view_quiz_number_one"
             app:layout_constraintTop_toTopOf="@+id/image_view_quiz_number_one" />
@@ -70,82 +173,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_view_quiz_level_name" />
-
-    <TextView
-        android:id="@+id/text_view_quiz_answer_two"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:text="Any direction, but set the parking break.Any direction, but set the parking break."
-        app:layout_constraintBottom_toBottomOf="@+id/image_view_quiz_number_two"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/image_view_quiz_number_two"
-        app:layout_constraintTop_toTopOf="@+id/image_view_quiz_number_two" />
-
-    <TextView
-        android:id="@+id/text_view_quiz_answer_three"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:text="Any direction, but set the parking break.Any direction, but set the parking break."
-        app:layout_constraintBottom_toBottomOf="@+id/image_view_quiz_number_three"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/image_view_quiz_number_three"
-        app:layout_constraintTop_toTopOf="@+id/image_view_quiz_number_three" />
-
-    <TextView
-        android:id="@+id/text_view_quiz_answer_four"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:text="Any direction, but set the parking break.Any direction, but set the parking break."
-        app:layout_constraintBottom_toBottomOf="@+id/image_view_quiz_number_four"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/image_view_quiz_number_four"
-        app:layout_constraintTop_toTopOf="@+id/image_view_quiz_number_four" />
-
-    <ImageView
-        android:id="@+id/image_view_quiz_number_two"
-        android:layout_width="43dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="32dp"
-        android:src="@drawable/two"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraint_layout_quiz_answer_one" />
-
-    <ImageView
-        android:id="@+id/image_view_quiz_number_three"
-        android:layout_width="43dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="32dp"
-        android:src="@drawable/three"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_view_quiz_number_two" />
-
-    <ImageView
-        android:id="@+id/image_view_quiz_number_four"
-        android:layout_width="43dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="32dp"
-        android:src="@drawable/four"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_view_quiz_number_three" />
 
     <ImageView
         android:id="@+id/image_view_quiz_left_arrow"
@@ -198,4 +225,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
