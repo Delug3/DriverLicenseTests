@@ -53,6 +53,7 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
        recyclerViewLevels.setHasFixedSize(true);
        levelsAdapter.setClickListener(this);
 
+       //this method load all levels in the recyclerView
        findLevels();
     }
 
