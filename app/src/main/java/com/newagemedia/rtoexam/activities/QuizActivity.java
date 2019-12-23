@@ -2,6 +2,7 @@ package com.newagemedia.rtoexam.activities;
 
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -58,8 +59,6 @@ public class QuizActivity extends AppCompatActivity {
         constraintLayoutAnswerFour = findViewById(R.id.constraint_layout_quiz_answer_four);
         progressBarQuiz = findViewById(R.id.progress_bar_quiz);
 
-        OriginalBackgroundColor = textViewQuestionName.getBackground();
-
         String levelName;
        // List<String> quizData = null;
         if (savedInstanceState == null) {
@@ -76,7 +75,12 @@ public class QuizActivity extends AppCompatActivity {
             }
         }
 
+        OriginalBackgroundColor = textViewQuestionName.getBackground();
+        //set max value of progress bar depending on quizData size
+        progressBarQuiz.setMax(quizData.size());
+
         loadQuestionAndAnswers();
+        updateQuizProgressBar();
 
         //compare correct answer with answer number, if its the same, then green, not the same, red and method call
         //green:#FF00C853
@@ -214,11 +218,8 @@ public class QuizActivity extends AppCompatActivity {
     //method called in order to update progressBar every time a new question is loaded
    private void updateQuizProgressBar()
    {
-       //set max value of progress bar depending of quizData size
-       int totalNumberOfQuestions = quizData.size();
-       progressBarQuiz.setMax(totalNumberOfQuestions);
 
-       if(progressStatus<totalNumberOfQuestions) {
+       if(progressStatus<quizData.size()) {
            progressStatus++;
            progressBarQuiz.setProgress(progressStatus);
        }
