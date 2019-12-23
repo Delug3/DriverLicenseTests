@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -47,8 +46,6 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
 
        recyclerViewLevels = findViewById(R.id.recycler_view_levels);
        recyclerViewLevels.setLayoutManager(new LinearLayoutManager(this));
-       recyclerViewLevels.addItemDecoration(new DividerItemDecoration(this,
-               DividerItemDecoration.VERTICAL));
        levelsAdapter = new LevelsAdapter(this,dataLevels);
        recyclerViewLevels.setHasFixedSize(true);
        levelsAdapter.setClickListener(this);
@@ -73,11 +70,11 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
                     for (int i = 0; i < result.size(); i++) {
 
                         Levels levels = new Levels();
-
-                        levels.level = result.get(i).getString("level");
+                        levels.level_number = result.get(i).getNumber("level_number");
+                        levels.level_name = result.get(i).getString("level_name");
                         levels.quiz = result.get(i).getList("quiz");
 
-                        String name = result.get(i).getString("level");
+                        String name = result.get(i).getString("level_name");
                         Log.e(TAG, "Title: " + name);
 
                         //send result data to adapter->recyclerView
@@ -99,7 +96,8 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
     public void onItemClick(View view, int position) {
         //Toast.makeText(this, "You clicked " + levelsAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
         Intent i = new Intent(LevelsListActivity.this, QuizActivity.class);
-        i.putExtra("LEVEL_NAME", dataLevels.get(position).getLevel());
+        i.putExtra("LEVEL_NAME", dataLevels.get(position).getLevel_name());
+        i.putExtra("LEVEL_NUMBER",dataLevels.get(position).getLevel_number());
         i.putStringArrayListExtra("LEVEL_QUIZ", (ArrayList<String>) dataLevels.get(position).getQuiz());
         startActivity(i);
 
