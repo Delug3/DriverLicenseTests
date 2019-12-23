@@ -232,7 +232,7 @@ public class QuizActivity extends AppCompatActivity {
        }
        else{
 
-           Snackbar snackbar = Snackbar.make(constraintLayoutMain,"All Questions Answered!", Snackbar.LENGTH_SHORT);
+           Snackbar snackbar = Snackbar.make(constraintLayoutMain,"All Questions Answered!", Snackbar.LENGTH_LONG);
            snackbar.getView().setBackgroundColor(ContextCompat.getColor(QuizActivity.this, R.color.blue));
            snackbar.show();
        }
