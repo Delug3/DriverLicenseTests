@@ -52,6 +52,7 @@ public class QuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
 
         constraintLayoutMain = findViewById(R.id.constraint_layout_quiz_main);
+        TextView textViewLevelNumber = findViewById(R.id.text_view_quiz_level_number);
         TextView textViewLevelName = findViewById(R.id.text_view_quiz_level_name);
         ConstraintLayout constraintLayoutNextQuestion = findViewById(R.id.constraint_layout_quiz_next_question);
         textViewQuestionName = findViewById(R.id.text_view_quiz_question);
@@ -67,18 +68,21 @@ public class QuizActivity extends AppCompatActivity {
 
 
         String levelName;
+        Integer levelNumber;
        // List<String> quizData = null;
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if (extras == null) {
                 levelName = null;
+                levelNumber = null;
                 //quizData = null;
 
             } else {
+                levelNumber = extras.getInt("LEVEL_NUMBER");
                 levelName = extras.getString("LEVEL_NAME");
-                quizData = getIntent().getStringArrayListExtra("LEVEL_QUIZ");
+                textViewLevelNumber.setText((String.valueOf(levelNumber)));
                 textViewLevelName.setText(levelName);
-
+                quizData = getIntent().getStringArrayListExtra("LEVEL_QUIZ");
             }
         }
 
