@@ -36,7 +36,8 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Levels l = dataLevels.get(position);
-        holder.textViewLevelName.setText(l.getLevel());
+        holder.textViewLevelNumber.setText(String.valueOf(l.getLevel_number()));
+        holder.textViewLevelName.setText(l.getLevel_name());
 
 
        /*
@@ -59,11 +60,12 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.ViewHolder
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        TextView textViewLevelNumber;
         TextView textViewLevelName;
 
         ViewHolder(View itemView) {
             super(itemView);
-
+            textViewLevelNumber = itemView.findViewById(R.id.text_view_item_level_number);
             textViewLevelName = itemView.findViewById(R.id.text_view_item_level_name);
 
             itemView.setOnClickListener(this);
