@@ -226,7 +226,7 @@
             android:fontFamily="@font/roboto"
             android:text="Next"
             android:textColor="#0091EA"
-            android:textSize="30sp"
+            android:textSize="36sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
