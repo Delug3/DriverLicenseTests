@@ -225,13 +225,11 @@ public class QuizActivity extends AppCompatActivity {
     //method called in order to update progressBar every time a new question is loaded
    private void updateQuizProgressBar()
    {
-
        if(progressStatus<quizData.size()) {
            progressStatus++;
            progressBarQuiz.setProgress(progressStatus);
        }
        else{
-
            Snackbar snackbar = Snackbar.make(constraintLayoutMain,"All Questions Answered!", Snackbar.LENGTH_LONG);
            snackbar.getView().setBackgroundColor(ContextCompat.getColor(QuizActivity.this, R.color.blue));
            snackbar.show();
