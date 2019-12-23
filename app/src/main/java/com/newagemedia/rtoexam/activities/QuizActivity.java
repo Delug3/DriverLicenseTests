@@ -4,15 +4,18 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.newagemedia.rtoexam.R;
 
 import org.json.JSONArray;
@@ -28,6 +31,7 @@ public class QuizActivity extends AppCompatActivity {
     private TextView textViewAnswerTwo;
     private TextView textViewAnswerThree;
     private TextView textViewAnswerFour;
+    private ConstraintLayout constraintLayoutMain;
     private ConstraintLayout constraintLayoutAnswerOne;
     private ConstraintLayout constraintLayoutAnswerTwo;
     private ConstraintLayout constraintLayoutAnswerThree;
@@ -35,6 +39,7 @@ public class QuizActivity extends AppCompatActivity {
     private ProgressBar progressBarQuiz;
     private Drawable OriginalBackgroundColor;
     private String correctAnswer;
+    private Button buttonSnackBar;
     private int progressStatus = 0;
     //variable to move to the next question
     private int questionNumber = 0;
@@ -46,6 +51,7 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
+        constraintLayoutMain = findViewById(R.id.constraint_layout_quiz_main);
         TextView textViewLevelName = findViewById(R.id.text_view_quiz_level_name);
         ConstraintLayout constraintLayoutNextQuestion = findViewById(R.id.constraint_layout_quiz_next_question);
         textViewQuestionName = findViewById(R.id.text_view_quiz_question);
@@ -58,6 +64,7 @@ public class QuizActivity extends AppCompatActivity {
         constraintLayoutAnswerThree = findViewById(R.id.constraint_layout_quiz_answer_three);
         constraintLayoutAnswerFour = findViewById(R.id.constraint_layout_quiz_answer_four);
         progressBarQuiz = findViewById(R.id.progress_bar_quiz);
+
 
         String levelName;
        // List<String> quizData = null;
@@ -224,7 +231,10 @@ public class QuizActivity extends AppCompatActivity {
            progressBarQuiz.setProgress(progressStatus);
        }
        else{
-           Toast.makeText(QuizActivity.this,"That was the last question", Toast.LENGTH_LONG).show();
+
+           Snackbar snackbar = Snackbar.make(constraintLayoutMain,"All Questions Answered!", Snackbar.LENGTH_SHORT);
+           snackbar.getView().setBackgroundColor(ContextCompat.getColor(QuizActivity.this, R.color.blue));
+           snackbar.show();
        }
    }
 
