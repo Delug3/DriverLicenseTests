@@ -4,7 +4,9 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,9 +22,6 @@ import java.util.List;
 
 public class QuizActivity extends AppCompatActivity {
 
-
-    private TextView textViewLevelName;
-    private ConstraintLayout constraintLayoutNextQuestion;
     private TextView textViewQuestionName;
     private TextView textViewAnswerOne;
     private TextView textViewAnswerTwo;
@@ -32,8 +31,10 @@ public class QuizActivity extends AppCompatActivity {
     private ConstraintLayout constraintLayoutAnswerTwo;
     private ConstraintLayout constraintLayoutAnswerThree;
     private ConstraintLayout constraintLayoutAnswerFour;
+    private ProgressBar progressBarQuiz;
     private Drawable OriginalBackgroundColor;
     private String correctAnswer;
+    private int progressStatus = 0;
     //variable to move to the next question
     private int questionNumber = 0;
     //variable to know total number of questions, to set progressbar max value
@@ -44,8 +45,8 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        textViewLevelName = findViewById(R.id.text_view_quiz_level_name);
-        constraintLayoutNextQuestion = findViewById(R.id.constraint_layout_quiz_next_question);
+        TextView textViewLevelName = findViewById(R.id.text_view_quiz_level_name);
+        ConstraintLayout constraintLayoutNextQuestion = findViewById(R.id.constraint_layout_quiz_next_question);
         textViewQuestionName = findViewById(R.id.text_view_quiz_question);
         textViewAnswerOne = findViewById(R.id.text_view_quiz_answer_one);
         textViewAnswerTwo = findViewById(R.id.text_view_quiz_answer_two);
@@ -55,6 +56,7 @@ public class QuizActivity extends AppCompatActivity {
         constraintLayoutAnswerTwo = findViewById(R.id.constraint_layout_quiz_answer_two);
         constraintLayoutAnswerThree = findViewById(R.id.constraint_layout_quiz_answer_three);
         constraintLayoutAnswerFour = findViewById(R.id.constraint_layout_quiz_answer_four);
+        progressBarQuiz = findViewById(R.id.progress_bar_quiz);
 
         OriginalBackgroundColor = textViewQuestionName.getBackground();
 
@@ -68,9 +70,9 @@ public class QuizActivity extends AppCompatActivity {
 
             } else {
                 levelName = extras.getString("LEVEL_NAME");
-                //quizData = getIntent().getStringArrayListExtra("LEVEL_QUIZ");
-                textViewLevelName.setText(levelName);
                 quizData = getIntent().getStringArrayListExtra("LEVEL_QUIZ");
+                textViewLevelName.setText(levelName);
+
             }
         }
 
@@ -140,7 +142,7 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loadQuestionAndAnswers();
-                increaseProgressBar();
+                updateQuizProgressBar();
                 enableSingleClick();
 
             }
@@ -148,7 +150,6 @@ public class QuizActivity extends AppCompatActivity {
 
 
     }
-
 
     /** Values are placed in Json Array.
      * Json Objects inside Json Array
@@ -210,10 +211,20 @@ public class QuizActivity extends AppCompatActivity {
         }
     }
 
-   private void increaseProgressBar()
+    //method called in order to update progressBar every time a new question is loaded
+   private void updateQuizProgressBar()
    {
+       //set max value of progress bar depending of quizData size
        int totalNumberOfQuestions = quizData.size();
+       progressBarQuiz.setMax(totalNumberOfQuestions);
 
+       if(progressStatus<totalNumberOfQuestions) {
+           progressStatus++;
+           progressBarQuiz.setProgress(progressStatus);
+       }
+       else{
+           Toast.makeText(QuizActivity.this,"That was the last question", Toast.LENGTH_LONG).show();
+       }
    }
 
     //loading default colors of both, constraintLayout background and icon number
