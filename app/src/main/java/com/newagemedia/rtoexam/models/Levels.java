@@ -1,19 +1,17 @@
 package com.newagemedia.rtoexam.models;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.Serializable;
 import java.util.List;
 
 public class Levels implements Serializable {
 
     //Json fields: Level name
-    //questions->each level have ~10 questions
+    //questions->each level_name have ~10 questions
     //answers->4 answers, only one is correct
     //correct answer, to compare with the selected one
 
-    public String level;
+    public Number level_number;
+    public String level_name;
     public String question;
     public String answer_one;
     public String answer_two;
@@ -25,7 +23,8 @@ public class Levels implements Serializable {
     public List<String> quiz;
 
     public Levels() {
-        this.level = level;
+        this.level_name = level_name;
+        this.level_number = level_number;
         this.question = question;
         this.answer_one = answer_one;
         this.answer_two = answer_two;
@@ -35,13 +34,20 @@ public class Levels implements Serializable {
         this.quiz = quiz;
     }
 
-
-    public String getLevel() {
-        return level;
+    public Number getLevel_number() {
+        return level_number;
     }
 
-    public void setLevel(String level) {
-        this.level = level;
+    public void setLevel_number(Number level_number) {
+        this.level_number = level_number;
+    }
+
+    public String getLevel_name() {
+        return level_name;
+    }
+
+    public void setLevel_name(String level_name) {
+        this.level_name = level_name;
     }
 
     public String getQuestion() {
