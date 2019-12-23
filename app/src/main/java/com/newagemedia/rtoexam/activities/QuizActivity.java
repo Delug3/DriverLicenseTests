@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.newagemedia.rtoexam.R;
@@ -37,6 +36,8 @@ public class QuizActivity extends AppCompatActivity {
     private String correctAnswer;
     //variable to move to the next question
     private int questionNumber = 0;
+    //variable to know total number of questions, to set progressbar max value
+    private List<String> quizData;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,20 +59,21 @@ public class QuizActivity extends AppCompatActivity {
         OriginalBackgroundColor = textViewQuestionName.getBackground();
 
         String levelName;
-       // List<String> quiz = null;
+       // List<String> quizData = null;
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if (extras == null) {
                 levelName = null;
-                //quiz = null;
+                //quizData = null;
 
             } else {
                 levelName = extras.getString("LEVEL_NAME");
-                //quiz = getIntent().getStringArrayListExtra("LEVEL_QUIZ");
+                //quizData = getIntent().getStringArrayListExtra("LEVEL_QUIZ");
                 textViewLevelName.setText(levelName);
+                quizData = getIntent().getStringArrayListExtra("LEVEL_QUIZ");
             }
         }
-        obtainTotalNumberOfQuestions();
+
         loadQuestionAndAnswers();
 
         //compare correct answer with answer number, if its the same, then green, not the same, red and method call
@@ -138,6 +140,7 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loadQuestionAndAnswers();
+                increaseProgressBar();
                 enableSingleClick();
 
             }
@@ -149,15 +152,13 @@ public class QuizActivity extends AppCompatActivity {
 
     /** Values are placed in Json Array.
      * Json Objects inside Json Array
-     * Need to retrieve object position from "quiz" json array via getJSONArray.
+     * Need to retrieve object position from "quizData" json array via getJSONArray.
      * This method is the responsible for loading new questions in the activity
      */
     private void loadQuestionAndAnswers() {
 
-        List<String> quiz = getIntent().getStringArrayListExtra("LEVEL_QUIZ");
         try {
-        JSONArray jsonArray= new JSONArray(quiz);
-
+        JSONArray jsonArray= new JSONArray(quizData);
         JSONObject json_data = jsonArray.getJSONObject(questionNumber);
 
         String question = json_data.getString("question");
@@ -209,11 +210,11 @@ public class QuizActivity extends AppCompatActivity {
         }
     }
 
-    //obtain total number of question for increasing loading bar
-    private int obtainTotalNumberOfQuestions(){
-        int totalNumberOfQuestions=2;
-        return totalNumberOfQuestions;
-    }
+   private void increaseProgressBar()
+   {
+       int totalNumberOfQuestions = quizData.size();
+
+   }
 
     //loading default colors of both, constraintLayout background and icon number
     private void loadDefaultColors(){
