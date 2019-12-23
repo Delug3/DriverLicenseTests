@@ -148,7 +148,6 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
 
-
         constraintLayoutNextQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,8 +157,6 @@ public class QuizActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     /** Values are placed in Json Array.
@@ -190,7 +187,6 @@ public class QuizActivity extends AppCompatActivity {
         }
          //increasing question number, every time the user click on "Next" will jump to next question
          questionNumber++;
-
     }
 
     //load views with data from the json array
@@ -202,7 +198,6 @@ public class QuizActivity extends AppCompatActivity {
         textViewAnswerThree.setText(answerThree);
         textViewAnswerFour.setText(answerFour);
     }
-
 
     //draw green the constraintLayout background and the answer icon to show the correct answer
     private void showCorrectAnswer() {
@@ -244,7 +239,6 @@ public class QuizActivity extends AppCompatActivity {
         constraintLayoutAnswerTwo.setBackground(OriginalBackgroundColor);
         constraintLayoutAnswerThree.setBackground(OriginalBackgroundColor);
         constraintLayoutAnswerFour.setBackground(OriginalBackgroundColor);
-
     }
 
     //disabling click event of answers after choosing one, prevents multiple clicks
