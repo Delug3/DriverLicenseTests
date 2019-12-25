@@ -50,8 +50,11 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
        recyclerViewLevels.setHasFixedSize(true);
        levelsAdapter.setClickListener(this);
 
+       //obtain state/capital from extras(activity where user select state) and then pass that to findLevels
+       String stateName="andhra_pradesh_quiz";
+
        //this method load all levels in the recyclerView
-       findLevels();
+       findLevels(stateName);
     }
 
 
@@ -59,7 +62,7 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
      * Json Array inside Json Object
      * Need to retrieve object position from "result" json object parsing it.
      */
-    public void findLevels() {
+    public void findLevels(final String stateName) {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Levels");
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -72,7 +75,8 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
                         Levels levels = new Levels();
                         levels.level_number = result.get(i).getNumber("level_number");
                         levels.level_name = result.get(i).getString("level_name");
-                        levels.quiz = result.get(i).getList("quiz");
+                        //retrieving array of quiz using the state name
+                        levels.quiz = result.get(i).getList(stateName);
 
                         String name = result.get(i).getString("level_name");
                         Log.e(TAG, "Title: " + name);
