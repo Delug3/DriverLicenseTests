@@ -65,8 +65,8 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.ViewHolder
 
         ViewHolder(View itemView) {
             super(itemView);
-            textViewLevelNumber = itemView.findViewById(R.id.text_view_item_level_number);
-            textViewLevelName = itemView.findViewById(R.id.text_view_item_level_name);
+            textViewLevelNumber = itemView.findViewById(R.id.text_view_item_capital_name);
+            textViewLevelName = itemView.findViewById(R.id.text_view_item_state_name);
 
             itemView.setOnClickListener(this);
         }
