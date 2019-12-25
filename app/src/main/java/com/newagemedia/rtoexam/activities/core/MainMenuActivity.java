@@ -9,25 +9,33 @@ import android.widget.TextView;
 
 import com.newagemedia.rtoexam.R;
 import com.newagemedia.rtoexam.activities.LevelsListActivity;
+import com.newagemedia.rtoexam.activities.StatesListActivity;
 
 /**
  * Created by Manuel Fernandez Garcia.  Email(mfgarcia87@gmail.com) on 15/12/2019.
  */
-public class MainActivity extends AppCompatActivity {
+public class MainMenuActivity extends AppCompatActivity {
 
-
+    private String stateQuizNameValue;
     //main activity including practice, test, reading and settings
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Bundle extras = getIntent().getExtras();
+        if(extras!=null){
+            stateQuizNameValue = extras.getString("STATE_QUIZ_NAME");
+        }
+
         TextView textViewPractice = findViewById(R.id.text_view_practice);
 
         textViewPractice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, LevelsListActivity.class));
+                Intent i = new Intent(MainMenuActivity.this, LevelsListActivity.class);
+                i.putExtra("STATE_QUIZ_NAME",stateQuizNameValue);
+                startActivity(i);
             }
         });
 
