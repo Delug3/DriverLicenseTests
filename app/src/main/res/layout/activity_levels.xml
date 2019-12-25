@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/image_view_quiz_left_arrow2"
+        android:id="@+id/image_view_levels_left_arrow"
         android:layout_width="43dp"
         android:layout_height="43dp"
         android:layout_marginStart="24dp"
@@ -25,10 +25,10 @@
         android:text="Practice"
         android:textColor="@color/colorText"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/image_view_quiz_left_arrow2"
+        app:layout_constraintBottom_toBottomOf="@+id/image_view_levels_left_arrow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/image_view_quiz_left_arrow2" />
+        app:layout_constraintTop_toTopOf="@+id/image_view_levels_left_arrow" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_levels"
