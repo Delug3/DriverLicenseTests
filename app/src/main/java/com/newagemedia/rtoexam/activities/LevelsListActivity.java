@@ -28,7 +28,7 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
     RecyclerView recyclerViewLevels;
     private LevelsAdapter levelsAdapter;
     private static final String TAG = "RTO";
-
+    private String stateQuizName;
     final List<Levels> dataLevels = new ArrayList<>();
 
    @Override
@@ -36,6 +36,10 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_levels);
 
+       Bundle extras = getIntent().getExtras();
+       if(extras!=null){
+           stateQuizName = extras.getString("STATE_QUIZ_NAME");
+       }
         //Access to parse, where the levels (questions and answers) is stored
        Parse.initialize(new Parse.Configuration.Builder(this)
                .applicationId("lmj5p9coFxtlfHx5EY6ZMZEmZwZkB6UqSM7tP5vj")
@@ -51,10 +55,10 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
        levelsAdapter.setClickListener(this);
 
        //obtain state/capital from extras(activity where user select state) and then pass that to findLevels
-       String stateName="andhra_pradesh_quiz";
+       //String stateQuizNameValue="andhra_pradesh_quiz";
 
-       //this method load all levels in the recyclerView
-       findLevels(stateName);
+       //this method load all levels in the recyclerView with the selected state
+       findLevels(stateQuizName);
     }
 
 
@@ -62,7 +66,7 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
      * Json Array inside Json Object
      * Need to retrieve object position from "result" json object parsing it.
      */
-    public void findLevels(final String stateName) {
+    public void findLevels(final String stateQuizName) {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Levels");
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -76,7 +80,7 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
                         levels.level_number = result.get(i).getNumber("level_number");
                         levels.level_name = result.get(i).getString("level_name");
                         //retrieving array of quiz using the state name
-                        levels.quiz = result.get(i).getList(stateName);
+                        levels.quiz = result.get(i).getList(stateQuizName);
 
                         String name = result.get(i).getString("level_name");
                         Log.e(TAG, "Title: " + name);
@@ -99,6 +103,7 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
     @Override
     public void onItemClick(View view, int position) {
         //Toast.makeText(this, "You clicked " + levelsAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+
         Intent i = new Intent(LevelsListActivity.this, QuizActivity.class);
         i.putExtra("LEVEL_NAME", dataLevels.get(position).getLevel_name());
         i.putExtra("LEVEL_NUMBER",dataLevels.get(position).getLevel_number());
@@ -106,7 +111,11 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
         startActivity(i);
 
     }
+    @Override
+    public void onBackPressed() {
 
+        finish();
+    }
 
 
 }
