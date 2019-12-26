@@ -21,6 +21,7 @@ import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class LevelsListActivity extends AppCompatActivity implements LevelsAdapter.ItemClickListener {
@@ -28,6 +29,7 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
     RecyclerView recyclerViewLevels;
     private LevelsAdapter levelsAdapter;
     private static final String TAG = "RTO";
+    private String queryLanguage;
     private String stateQuizName;
     final List<Levels> dataLevels = new ArrayList<>();
 
@@ -36,10 +38,13 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_levels);
 
+        //obtain state/capital from extras(activity where user select state) and then pass that to findLevels
+       //String stateQuizNameValue="andhra_pradesh_quiz";
        Bundle extras = getIntent().getExtras();
        if(extras!=null){
            stateQuizName = extras.getString("STATE_QUIZ_NAME");
        }
+
         //Access to parse, where the levels (questions and answers) is stored
        Parse.initialize(new Parse.Configuration.Builder(this)
                .applicationId("lmj5p9coFxtlfHx5EY6ZMZEmZwZkB6UqSM7tP5vj")
@@ -54,11 +59,11 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
        recyclerViewLevels.setHasFixedSize(true);
        levelsAdapter.setClickListener(this);
 
-       //obtain state/capital from extras(activity where user select state) and then pass that to findLevels
-       //String stateQuizNameValue="andhra_pradesh_quiz";
+       //this method get data class with the device language
+       getQueryLanguage();
 
        //this method load all levels in the recyclerView with the selected state
-       findLevels(stateQuizName);
+       findLevels(stateQuizName,queryLanguage);
     }
 
 
@@ -66,8 +71,9 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
      * Json Array inside Json Object
      * Need to retrieve object position from "result" json object parsing it.
      */
-    public void findLevels(final String stateQuizName) {
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Levels");
+    public void findLevels(final String stateQuizName,String queryLanguage) {
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery(queryLanguage);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> result, ParseException e) {
@@ -99,6 +105,27 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
         });
 
     }
+
+    //Obtaining language of device to load query with the appropriate data
+    //class Levels: EN,HI....
+    private void getQueryLanguage()
+    {
+
+        Locale.getDefault().getDisplayLanguage();
+        if(Locale.getDefault().getLanguage().equals("en"))
+        {
+            queryLanguage="Levels_EN";
+        }
+        if(Locale.getDefault().getLanguage().equals("hi"))
+        {
+            queryLanguage="Levels_HI";
+        }
+        else
+        {
+            queryLanguage="Levels_EN";
+        }
+    }
+
 
     @Override
     public void onItemClick(View view, int position) {
