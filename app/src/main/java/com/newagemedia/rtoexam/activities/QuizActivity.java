@@ -181,20 +181,16 @@ public class QuizActivity extends AppCompatActivity {
         String answerB = json_data.getString("answer_b");
         String answerC = json_data.getString("answer_c");
         String answerD = json_data.getString("answer_d");
-            if (answerD.equals("null"))
-                {
-                hideAnswer();
-                }
-            else
-            {
-                unHideAnswer();
-            }
         String imageUrl = json_data.getString("image_url");
+
         //making this value global in this activity for being use in others methods(showcorrectAnswer)
         correctAnswer = json_data.getString("correct_answer");
 
-        //checkNumberOfAnswers(answerD);
+        //method to know if answer D includes a value, if it's null(no answer), then hide the view
+        checkValueAnswerD(answerD);
+
         loadUI(question, answerA, answerB, answerC,answerD,imageUrl);
+
         loadDefaultColors();
 
         } catch (JSONException e) {
@@ -276,7 +272,21 @@ public class QuizActivity extends AppCompatActivity {
         textViewAnswerD.setClickable(true);
     }
 
+    private void checkValueAnswerD(String answerD)
+    {
+        if (answerD.equals("null"))
+        {
+            hideAnswer();
+        }
+        else
+        {
+            unHideAnswer();
+        }
+    }
+
+
     private void hideAnswer(){
+
         constraintLayoutAnswerD.setVisibility(View.GONE);
         imageViewAnswerD.setVisibility(View.GONE);
         textViewAnswerD.setVisibility(View.GONE);
@@ -287,7 +297,6 @@ public class QuizActivity extends AppCompatActivity {
         constraintLayoutAnswerD.setVisibility(View.VISIBLE);
         imageViewAnswerD.setVisibility(View.VISIBLE);
         textViewAnswerD.setVisibility(View.VISIBLE);
-
     }
 
 }
