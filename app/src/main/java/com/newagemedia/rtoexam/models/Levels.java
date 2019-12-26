@@ -8,8 +8,8 @@ public class Levels implements Serializable {
     //Json fields: Level name
     //questions->each level_name have ~20 questions
     //images: load one image from url
-    //answers->3 answers(a,b,c), only one is correct
-    //correct answer, to compare with the selected one
+    //answers->4 answers(a,b,c,d), answer can be of different number (a,b,c,d) or just (a,b,c)
+    //correct answer-> only one is correct
 
     public Number level_number;
     public String level_name;
