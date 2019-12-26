@@ -4,7 +4,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.newagemedia.rtoexam.R;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,6 +30,7 @@ public class QuizActivity extends AppCompatActivity {
     private TextView textViewAnswerB;
     private TextView textViewAnswerC;
     private TextView textViewAnswerD;
+    private ImageView imageViewQuestionImageUrl;
     private ConstraintLayout constraintLayoutMain;
     private ConstraintLayout constraintLayoutAnswerA;
     private ConstraintLayout constraintLayoutAnswerB;
@@ -57,6 +59,7 @@ public class QuizActivity extends AppCompatActivity {
         textViewAnswerB = findViewById(R.id.text_view_quiz_answer_b);
         textViewAnswerC = findViewById(R.id.text_view_quiz_answer_c);
         textViewAnswerD = findViewById(R.id.text_view_quiz_answer_d);
+        imageViewQuestionImageUrl = findViewById(R.id.image_view_quiz_image_url);
         constraintLayoutAnswerA = findViewById(R.id.constraint_layout_quiz_answer_a);
         constraintLayoutAnswerB = findViewById(R.id.constraint_layout_quiz_answer_b);
         constraintLayoutAnswerC = findViewById(R.id.constraint_layout_quiz_answer_c);
@@ -176,10 +179,11 @@ public class QuizActivity extends AppCompatActivity {
         String answerB = json_data.getString("answer_b");
         String answerC = json_data.getString("answer_c");
         String answerD = json_data.getString("answer_d");
+        String imageUrl = json_data.getString("image_url");
         //making this value global in this activity for being use in others methods(showcorrectAnswer)
         correctAnswer = json_data.getString("correct_answer");
 
-        loadUI(question, answerA, answerB, answerC,answerD);
+        loadUI(question, answerA, answerB, answerC,answerD,imageUrl);
         loadDefaultColors();
 
         } catch (JSONException e) {
@@ -190,15 +194,16 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     //load views with data from the json array
-    private void loadUI(String question, String answerA, String answerB, String answerC, String answerD){
+    private void loadUI(String question, String answerA, String answerB, String answerC, String answerD,String imageUrl){
 
         textViewQuestion.setText(question);
+        Picasso.get().load(imageUrl).into(imageViewQuestionImageUrl);
         textViewAnswerA.setText(answerA);
         textViewAnswerB.setText(answerB);
         textViewAnswerC.setText(answerC);
         //if null dont set, make layout invisible
         textViewAnswerD.setText(answerD);
-        //load here imageview
+
     }
 
     //draw green the constraintLayout background and the answer icon to show the correct answer
