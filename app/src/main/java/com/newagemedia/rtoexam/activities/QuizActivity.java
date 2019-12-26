@@ -31,6 +31,7 @@ public class QuizActivity extends AppCompatActivity {
     private TextView textViewAnswerC;
     private TextView textViewAnswerD;
     private ImageView imageViewQuestionImageUrl;
+    private ImageView imageViewAnswerD;
     private ConstraintLayout constraintLayoutMain;
     private ConstraintLayout constraintLayoutAnswerA;
     private ConstraintLayout constraintLayoutAnswerB;
@@ -60,6 +61,7 @@ public class QuizActivity extends AppCompatActivity {
         textViewAnswerC = findViewById(R.id.text_view_quiz_answer_c);
         textViewAnswerD = findViewById(R.id.text_view_quiz_answer_d);
         imageViewQuestionImageUrl = findViewById(R.id.image_view_quiz_image_url);
+        imageViewAnswerD = findViewById(R.id.image_view_quiz_letter_d);
         constraintLayoutAnswerA = findViewById(R.id.constraint_layout_quiz_answer_a);
         constraintLayoutAnswerB = findViewById(R.id.constraint_layout_quiz_answer_b);
         constraintLayoutAnswerC = findViewById(R.id.constraint_layout_quiz_answer_c);
@@ -179,10 +181,19 @@ public class QuizActivity extends AppCompatActivity {
         String answerB = json_data.getString("answer_b");
         String answerC = json_data.getString("answer_c");
         String answerD = json_data.getString("answer_d");
+            if (answerD.equals("null"))
+                {
+                hideAnswer();
+                }
+            else
+            {
+                unHideAnswer();
+            }
         String imageUrl = json_data.getString("image_url");
         //making this value global in this activity for being use in others methods(showcorrectAnswer)
         correctAnswer = json_data.getString("correct_answer");
 
+        //checkNumberOfAnswers(answerD);
         loadUI(question, answerA, answerB, answerC,answerD,imageUrl);
         loadDefaultColors();
 
@@ -201,7 +212,6 @@ public class QuizActivity extends AppCompatActivity {
         textViewAnswerA.setText(answerA);
         textViewAnswerB.setText(answerB);
         textViewAnswerC.setText(answerC);
-        //if null dont set, make layout invisible
         textViewAnswerD.setText(answerD);
 
     }
@@ -266,5 +276,18 @@ public class QuizActivity extends AppCompatActivity {
         textViewAnswerD.setClickable(true);
     }
 
+    private void hideAnswer(){
+        constraintLayoutAnswerD.setVisibility(View.GONE);
+        imageViewAnswerD.setVisibility(View.GONE);
+        textViewAnswerD.setVisibility(View.GONE);
+    }
+
+    private void unHideAnswer()
+    {
+        constraintLayoutAnswerD.setVisibility(View.VISIBLE);
+        imageViewAnswerD.setVisibility(View.VISIBLE);
+        textViewAnswerD.setVisibility(View.VISIBLE);
+
+    }
 
 }
