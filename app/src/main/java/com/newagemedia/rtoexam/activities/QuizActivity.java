@@ -2,14 +2,12 @@ package com.newagemedia.rtoexam.activities;
 
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -26,20 +24,19 @@ import java.util.List;
 
 public class QuizActivity extends AppCompatActivity {
 
-    private TextView textViewQuestionName;
-    private TextView textViewAnswerOne;
-    private TextView textViewAnswerTwo;
-    private TextView textViewAnswerThree;
-    private TextView textViewAnswerFour;
+    private TextView textViewQuestion;
+    private TextView textViewAnswerA;
+    private TextView textViewAnswerB;
+    private TextView textViewAnswerC;
+    private TextView textViewAnswerD;
     private ConstraintLayout constraintLayoutMain;
-    private ConstraintLayout constraintLayoutAnswerOne;
-    private ConstraintLayout constraintLayoutAnswerTwo;
-    private ConstraintLayout constraintLayoutAnswerThree;
-    private ConstraintLayout constraintLayoutAnswerFour;
+    private ConstraintLayout constraintLayoutAnswerA;
+    private ConstraintLayout constraintLayoutAnswerB;
+    private ConstraintLayout constraintLayoutAnswerC;
+    private ConstraintLayout constraintLayoutAnswerD;
     private ProgressBar progressBarQuiz;
     private Drawable OriginalBackgroundColor;
     private String correctAnswer;
-    private Button buttonSnackBar;
     private int progressStatus = 0;
     //variable to move to the next question
     private int questionNumber = 0;
@@ -55,15 +52,15 @@ public class QuizActivity extends AppCompatActivity {
         TextView textViewLevelNumber = findViewById(R.id.text_view_quiz_level_number);
         TextView textViewLevelName = findViewById(R.id.text_view_quiz_level_name);
         ConstraintLayout constraintLayoutNextQuestion = findViewById(R.id.constraint_layout_quiz_next_question);
-        textViewQuestionName = findViewById(R.id.text_view_quiz_question);
-        textViewAnswerOne = findViewById(R.id.text_view_quiz_answer_one);
-        textViewAnswerTwo = findViewById(R.id.text_view_quiz_answer_two);
-        textViewAnswerThree = findViewById(R.id.text_view_quiz_answer_three);
-        textViewAnswerFour = findViewById(R.id.text_view_quiz_answer_four);
-        constraintLayoutAnswerOne = findViewById(R.id.constraint_layout_quiz_answer_one);
-        constraintLayoutAnswerTwo = findViewById(R.id.constraint_layout_quiz_answer_two);
-        constraintLayoutAnswerThree = findViewById(R.id.constraint_layout_quiz_answer_three);
-        constraintLayoutAnswerFour = findViewById(R.id.constraint_layout_quiz_answer_four);
+        textViewQuestion = findViewById(R.id.text_view_quiz_question);
+        textViewAnswerA = findViewById(R.id.text_view_quiz_answer_a);
+        textViewAnswerB = findViewById(R.id.text_view_quiz_answer_b);
+        textViewAnswerC = findViewById(R.id.text_view_quiz_answer_c);
+        textViewAnswerD = findViewById(R.id.text_view_quiz_answer_d);
+        constraintLayoutAnswerA = findViewById(R.id.constraint_layout_quiz_answer_a);
+        constraintLayoutAnswerB = findViewById(R.id.constraint_layout_quiz_answer_b);
+        constraintLayoutAnswerC = findViewById(R.id.constraint_layout_quiz_answer_c);
+        constraintLayoutAnswerD = findViewById(R.id.constraint_layout_quiz_answer_d);
         progressBarQuiz = findViewById(R.id.progress_bar_quiz);
 
 
@@ -86,7 +83,7 @@ public class QuizActivity extends AppCompatActivity {
             }
         }
 
-        OriginalBackgroundColor = textViewQuestionName.getBackground();
+        OriginalBackgroundColor = textViewQuestion.getBackground();
         //set max value of progress bar depending on quizData size
         progressBarQuiz.setMax(quizData.size());
 
@@ -96,56 +93,56 @@ public class QuizActivity extends AppCompatActivity {
         //compare correct answer with answer number, if its the same, then green, not the same, red and method call
         //green:#FF00C853
         //red:#FFD50000
-        textViewAnswerOne.setOnClickListener(new View.OnClickListener() {
+        textViewAnswerA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (correctAnswer.equals("one")) {
-                    constraintLayoutAnswerOne.setBackgroundColor(Color.parseColor("#1D00C853"));
+                if (correctAnswer.equals("a")) {
+                    constraintLayoutAnswerA.setBackgroundColor(Color.parseColor("#1D00C853"));
                 }
                 else{
-                    constraintLayoutAnswerOne.setBackgroundColor(Color.parseColor("#23D50000"));
+                    constraintLayoutAnswerA.setBackgroundColor(Color.parseColor("#23D50000"));
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
             }
         });
 
-        textViewAnswerTwo.setOnClickListener(new View.OnClickListener() {
+        textViewAnswerB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (correctAnswer.equals("two")) {
-                    constraintLayoutAnswerTwo.setBackgroundColor(Color.parseColor("#1D00C853"));
+                if (correctAnswer.equals("b")) {
+                    constraintLayoutAnswerB.setBackgroundColor(Color.parseColor("#1D00C853"));
                 }
                 else{
-                    constraintLayoutAnswerTwo.setBackgroundColor(Color.parseColor("#23D50000"));
+                    constraintLayoutAnswerB.setBackgroundColor(Color.parseColor("#23D50000"));
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
             }
         });
 
-        textViewAnswerThree.setOnClickListener(new View.OnClickListener() {
+        textViewAnswerC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (correctAnswer.equals("three")) {
-                    constraintLayoutAnswerThree.setBackgroundColor(Color.parseColor("#1D00C853"));
+                if (correctAnswer.equals("c")) {
+                    constraintLayoutAnswerC.setBackgroundColor(Color.parseColor("#1D00C853"));
                 }
                 else{
-                    constraintLayoutAnswerThree.setBackgroundColor(Color.parseColor("#23D50000"));
+                    constraintLayoutAnswerC.setBackgroundColor(Color.parseColor("#23D50000"));
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
             }
         });
 
-        textViewAnswerFour.setOnClickListener(new View.OnClickListener() {
+        textViewAnswerD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (correctAnswer.equals("four")) {
-                    constraintLayoutAnswerFour.setBackgroundColor(Color.parseColor("#1D00C853"));
+                if (correctAnswer.equals("d")) {
+                    constraintLayoutAnswerD.setBackgroundColor(Color.parseColor("#1D00C853"));
                 }
                 else{
-                    constraintLayoutAnswerFour.setBackgroundColor(Color.parseColor("#23D50000"));
+                    constraintLayoutAnswerD.setBackgroundColor(Color.parseColor("#23D50000"));
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
@@ -175,15 +172,14 @@ public class QuizActivity extends AppCompatActivity {
         JSONObject json_data = jsonArray.getJSONObject(questionNumber);
 
         String question = json_data.getString("question");
-        String answerOne = json_data.getString("answer_one");
-        String answerTwo = json_data.getString("answer_two");
-        String answerThree = json_data.getString("answer_three");
-        String answerFour = json_data.getString("answer_four");
-
+        String answerA = json_data.getString("answer_a");
+        String answerB = json_data.getString("answer_b");
+        String answerC = json_data.getString("answer_c");
+        String answerD = json_data.getString("answer_d");
         //making this value global in this activity for being use in others methods(showcorrectAnswer)
         correctAnswer = json_data.getString("correct_answer");
 
-        loadUI(question, answerOne, answerTwo, answerThree, answerFour);
+        loadUI(question, answerA, answerB, answerC,answerD);
         loadDefaultColors();
 
         } catch (JSONException e) {
@@ -194,29 +190,31 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     //load views with data from the json array
-    private void loadUI(String question, String answerOne, String answerTwo, String answerThree, String answerFour){
+    private void loadUI(String question, String answerA, String answerB, String answerC, String answerD){
 
-        textViewQuestionName.setText(question);
-        textViewAnswerOne.setText(answerOne);
-        textViewAnswerTwo.setText(answerTwo);
-        textViewAnswerThree.setText(answerThree);
-        textViewAnswerFour.setText(answerFour);
+        textViewQuestion.setText(question);
+        textViewAnswerA.setText(answerA);
+        textViewAnswerB.setText(answerB);
+        textViewAnswerC.setText(answerC);
+        //if null dont set, make layout invisible
+        textViewAnswerD.setText(answerD);
+        //load here imageview
     }
 
     //draw green the constraintLayout background and the answer icon to show the correct answer
     private void showCorrectAnswer() {
         switch (correctAnswer) {
-            case "one":
-                constraintLayoutAnswerOne.setBackgroundColor(Color.parseColor("#1D00C853"));
+            case "a":
+                constraintLayoutAnswerA.setBackgroundColor(Color.parseColor("#1D00C853"));
                 break;
-            case "two":
-                constraintLayoutAnswerTwo.setBackgroundColor(Color.parseColor("#1D00C853"));
+            case "b":
+                constraintLayoutAnswerB.setBackgroundColor(Color.parseColor("#1D00C853"));
                 break;
-            case "three":
-                constraintLayoutAnswerThree.setBackgroundColor(Color.parseColor("#1D00C853"));
+            case "c":
+                constraintLayoutAnswerC.setBackgroundColor(Color.parseColor("#1D00C853"));
                 break;
-            case "four":
-                constraintLayoutAnswerFour.setBackgroundColor(Color.parseColor("#1D00C853"));
+            case "d":
+                constraintLayoutAnswerD.setBackgroundColor(Color.parseColor("#1D00C853"));
                 break;
         }
     }
@@ -239,28 +237,28 @@ public class QuizActivity extends AppCompatActivity {
     private void loadDefaultColors(){
 
         //set default colors every time user press Next
-        constraintLayoutAnswerOne.setBackground(OriginalBackgroundColor);
-        constraintLayoutAnswerTwo.setBackground(OriginalBackgroundColor);
-        constraintLayoutAnswerThree.setBackground(OriginalBackgroundColor);
-        constraintLayoutAnswerFour.setBackground(OriginalBackgroundColor);
+        constraintLayoutAnswerA.setBackground(OriginalBackgroundColor);
+        constraintLayoutAnswerB.setBackground(OriginalBackgroundColor);
+        constraintLayoutAnswerC.setBackground(OriginalBackgroundColor);
+        constraintLayoutAnswerD.setBackground(OriginalBackgroundColor);
     }
 
     //disabling click event of answers after choosing one, prevents multiple clicks
     private void disableMultipleClicks(){
 
-        textViewAnswerOne.setClickable(false);
-        textViewAnswerTwo.setClickable(false);
-        textViewAnswerThree.setClickable(false);
-        textViewAnswerFour.setClickable(false);
+        textViewAnswerA.setClickable(false);
+        textViewAnswerB.setClickable(false);
+        textViewAnswerC.setClickable(false);
+        textViewAnswerD.setClickable(false);
     }
 
     //enabling click events of answers after pressing in Next
     private void enableSingleClick(){
 
-        textViewAnswerOne.setClickable(true);
-        textViewAnswerTwo.setClickable(true);
-        textViewAnswerThree.setClickable(true);
-        textViewAnswerFour.setClickable(true);
+        textViewAnswerA.setClickable(true);
+        textViewAnswerB.setClickable(true);
+        textViewAnswerC.setClickable(true);
+        textViewAnswerD.setClickable(true);
     }
 
 
