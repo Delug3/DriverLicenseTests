@@ -7,15 +7,34 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint_layout_quiz_answer_four"
+        android:id="@+id/constraint_layout_quiz_answer_d"
         android:layout_width="0dp"
         android:layout_height="65dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraint_layout_quiz_answer_three">
+        app:layout_constraintTop_toBottomOf="@+id/constraint_layout_quiz_answer_c">
+
+        <TextView
+            android:id="@+id/text_view_quiz_answer_d"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/roboto"
+            android:text="Any direction, but set the parking break. Any direction, but set the parking break."
+            android:textColor="@color/colorText"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image_view_quiz_letter_d"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/image_view_quiz_number_four"
+            android:id="@+id/image_view_quiz_letter_d"
             android:layout_width="43dp"
             android:layout_height="43dp"
             android:layout_marginStart="24dp"
@@ -24,52 +43,37 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/text_view_quiz_answer_four"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:fontFamily="@font/roboto"
-            android:text="Any direction, but set the parking break.Any direction, but set the parking break."
-            android:textColor="@color/colorText"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/image_view_quiz_number_four"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/image_view_quiz_number_four"
-            app:layout_constraintTop_toTopOf="@+id/image_view_quiz_number_four" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint_layout_quiz_answer_three"
+        android:id="@+id/constraint_layout_quiz_answer_c"
         android:layout_width="0dp"
         android:layout_height="65dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraint_layout_quiz_answer_two">
+        app:layout_constraintTop_toBottomOf="@+id/constraint_layout_quiz_answer_b">
 
         <TextView
-            android:id="@+id/text_view_quiz_answer_three"
+            android:id="@+id/text_view_quiz_answer_c"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="@font/roboto"
-            android:text="Any direction, but set the parking break.Any direction, but set the parking break."
+            android:text="Any direction, but set the parking break. Any direction, but set the parking break."
             android:textColor="@color/colorText"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/image_view_quiz_number_three"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/image_view_quiz_number_three"
-            app:layout_constraintTop_toTopOf="@+id/image_view_quiz_number_three" />
+            app:layout_constraintStart_toEndOf="@+id/image_view_quiz_letter_c"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/image_view_quiz_number_three"
+            android:id="@+id/image_view_quiz_letter_c"
             android:layout_width="43dp"
             android:layout_height="43dp"
             android:layout_marginStart="24dp"
@@ -81,29 +85,31 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint_layout_quiz_answer_two"
+        android:id="@+id/constraint_layout_quiz_answer_b"
         android:layout_width="0dp"
         android:layout_height="65dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraint_layout_quiz_answer_one">
+        app:layout_constraintTop_toBottomOf="@+id/constraint_layout_quiz_answer_a">
 
         <TextView
-            android:id="@+id/text_view_quiz_answer_two"
+            android:id="@+id/text_view_quiz_answer_b"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="@font/roboto"
-            android:text="Any direction, but set the parking break.Any direction, but set the parking break."
+            android:text="Any direction, but set the parking break. Any direction, but set the parking break."
             android:textColor="@color/colorText"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/image_view_quiz_number_two"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/image_view_quiz_number_two"
-            app:layout_constraintTop_toTopOf="@+id/image_view_quiz_number_two" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/image_view_quiz_number_two"
@@ -118,33 +124,35 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint_layout_quiz_answer_one"
+        android:id="@+id/constraint_layout_quiz_answer_a"
         android:layout_width="0dp"
         android:layout_height="65dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_quiz_question">
+        app:layout_constraintTop_toBottomOf="@+id/image_view_quiz_image">
 
         <TextView
-            android:id="@+id/text_view_quiz_answer_one"
+            android:id="@+id/text_view_quiz_answer_a"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="@font/roboto"
             android:text="Any direction, but set the parking break. Any direction, but set the parking break."
             android:textColor="@color/colorText"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/image_view_quiz_number_one"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/image_view_quiz_number_one"
-            app:layout_constraintTop_toTopOf="@+id/image_view_quiz_number_one" />
+            app:layout_constraintStart_toEndOf="@+id/image_view_quiz_letter_a"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/image_view_quiz_number_one"
+            android:id="@+id/image_view_quiz_letter_a"
             android:layout_width="43dp"
             android:layout_height="43dp"
             android:layout_marginStart="24dp"
@@ -162,7 +170,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:fontFamily="@font/roboto"
-        android:text="Level 1"
+        android:text="Level"
         android:textColor="@color/colorText"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/image_view_quiz_left_arrow"
@@ -175,11 +183,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:fontFamily="@font/roboto"
-        android:text="Any direction, but set the parking break.Any direction, but set the parking break."
+        android:text="Any direction, but set the parking break. Any direction, but set the parking break."
         android:textColor="@color/colorText"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -192,7 +200,7 @@
         android:layout_height="43dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/left_arrow" />
@@ -203,7 +211,6 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/progress_bar_quiz"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -255,5 +262,15 @@
         app:layout_constraintBottom_toBottomOf="@+id/text_view_quiz_level_name"
         app:layout_constraintStart_toEndOf="@+id/text_view_quiz_level_name"
         app:layout_constraintTop_toTopOf="@+id/text_view_quiz_level_name" />
+
+    <ImageView
+        android:id="@+id/image_view_quiz_image"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_quiz_question"
+        tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
