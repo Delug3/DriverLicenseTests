@@ -31,7 +31,10 @@ public class QuizActivity extends AppCompatActivity {
     private TextView textViewAnswerC;
     private TextView textViewAnswerD;
     private ImageView imageViewQuestionImageUrl;
-    private ImageView imageViewAnswerD;
+    private ImageView imageViewLetterA;
+    private ImageView imageViewLetterB;
+    private ImageView imageViewLetterC;
+    private ImageView imageViewLetterD;
     private ConstraintLayout constraintLayoutMain;
     private ConstraintLayout constraintLayoutAnswerA;
     private ConstraintLayout constraintLayoutAnswerB;
@@ -61,7 +64,10 @@ public class QuizActivity extends AppCompatActivity {
         textViewAnswerC = findViewById(R.id.text_view_quiz_answer_c);
         textViewAnswerD = findViewById(R.id.text_view_quiz_answer_d);
         imageViewQuestionImageUrl = findViewById(R.id.image_view_quiz_image_url);
-        imageViewAnswerD = findViewById(R.id.image_view_quiz_letter_d);
+        imageViewLetterA = findViewById(R.id.image_view_quiz_letter_a);
+        imageViewLetterB = findViewById(R.id.image_view_quiz_letter_b);
+        imageViewLetterC = findViewById(R.id.image_view_quiz_letter_c);
+        imageViewLetterD = findViewById(R.id.image_view_quiz_letter_d);
         constraintLayoutAnswerA = findViewById(R.id.constraint_layout_quiz_answer_a);
         constraintLayoutAnswerB = findViewById(R.id.constraint_layout_quiz_answer_b);
         constraintLayoutAnswerC = findViewById(R.id.constraint_layout_quiz_answer_c);
@@ -103,9 +109,11 @@ public class QuizActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (correctAnswer.equals("a")) {
                     constraintLayoutAnswerA.setBackgroundColor(Color.parseColor("#1D00C853"));
+                    imageViewLetterA.setImageResource(R.drawable.ic_green_answer_a);
                 }
                 else{
                     constraintLayoutAnswerA.setBackgroundColor(Color.parseColor("#23D50000"));
+                    imageViewLetterA.setImageResource(R.drawable.ic_red_answer_a);
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
@@ -117,9 +125,11 @@ public class QuizActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (correctAnswer.equals("b")) {
                     constraintLayoutAnswerB.setBackgroundColor(Color.parseColor("#1D00C853"));
+                    imageViewLetterB.setImageResource(R.drawable.ic_green_answer_b);
                 }
                 else{
                     constraintLayoutAnswerB.setBackgroundColor(Color.parseColor("#23D50000"));
+                    imageViewLetterB.setImageResource(R.drawable.ic_red_answer_b);
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
@@ -131,9 +141,11 @@ public class QuizActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (correctAnswer.equals("c")) {
                     constraintLayoutAnswerC.setBackgroundColor(Color.parseColor("#1D00C853"));
+                    imageViewLetterC.setImageResource(R.drawable.ic_green_answer_c);
                 }
                 else{
                     constraintLayoutAnswerC.setBackgroundColor(Color.parseColor("#23D50000"));
+                    imageViewLetterC.setImageResource(R.drawable.ic_red_answer_c);
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
@@ -145,9 +157,11 @@ public class QuizActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (correctAnswer.equals("d")) {
                     constraintLayoutAnswerD.setBackgroundColor(Color.parseColor("#1D00C853"));
+                    imageViewLetterD.setImageResource(R.drawable.ic_green_answer_d);
                 }
                 else{
                     constraintLayoutAnswerD.setBackgroundColor(Color.parseColor("#23D50000"));
+                    imageViewLetterD.setImageResource(R.drawable.ic_red_answer_d);
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
@@ -217,15 +231,19 @@ public class QuizActivity extends AppCompatActivity {
         switch (correctAnswer) {
             case "a":
                 constraintLayoutAnswerA.setBackgroundColor(Color.parseColor("#1D00C853"));
+                imageViewLetterA.setImageResource(R.drawable.ic_green_answer_a);
                 break;
             case "b":
                 constraintLayoutAnswerB.setBackgroundColor(Color.parseColor("#1D00C853"));
+                imageViewLetterB.setImageResource(R.drawable.ic_green_answer_b);
                 break;
             case "c":
                 constraintLayoutAnswerC.setBackgroundColor(Color.parseColor("#1D00C853"));
+                imageViewLetterC.setImageResource(R.drawable.ic_green_answer_c);
                 break;
             case "d":
                 constraintLayoutAnswerD.setBackgroundColor(Color.parseColor("#1D00C853"));
+                imageViewLetterD.setImageResource(R.drawable.ic_green_answer_d);
                 break;
         }
     }
@@ -252,6 +270,10 @@ public class QuizActivity extends AppCompatActivity {
         constraintLayoutAnswerB.setBackground(OriginalBackgroundColor);
         constraintLayoutAnswerC.setBackground(OriginalBackgroundColor);
         constraintLayoutAnswerD.setBackground(OriginalBackgroundColor);
+        imageViewLetterA.setImageResource(R.drawable.ic_white_answer_a);
+        imageViewLetterB.setImageResource(R.drawable.ic_white_answer_b);
+        imageViewLetterC.setImageResource(R.drawable.ic_white_answer_c);
+        imageViewLetterD.setImageResource(R.drawable.ic_white_answer_d);
     }
 
     //disabling click event of answers after choosing one, prevents multiple clicks
@@ -288,14 +310,14 @@ public class QuizActivity extends AppCompatActivity {
     private void hideAnswer(){
 
         constraintLayoutAnswerD.setVisibility(View.GONE);
-        imageViewAnswerD.setVisibility(View.GONE);
+        imageViewLetterD.setVisibility(View.GONE);
         textViewAnswerD.setVisibility(View.GONE);
     }
 
     private void unHideAnswer()
     {
         constraintLayoutAnswerD.setVisibility(View.VISIBLE);
-        imageViewAnswerD.setVisibility(View.VISIBLE);
+        imageViewLetterD.setVisibility(View.VISIBLE);
         textViewAnswerD.setVisibility(View.VISIBLE);
     }
 
