@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">RTO Exam</string>
+    <string name="select_state">Select State</string>
+    <string name="practice">Practice</string>
+    <string name="main_menu">Main Menu</string>
+    <string name="level_name">Level Name</string>
+    <string name="level_number">1</string>
+    <string name="state_name">State Name</string>
+    <string name="capital_name">Capital Name</string>
+    <string name="practice_main_menu">Practice</string>
+    <string name="traffic_sign_main_menu">Traffic Sign</string>
+    <string name="test_main_menu">Test</string>
+    <string name="reading_main_menu">Reading</string>
+    <string name="settings_main_menu">Settings</string>
+    <string name="test_content">Any direction, but set the parking break. Any direction, but set the parking break."</string>
+    <string name="next_question">Next</string>
 </resources>
