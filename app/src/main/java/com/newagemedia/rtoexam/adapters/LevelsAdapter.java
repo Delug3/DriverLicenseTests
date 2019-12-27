@@ -2,17 +2,23 @@ package com.newagemedia.rtoexam.adapters;
 
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.newagemedia.rtoexam.R;
 import com.newagemedia.rtoexam.models.Levels;
 
 import java.util.List;
+import java.util.Random;
 
 public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.ViewHolder> {
 
@@ -39,6 +45,12 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.ViewHolder
         holder.textViewLevelNumber.setText(String.valueOf(l.getLevel_number()));
         holder.textViewLevelName.setText(l.getLevel_name());
 
+       Random rnd = new Random();
+       int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+       holder.imageViewLevelColor.setBackgroundColor(color);
+
+       //Drawable drawable = ContextCompat.getDrawable(context, R.drawable.ic_levels_number);
+       //DrawableCompat.setTint(drawable, ContextCompat.getColor(context,R.color.green));
 
        /*
         Picasso.get()
@@ -62,11 +74,12 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.ViewHolder
 
         TextView textViewLevelNumber;
         TextView textViewLevelName;
-
+        ImageView imageViewLevelColor;
         ViewHolder(View itemView) {
             super(itemView);
             textViewLevelNumber = itemView.findViewById(R.id.text_view_item_capital_name);
             textViewLevelName = itemView.findViewById(R.id.text_view_item_state_name);
+            imageViewLevelColor = itemView.findViewById(R.id.image_view_level_color);
 
             itemView.setOnClickListener(this);
         }
