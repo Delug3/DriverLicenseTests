@@ -4,6 +4,7 @@ package com.newagemedia.rtoexam.adapters;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,15 +13,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
 import com.newagemedia.rtoexam.R;
 import com.newagemedia.rtoexam.models.Levels;
 
 import java.util.List;
-import java.util.Random;
+
 
 public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.ViewHolder> {
 
@@ -47,23 +46,17 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.ViewHolder
         holder.textViewLevelNumber.setText(String.valueOf(l.getLevel_number()));
         holder.textViewLevelName.setText(l.getLevel_name());
 
-       Random rnd = new Random();
-       int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-       holder.imageViewLevelColor.setBackgroundColor(color);
-        holder.imageViewLevelColor.setImageResource(R.drawable.ic_rounded_levels_number);
+        //filling image vector with random color
+        Drawable drawable = ContextCompat.getDrawable(context, R.drawable.ic_rounded_levels_number).mutate();
 
-        //Drawable drawable = ContextCompat.getDrawable(context, R.drawable.ic_rounded_levels_number);
-        //DrawableCompat.setTint(drawable, ContextCompat.getColor(context,R.color.blue));
+        int r = (int) (Math.random() * 256);
+        int g = (int) (Math.random() * 256);
+        int b = (int) (Math.random() * 256);
 
-       // holder.imageViewLevelColor.setColorFilter(ContextCompat.getColor(context, R.color.blue), android.graphics.PorterDuff.Mode.MULTIPLY);
+        int randomColor = Color.argb(255, r, g, b);
 
-       /*
-        Picasso.get()
-                .load(content)
-                .error(R.drawable.dollar)
-                .into(holder.contentImageView);
-        */
-
+        holder.imageViewLevelColor.setColorFilter(new PorterDuffColorFilter(randomColor, PorterDuff.Mode.SRC_IN));
+        holder.imageViewLevelColor.setImageDrawable(drawable);
     }
 
 
@@ -80,11 +73,13 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.ViewHolder
         TextView textViewLevelNumber;
         TextView textViewLevelName;
         ImageView imageViewLevelColor;
+
         ViewHolder(View itemView) {
             super(itemView);
             textViewLevelNumber = itemView.findViewById(R.id.text_view_item_level_number);
             textViewLevelName = itemView.findViewById(R.id.text_view_item_level_name);
             imageViewLevelColor = itemView.findViewById(R.id.image_view_level_color);
+
             itemView.setOnClickListener(this);
         }
 
