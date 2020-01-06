@@ -46,15 +46,12 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
        if(extras!=null){
            stateQuizName = extras.getString("STATE_QUIZ_NAME");
        }
-
-        //Access to parse, where the levels (questions and answers) is stored
        Parse.initialize(new Parse.Configuration.Builder(this)
-               .applicationId("lmj5p9coFxtlfHx5EY6ZMZEmZwZkB6UqSM7tP5vj")
-               .clientKey("1lD4V2Nbw6KwnG8FUbUAM56KsvwMYlxEVK89Py6d")
-               .server("https://parseapi.back4app.com")
+               .applicationId(getString(R.string.back4app_app_id))
+               .clientKey(getString(R.string.back4app_client_key))
+               .server(getString(R.string.back4app_server_url))
                .build()
        );
-
        recyclerViewLevels = findViewById(R.id.recycler_view_levels);
        recyclerViewLevels.setLayoutManager(new LinearLayoutManager(this));
        recyclerViewLevels.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
