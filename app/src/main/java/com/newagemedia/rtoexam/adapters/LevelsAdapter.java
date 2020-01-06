@@ -3,6 +3,7 @@ package com.newagemedia.rtoexam.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
 import com.newagemedia.rtoexam.R;
 import com.newagemedia.rtoexam.models.Levels;
@@ -48,9 +50,12 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.ViewHolder
        Random rnd = new Random();
        int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
        holder.imageViewLevelColor.setBackgroundColor(color);
+        holder.imageViewLevelColor.setImageResource(R.drawable.ic_rounded_levels_number);
 
-       //Drawable drawable = ContextCompat.getDrawable(context, R.drawable.ic_levels_number);
-       //DrawableCompat.setTint(drawable, ContextCompat.getColor(context,R.color.green));
+        //Drawable drawable = ContextCompat.getDrawable(context, R.drawable.ic_rounded_levels_number);
+        //DrawableCompat.setTint(drawable, ContextCompat.getColor(context,R.color.blue));
+
+       // holder.imageViewLevelColor.setColorFilter(ContextCompat.getColor(context, R.color.blue), android.graphics.PorterDuff.Mode.MULTIPLY);
 
        /*
         Picasso.get()
@@ -77,10 +82,9 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.ViewHolder
         ImageView imageViewLevelColor;
         ViewHolder(View itemView) {
             super(itemView);
-            textViewLevelNumber = itemView.findViewById(R.id.text_view_item_capital_name);
-            textViewLevelName = itemView.findViewById(R.id.text_view_item_state_name);
+            textViewLevelNumber = itemView.findViewById(R.id.text_view_item_level_number);
+            textViewLevelName = itemView.findViewById(R.id.text_view_item_level_name);
             imageViewLevelColor = itemView.findViewById(R.id.image_view_level_color);
-
             itemView.setOnClickListener(this);
         }
 
