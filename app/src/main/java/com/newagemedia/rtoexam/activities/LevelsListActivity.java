@@ -25,7 +25,6 @@ import com.parse.ParseQuery;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Random;
 
 
 public class LevelsListActivity extends AppCompatActivity implements LevelsAdapter.ItemClickListener {
@@ -33,7 +32,6 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
     RecyclerView recyclerViewLevels;
     private LevelsAdapter levelsAdapter;
     private static final String TAG = "RTO";
-    private ImageView imageViewLevelNumber;
     private String queryLanguage;
     private String stateQuizName;
     final List<Levels> dataLevels = new ArrayList<>();
@@ -42,8 +40,6 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_levels);
-
-        imageViewLevelNumber = findViewById(R.id.image_view_level_color);
         //obtain state/capital from extras(activity where user select state) and then pass that to findLevels
        //String stateQuizNameValue="andhra_pradesh_quiz";
        Bundle extras = getIntent().getExtras();
