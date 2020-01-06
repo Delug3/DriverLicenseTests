@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -60,6 +61,7 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
 
        recyclerViewLevels = findViewById(R.id.recycler_view_levels);
        recyclerViewLevels.setLayoutManager(new LinearLayoutManager(this));
+       recyclerViewLevels.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
        levelsAdapter = new LevelsAdapter(this,dataLevels);
        recyclerViewLevels.setHasFixedSize(true);
        levelsAdapter.setClickListener(this);
