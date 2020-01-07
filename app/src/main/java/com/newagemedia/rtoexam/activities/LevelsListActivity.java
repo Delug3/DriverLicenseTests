@@ -32,6 +32,7 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
     RecyclerView recyclerViewLevels;
     private LevelsAdapter levelsAdapter;
     private static final String TAG = "RTO";
+    private ImageView imageViewLevelLeftArrow;
     private String queryLanguage;
     private String stateQuizName;
     final List<Levels> dataLevels = new ArrayList<>();
@@ -40,24 +41,36 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_levels);
+
+        imageViewLevelLeftArrow = findViewById(R.id.image_view_levels_left_arrow);
+
         //obtain state/capital from extras(activity where user select state) and then pass that to findLevels
        //String stateQuizNameValue="andhra_pradesh_quiz";
        Bundle extras = getIntent().getExtras();
        if(extras!=null){
            stateQuizName = extras.getString("STATE_QUIZ_NAME");
        }
+
        Parse.initialize(new Parse.Configuration.Builder(this)
                .applicationId(getString(R.string.back4app_app_id))
                .clientKey(getString(R.string.back4app_client_key))
                .server(getString(R.string.back4app_server_url))
                .build()
        );
+
        recyclerViewLevels = findViewById(R.id.recycler_view_levels);
        recyclerViewLevels.setLayoutManager(new LinearLayoutManager(this));
        recyclerViewLevels.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
        levelsAdapter = new LevelsAdapter(this,dataLevels);
        recyclerViewLevels.setHasFixedSize(true);
        levelsAdapter.setClickListener(this);
+
+       imageViewLevelLeftArrow.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               finish();
+           }
+       });
 
        //this method get data class with the device language
        getQueryLanguage();
