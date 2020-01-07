@@ -4,10 +4,11 @@
     android:oneshot="false" >
 
     <item
-        android:drawable="@drawable/ic_right_arrow"
-        android:duration="500"/>
+        android:drawable="@drawable/ic_next_quiz_question"
+        android:duration="1500"/>
     <item
         android:drawable="@drawable/transparent"
-        android:duration="500"/>
+        android:duration="1500"/>
+
 
 </animation-list>
