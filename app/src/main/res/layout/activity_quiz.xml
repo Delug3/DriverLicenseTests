@@ -221,15 +221,15 @@
 
         <ImageView
             android:id="@+id/image_view_quiz_right_arrow"
-            android:layout_width="30dp"
-            android:layout_height="20dp"
+            android:layout_width="40dp"
+            android:layout_height="25dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/ic_right_arrow"
             app:layout_constraintBottom_toBottomOf="@+id/text_view_quiz_next"
             app:layout_constraintStart_toEndOf="@+id/text_view_quiz_next"
-            app:layout_constraintTop_toTopOf="@+id/text_view_quiz_next"
-            android:background="@drawable/ic_right_arrow" />
+            app:layout_constraintTop_toTopOf="@+id/text_view_quiz_next" />
 
         <TextView
             android:id="@+id/text_view_quiz_next"
