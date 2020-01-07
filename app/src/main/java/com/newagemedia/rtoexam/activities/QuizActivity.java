@@ -1,6 +1,7 @@
 package com.newagemedia.rtoexam.activities;
 
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -23,7 +24,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-public class QuizActivity extends AppCompatActivity {
+public class QuizActivity extends AppCompatActivity implements View.OnClickListener{
 
     private TextView textViewQuestion;
     private TextView textViewAnswerA;
@@ -31,6 +32,8 @@ public class QuizActivity extends AppCompatActivity {
     private TextView textViewAnswerC;
     private TextView textViewAnswerD;
     private ImageView imageViewQuestionImageUrl;
+    private ImageView imageViewLeftArrow;
+    private ImageView imageViewRightArrow;
     private ImageView imageViewLetterA;
     private ImageView imageViewLetterB;
     private ImageView imageViewLetterC;
@@ -40,6 +43,7 @@ public class QuizActivity extends AppCompatActivity {
     private ConstraintLayout constraintLayoutAnswerB;
     private ConstraintLayout constraintLayoutAnswerC;
     private ConstraintLayout constraintLayoutAnswerD;
+    private ConstraintLayout constraintLayoutNextQuestion;
     private ProgressBar progressBarQuiz;
     private Drawable OriginalBackgroundColor;
     private String correctAnswer;
@@ -57,13 +61,16 @@ public class QuizActivity extends AppCompatActivity {
         constraintLayoutMain = findViewById(R.id.constraint_layout_quiz_main);
         TextView textViewLevelNumber = findViewById(R.id.text_view_quiz_level_number);
         TextView textViewLevelName = findViewById(R.id.text_view_quiz_level_name);
-        ConstraintLayout constraintLayoutNextQuestion = findViewById(R.id.constraint_layout_quiz_next_question);
+        constraintLayoutNextQuestion = findViewById(R.id.constraint_layout_quiz_next_question);
+
         textViewQuestion = findViewById(R.id.text_view_quiz_question);
         textViewAnswerA = findViewById(R.id.text_view_quiz_answer_a);
         textViewAnswerB = findViewById(R.id.text_view_quiz_answer_b);
         textViewAnswerC = findViewById(R.id.text_view_quiz_answer_c);
         textViewAnswerD = findViewById(R.id.text_view_quiz_answer_d);
         imageViewQuestionImageUrl = findViewById(R.id.image_view_quiz_image_url);
+        imageViewLeftArrow = findViewById(R.id.image_view_quiz_left_arrow);
+        imageViewRightArrow = findViewById(R.id.image_view_quiz_right_arrow);
         imageViewLetterA = findViewById(R.id.image_view_quiz_letter_a);
         imageViewLetterB = findViewById(R.id.image_view_quiz_letter_b);
         imageViewLetterC = findViewById(R.id.image_view_quiz_letter_c);
@@ -73,6 +80,23 @@ public class QuizActivity extends AppCompatActivity {
         constraintLayoutAnswerC = findViewById(R.id.constraint_layout_quiz_answer_c);
         constraintLayoutAnswerD = findViewById(R.id.constraint_layout_quiz_answer_d);
         progressBarQuiz = findViewById(R.id.progress_bar_quiz);
+
+
+        imageViewRightArrow.setBackgroundResource(R.drawable.next_question_animation_blink);
+
+
+
+
+        imageViewLetterA.setOnClickListener(this);
+        imageViewLetterB.setOnClickListener(this);
+        imageViewLetterC.setOnClickListener(this);
+        imageViewLetterD.setOnClickListener(this);
+        textViewAnswerA.setOnClickListener(this);
+        textViewAnswerB.setOnClickListener(this);
+        textViewAnswerC.setOnClickListener(this);
+        textViewAnswerD.setOnClickListener(this);
+        imageViewLeftArrow.setOnClickListener(this);
+        constraintLayoutNextQuestion.setOnClickListener(this);
 
 
         String levelName;
@@ -101,12 +125,19 @@ public class QuizActivity extends AppCompatActivity {
         loadQuestionAndAnswers();
         updateQuizProgressBar();
 
-        //compare correct answer with answer number, if its the same, then green, not the same, red and method call
-        //green:#FF00C853
-        //red:#FFD50000
-        textViewAnswerA.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    }
+
+    //compare correct answer with answer number, if its the same, then green, not the same, red and method call
+    //green:#FF00C853
+    //red:#FFD50000
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            case R.id.image_view_quiz_letter_a:
+
+            case R.id.text_view_quiz_answer_a:
+
                 if (correctAnswer.equals("a")) {
                     constraintLayoutAnswerA.setBackgroundColor(Color.parseColor("#1D00C853"));
                     imageViewLetterA.setImageResource(R.drawable.ic_green_answer_a);
@@ -117,12 +148,13 @@ public class QuizActivity extends AppCompatActivity {
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
-            }
-        });
+                startAnimationNextQuestion();
+                break;
 
-        textViewAnswerB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+
+            case R.id.image_view_quiz_letter_b:
+
+            case R.id.text_view_quiz_answer_b:
                 if (correctAnswer.equals("b")) {
                     constraintLayoutAnswerB.setBackgroundColor(Color.parseColor("#1D00C853"));
                     imageViewLetterB.setImageResource(R.drawable.ic_green_answer_b);
@@ -133,12 +165,13 @@ public class QuizActivity extends AppCompatActivity {
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
-            }
-        });
+                startAnimationNextQuestion();
+                break;
 
-        textViewAnswerC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+
+            case R.id.image_view_quiz_letter_c:
+
+            case R.id.text_view_quiz_answer_c:
                 if (correctAnswer.equals("c")) {
                     constraintLayoutAnswerC.setBackgroundColor(Color.parseColor("#1D00C853"));
                     imageViewLetterC.setImageResource(R.drawable.ic_green_answer_c);
@@ -149,12 +182,13 @@ public class QuizActivity extends AppCompatActivity {
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
-            }
-        });
+                startAnimationNextQuestion();
+                break;
 
-        textViewAnswerD.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+
+            case R.id.image_view_quiz_letter_d:
+
+            case R.id.text_view_quiz_answer_d:
                 if (correctAnswer.equals("d")) {
                     constraintLayoutAnswerD.setBackgroundColor(Color.parseColor("#1D00C853"));
                     imageViewLetterD.setImageResource(R.drawable.ic_green_answer_d);
@@ -165,18 +199,25 @@ public class QuizActivity extends AppCompatActivity {
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
-            }
-        });
+                startAnimationNextQuestion();
+                break;
 
-        constraintLayoutNextQuestion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            case R.id.image_view_quiz_left_arrow:
+                finish();
+                break;
+
+
+            case R.id.constraint_layout_quiz_next_question:
                 loadQuestionAndAnswers();
                 updateQuizProgressBar();
                 enableSingleClick();
+                stopAnimationNextQuestion();
+                break;
 
-            }
-        });
+            default:
+                break;
+        }
+
     }
 
     /** Values are placed in Json Array.
@@ -262,6 +303,21 @@ public class QuizActivity extends AppCompatActivity {
        }
    }
 
+   private void startAnimationNextQuestion()
+   {
+       AnimationDrawable frameAnimation = (AnimationDrawable) imageViewRightArrow
+               .getBackground();
+
+       frameAnimation.start();
+   }
+
+    private void stopAnimationNextQuestion()
+    {
+        AnimationDrawable frameAnimation = (AnimationDrawable) imageViewRightArrow
+                .getBackground();
+
+        frameAnimation.stop();
+    }
     //loading default colors of both, constraintLayout background and icon number
     private void loadDefaultColors(){
 
