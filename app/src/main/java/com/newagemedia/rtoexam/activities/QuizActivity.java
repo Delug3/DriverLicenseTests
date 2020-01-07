@@ -5,6 +5,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -24,7 +25,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-public class QuizActivity extends AppCompatActivity implements View.OnClickListener{
+public class QuizActivity extends AppCompatActivity implements View.OnClickListener, Animation.AnimationListener {
 
     private TextView textViewQuestion;
     private TextView textViewAnswerA;
@@ -33,7 +34,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private TextView textViewAnswerD;
     private ImageView imageViewQuestionImageUrl;
     private ImageView imageViewLeftArrow;
-    private ImageView imageViewRightArrow;
+    private ImageView imageViewNextQuestion;
     private ImageView imageViewLetterA;
     private ImageView imageViewLetterB;
     private ImageView imageViewLetterC;
@@ -43,7 +44,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private ConstraintLayout constraintLayoutAnswerB;
     private ConstraintLayout constraintLayoutAnswerC;
     private ConstraintLayout constraintLayoutAnswerD;
-    private ConstraintLayout constraintLayoutNextQuestion;
     private ProgressBar progressBarQuiz;
     private Drawable OriginalBackgroundColor;
     private String correctAnswer;
@@ -61,7 +61,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         constraintLayoutMain = findViewById(R.id.constraint_layout_quiz_main);
         TextView textViewLevelNumber = findViewById(R.id.text_view_quiz_level_number);
         TextView textViewLevelName = findViewById(R.id.text_view_quiz_level_name);
-        constraintLayoutNextQuestion = findViewById(R.id.constraint_layout_quiz_next_question);
+
 
         textViewQuestion = findViewById(R.id.text_view_quiz_question);
         textViewAnswerA = findViewById(R.id.text_view_quiz_answer_a);
@@ -70,7 +70,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         textViewAnswerD = findViewById(R.id.text_view_quiz_answer_d);
         imageViewQuestionImageUrl = findViewById(R.id.image_view_quiz_image_url);
         imageViewLeftArrow = findViewById(R.id.image_view_quiz_left_arrow);
-        imageViewRightArrow = findViewById(R.id.image_view_quiz_right_arrow);
+        imageViewNextQuestion = findViewById(R.id.image_view_next_question);
         imageViewLetterA = findViewById(R.id.image_view_quiz_letter_a);
         imageViewLetterB = findViewById(R.id.image_view_quiz_letter_b);
         imageViewLetterC = findViewById(R.id.image_view_quiz_letter_c);
@@ -82,11 +82,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         progressBarQuiz = findViewById(R.id.progress_bar_quiz);
 
 
-        imageViewRightArrow.setBackgroundResource(R.drawable.next_question_animation_blink);
-
-
-
-
         imageViewLetterA.setOnClickListener(this);
         imageViewLetterB.setOnClickListener(this);
         imageViewLetterC.setOnClickListener(this);
@@ -96,7 +91,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         textViewAnswerC.setOnClickListener(this);
         textViewAnswerD.setOnClickListener(this);
         imageViewLeftArrow.setOnClickListener(this);
-        constraintLayoutNextQuestion.setOnClickListener(this);
+        imageViewNextQuestion.setOnClickListener(this);
 
 
         String levelName;
@@ -122,6 +117,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         //set max value of progress bar depending on quizData size
         progressBarQuiz.setMax(quizData.size());
 
+        hideNextQuestionView();
         loadQuestionAndAnswers();
         updateQuizProgressBar();
 
@@ -148,6 +144,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
+                unHideNextQuestionView();
                 startAnimationNextQuestion();
                 break;
 
@@ -155,6 +152,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.image_view_quiz_letter_b:
 
             case R.id.text_view_quiz_answer_b:
+
                 if (correctAnswer.equals("b")) {
                     constraintLayoutAnswerB.setBackgroundColor(Color.parseColor("#1D00C853"));
                     imageViewLetterB.setImageResource(R.drawable.ic_green_answer_b);
@@ -165,6 +163,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
+                unHideNextQuestionView();
                 startAnimationNextQuestion();
                 break;
 
@@ -172,6 +171,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.image_view_quiz_letter_c:
 
             case R.id.text_view_quiz_answer_c:
+
                 if (correctAnswer.equals("c")) {
                     constraintLayoutAnswerC.setBackgroundColor(Color.parseColor("#1D00C853"));
                     imageViewLetterC.setImageResource(R.drawable.ic_green_answer_c);
@@ -182,6 +182,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
+                unHideNextQuestionView();
                 startAnimationNextQuestion();
                 break;
 
@@ -189,6 +190,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.image_view_quiz_letter_d:
 
             case R.id.text_view_quiz_answer_d:
+
                 if (correctAnswer.equals("d")) {
                     constraintLayoutAnswerD.setBackgroundColor(Color.parseColor("#1D00C853"));
                     imageViewLetterD.setImageResource(R.drawable.ic_green_answer_d);
@@ -199,6 +201,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
+                unHideNextQuestionView();
                 startAnimationNextQuestion();
                 break;
 
@@ -207,10 +210,11 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
 
-            case R.id.constraint_layout_quiz_next_question:
+            case R.id.image_view_next_question:
+
+                enableSingleClick();
                 loadQuestionAndAnswers();
                 updateQuizProgressBar();
-                enableSingleClick();
                 stopAnimationNextQuestion();
                 break;
 
@@ -297,27 +301,31 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
            progressBarQuiz.setProgress(progressStatus);
        }
        else{
+
            Snackbar snackbar = Snackbar.make(constraintLayoutMain,"All Questions Answered!", Snackbar.LENGTH_LONG);
            snackbar.getView().setBackgroundColor(ContextCompat.getColor(QuizActivity.this, R.color.blue));
            snackbar.show();
+           disableMultipleClicks();
        }
    }
 
    private void startAnimationNextQuestion()
    {
-       AnimationDrawable frameAnimation = (AnimationDrawable) imageViewRightArrow
-               .getBackground();
-
+       imageViewNextQuestion.setBackgroundResource(R.drawable.next_question_imageview_animation_blink);
+       AnimationDrawable frameAnimation = (AnimationDrawable) imageViewNextQuestion.getBackground();
        frameAnimation.start();
    }
 
     private void stopAnimationNextQuestion()
     {
-        AnimationDrawable frameAnimation = (AnimationDrawable) imageViewRightArrow
-                .getBackground();
+        imageViewNextQuestion.setBackgroundResource(R.drawable.ic_next_quiz_question);
 
+        imageViewNextQuestion.setBackgroundResource(R.drawable.next_question_imageview_animation_blink);
+        AnimationDrawable frameAnimation = (AnimationDrawable) imageViewNextQuestion.getBackground();
         frameAnimation.stop();
     }
+
+
     //loading default colors of both, constraintLayout background and icon number
     private void loadDefaultColors(){
 
@@ -335,15 +343,24 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     //disabling click event of answers after choosing one, prevents multiple clicks
     private void disableMultipleClicks(){
 
+        imageViewLetterA.setClickable(false);
+        imageViewLetterB.setClickable(false);
+        imageViewLetterC.setClickable(false);
+        imageViewLetterD.setClickable(false);
         textViewAnswerA.setClickable(false);
         textViewAnswerB.setClickable(false);
         textViewAnswerC.setClickable(false);
         textViewAnswerD.setClickable(false);
+
     }
 
     //enabling click events of answers after pressing in Next
     private void enableSingleClick(){
 
+        imageViewLetterA.setClickable(true);
+        imageViewLetterB.setClickable(true);
+        imageViewLetterC.setClickable(true);
+        imageViewLetterD.setClickable(true);
         textViewAnswerA.setClickable(true);
         textViewAnswerB.setClickable(true);
         textViewAnswerC.setClickable(true);
@@ -377,4 +394,28 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         textViewAnswerD.setVisibility(View.VISIBLE);
     }
 
+    private void hideNextQuestionView()
+    {
+        imageViewNextQuestion.setVisibility(View.GONE);
+    }
+
+    private void unHideNextQuestionView()
+    {
+        imageViewNextQuestion.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onAnimationStart(Animation animation) {
+
+    }
+
+    @Override
+    public void onAnimationEnd(Animation animation) {
+
+    }
+
+    @Override
+    public void onAnimationRepeat(Animation animation) {
+
+    }
 }
