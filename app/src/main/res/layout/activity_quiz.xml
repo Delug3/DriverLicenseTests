@@ -210,40 +210,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint_layout_quiz_next_question"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/progress_bar_quiz"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <ImageView
-            android:id="@+id/image_view_quiz_right_arrow"
-            android:layout_width="40dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/ic_right_arrow"
-            app:layout_constraintBottom_toBottomOf="@+id/text_view_quiz_next"
-            app:layout_constraintStart_toEndOf="@+id/text_view_quiz_next"
-            app:layout_constraintTop_toTopOf="@+id/text_view_quiz_next" />
-
-        <TextView
-            android:id="@+id/text_view_quiz_next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto"
-            android:text="@string/next_question"
-            android:textColor="#0091EA"
-            android:textSize="36sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <ProgressBar
         android:id="@+id/progress_bar_quiz"
         style="?android:attr/progressBarStyleHorizontal"
@@ -264,6 +230,7 @@
         android:text="@string/level_number"
         android:textColor="@color/colorText"
         android:textSize="36sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/text_view_quiz_level_name"
         app:layout_constraintStart_toEndOf="@+id/text_view_quiz_level_name"
         app:layout_constraintTop_toTopOf="@+id/text_view_quiz_level_name" />
@@ -313,4 +280,14 @@
         app:layout_constraintBottom_toBottomOf="@+id/constraint_layout_quiz_answer_d"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_view_next_question"
+        android:layout_width="143dp"
+        android:layout_height="53dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/ic_next_quiz_question"
+        app:layout_constraintBottom_toTopOf="@+id/progress_bar_quiz"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
