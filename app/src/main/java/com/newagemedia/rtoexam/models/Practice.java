@@ -3,9 +3,8 @@ package com.newagemedia.rtoexam.models;
 import java.io.Serializable;
 import java.util.List;
 
-public class Levels implements Serializable {
+public class Practice implements Serializable {
 
-    //Json fields: Level name
     //questions->each level_name have ~20 questions
     //images: load one image from url
     //answers->4 answers(a,b,c,d), answer can be of different number (a,b,c,d) or just (a,b,c)
@@ -24,7 +23,7 @@ public class Levels implements Serializable {
     //quiz: array of objects containing the questions,answers,image and correct answer
     public List<String> quiz;
 
-    public Levels() {
+    public Practice() {
         this.level_number = level_number;
         this.level_name = level_name;
         this.question = question;

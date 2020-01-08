@@ -1,7 +1,6 @@
-package com.newagemedia.rtoexam.activities;
+package com.newagemedia.rtoexam.activities.practice;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.newagemedia.rtoexam.R;
-import com.newagemedia.rtoexam.adapters.LevelsAdapter;
-import com.newagemedia.rtoexam.models.Levels;
+import com.newagemedia.rtoexam.adapters.PracticeLevelsAdapter;
+import com.newagemedia.rtoexam.models.Practice;
 import com.parse.FindCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
@@ -27,15 +26,15 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class LevelsListActivity extends AppCompatActivity implements LevelsAdapter.ItemClickListener {
+public class PracticeLevelsListActivity extends AppCompatActivity implements PracticeLevelsAdapter.ItemClickListener {
 
-    RecyclerView recyclerViewLevels;
-    private LevelsAdapter levelsAdapter;
+    RecyclerView recyclerViewPracticeLevels;
+    private PracticeLevelsAdapter practiceLevelsAdapter;
     private static final String TAG = "RTO";
     private ImageView imageViewLevelLeftArrow;
     private String queryLanguage;
     private String stateQuizName;
-    final List<Levels> dataLevels = new ArrayList<>();
+    final List<Practice> practiceList = new ArrayList<>();
 
    @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,12 +57,12 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
                .build()
        );
 
-       recyclerViewLevels = findViewById(R.id.recycler_view_levels);
-       recyclerViewLevels.setLayoutManager(new LinearLayoutManager(this));
-       recyclerViewLevels.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-       levelsAdapter = new LevelsAdapter(this,dataLevels);
-       recyclerViewLevels.setHasFixedSize(true);
-       levelsAdapter.setClickListener(this);
+       recyclerViewPracticeLevels = findViewById(R.id.recycler_view_practice_levels);
+       recyclerViewPracticeLevels.setLayoutManager(new LinearLayoutManager(this));
+       recyclerViewPracticeLevels.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+       practiceLevelsAdapter = new PracticeLevelsAdapter(this, practiceList);
+       recyclerViewPracticeLevels.setHasFixedSize(true);
+       practiceLevelsAdapter.setClickListener(this);
 
        imageViewLevelLeftArrow.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -95,58 +94,58 @@ public class LevelsListActivity extends AppCompatActivity implements LevelsAdapt
 
                     for (int i = 0; i < result.size(); i++) {
 
-                        Levels levels = new Levels();
-                        levels.level_number = result.get(i).getNumber("level_number");
-                        levels.level_name = result.get(i).getString("level_name");
+                        Practice practice = new Practice();
+                        practice.level_number = result.get(i).getNumber("level_number");
+                        practice.level_name = result.get(i).getString("level_name");
                         //retrieving array of quiz using the state name
-                        levels.quiz = result.get(i).getList(stateQuizName);
+                        practice.quiz = result.get(i).getList(stateQuizName);
 
                         String name = result.get(i).getString("level_name");
                         Log.e(TAG, "Title: " + name);
 
                         //send result data to adapter->recyclerView
-                        dataLevels.add(levels);
+                        practiceList.add(practice);
                     }
 
 
                 } else {
                     // something went wrong
                 }
-                recyclerViewLevels.setAdapter(levelsAdapter);
+                recyclerViewPracticeLevels.setAdapter(practiceLevelsAdapter);
             }
         });
 
     }
 
     //Obtaining language of device to load query with the appropriate data
-    //class Levels: EN,HI....
+    //class Practice: EN,HI....
     private void getQueryLanguage()
     {
 
         Locale.getDefault().getDisplayLanguage();
         if(Locale.getDefault().getLanguage().equals("en"))
         {
-            queryLanguage="Levels_EN";
+            queryLanguage="Practice_EN";
         }
         if(Locale.getDefault().getLanguage().equals("hi"))
         {
-            queryLanguage="Levels_HI";
+            queryLanguage="Practice_HI";
         }
         else
         {
-            queryLanguage="Levels_EN";
+            queryLanguage="Practice_EN";
         }
     }
 
 
     @Override
     public void onItemClick(View view, int position) {
-        //Toast.makeText(this, "You clicked " + levelsAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "You clicked " + practiceLevelsAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
 
-        Intent i = new Intent(LevelsListActivity.this, QuizActivity.class);
-        i.putExtra("LEVEL_NAME", dataLevels.get(position).getLevel_name());
-        i.putExtra("LEVEL_NUMBER",dataLevels.get(position).getLevel_number());
-        i.putStringArrayListExtra("LEVEL_QUIZ", (ArrayList<String>) dataLevels.get(position).getQuiz());
+        Intent i = new Intent(PracticeLevelsListActivity.this, PracticeQuizActivity.class);
+        i.putExtra("LEVEL_NAME", practiceList.get(position).getLevel_name());
+        i.putExtra("LEVEL_NUMBER", practiceList.get(position).getLevel_number());
+        i.putStringArrayListExtra("LEVEL_QUIZ", (ArrayList<String>) practiceList.get(position).getQuiz());
         startActivity(i);
 
     }

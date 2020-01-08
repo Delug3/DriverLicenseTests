@@ -16,22 +16,22 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.newagemedia.rtoexam.R;
-import com.newagemedia.rtoexam.models.Levels;
+import com.newagemedia.rtoexam.models.Practice;
 
 import java.util.List;
 
 
-public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.ViewHolder> {
+public class PracticeLevelsAdapter extends RecyclerView.Adapter<PracticeLevelsAdapter.ViewHolder> {
 
-    private List<Levels> dataLevels;
+    private List<Practice> practiceList;
     private Context context;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
-    public LevelsAdapter(Context context, List<Levels> dataLevels) {
+    public PracticeLevelsAdapter(Context context, List<Practice> practiceList) {
         this.context=context;
         this.mInflater = LayoutInflater.from(context);
-        this.dataLevels = dataLevels;
+        this.practiceList = practiceList;
     }
 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -42,9 +42,9 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Levels l = dataLevels.get(position);
-        holder.textViewLevelNumber.setText(String.valueOf(l.getLevel_number()));
-        holder.textViewLevelName.setText(l.getLevel_name());
+        Practice p = practiceList.get(position);
+        holder.textViewLevelNumber.setText(String.valueOf(p.getLevel_number()));
+        holder.textViewLevelName.setText(p.getLevel_name());
 
         //filling image vector with random color
         Drawable drawable = ContextCompat.getDrawable(context, R.drawable.ic_rounded_levels_number).mutate();
@@ -62,7 +62,7 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return dataLevels.size();
+        return practiceList.size();
     }
 
 
@@ -92,8 +92,8 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.ViewHolder
     }
 
     // convenience method for getting data at click position
-    public Levels getItem(int id) {
-        return dataLevels.get(id);
+    public Practice getItem(int id) {
+        return practiceList.get(id);
     }
 
 

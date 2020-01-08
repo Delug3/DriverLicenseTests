@@ -17,8 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.core.MainMenuActivity"/>
-        <activity android:name=".activities.LevelsListActivity"/>
-        <activity android:name=".activities.QuizActivity"/>
+        <activity android:name=".activities.practice.PracticeLevelsListActivity"/>
+        <activity android:name=".activities.practice.PracticeQuizActivity"/>
 
         android:name=".App"
         <meta-data

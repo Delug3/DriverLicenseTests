@@ -1,4 +1,4 @@
-package com.newagemedia.rtoexam.activities;
+package com.newagemedia.rtoexam.activities.practice;
 
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
@@ -25,7 +25,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-public class QuizActivity extends AppCompatActivity implements View.OnClickListener, Animation.AnimationListener {
+public class PracticeQuizActivity extends AppCompatActivity implements View.OnClickListener, Animation.AnimationListener {
 
     private TextView textViewQuestion;
     private TextView textViewAnswerA;
@@ -51,7 +51,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     //variable to move to the next question
     private int questionNumber = 0;
     //variable to know total number of questions, to set progressbar max value
-    private List<String> quizData;
+    private List<String> quizList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -96,26 +96,26 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
         String levelName;
         Integer levelNumber;
-       // List<String> quizData = null;
+       // List<String> quizList = null;
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if (extras == null) {
                 levelName = null;
                 levelNumber = null;
-                //quizData = null;
+                //quizList = null;
 
             } else {
                 levelNumber = extras.getInt("LEVEL_NUMBER");
                 levelName = extras.getString("LEVEL_NAME");
                 textViewLevelNumber.setText((String.valueOf(levelNumber)));
                 textViewLevelName.setText(levelName);
-                quizData = getIntent().getStringArrayListExtra("LEVEL_QUIZ");
+                quizList = getIntent().getStringArrayListExtra("LEVEL_QUIZ");
             }
         }
 
         OriginalBackgroundColor = textViewQuestion.getBackground();
-        //set max value of progress bar depending on quizData size
-        progressBarQuiz.setMax(quizData.size());
+        //set max value of progress bar depending on quizList size
+        progressBarQuiz.setMax(quizList.size());
 
         hideNextQuestionView();
         loadQuestionAndAnswers();
@@ -226,13 +226,13 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
     /** Values are placed in Json Array.
      * Json Objects inside Json Array
-     * Need to retrieve object position from "quizData" json array via getJSONArray.
+     * Need to retrieve object position from "quizList" json array via getJSONArray.
      * This method is the responsible for loading new questions in the activity
      */
     private void loadQuestionAndAnswers() {
 
         try {
-        JSONArray jsonArray= new JSONArray(quizData);
+        JSONArray jsonArray= new JSONArray(quizList);
         JSONObject json_data = jsonArray.getJSONObject(questionNumber);
 
         String question = json_data.getString("question");
@@ -296,14 +296,14 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     //method called in order to update progressBar every time a new question is loaded
    private void updateQuizProgressBar()
    {
-       if(progressStatus<quizData.size()) {
+       if(progressStatus< quizList.size()) {
            progressStatus++;
            progressBarQuiz.setProgress(progressStatus);
        }
        else{
 
            Snackbar snackbar = Snackbar.make(constraintLayoutMain,"All Questions Answered!", Snackbar.LENGTH_LONG);
-           snackbar.getView().setBackgroundColor(ContextCompat.getColor(QuizActivity.this, R.color.blue));
+           snackbar.getView().setBackgroundColor(ContextCompat.getColor(PracticeQuizActivity.this, R.color.blue));
            snackbar.show();
            disableMultipleClicks();
        }

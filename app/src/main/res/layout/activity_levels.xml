@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="@+id/image_view_levels_left_arrow" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_levels"
+        android:id="@+id/recycler_view_practice_levels"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"

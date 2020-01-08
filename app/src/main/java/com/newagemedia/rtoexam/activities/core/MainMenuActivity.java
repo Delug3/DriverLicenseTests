@@ -8,8 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.newagemedia.rtoexam.R;
-import com.newagemedia.rtoexam.activities.LevelsListActivity;
-import com.newagemedia.rtoexam.activities.StatesListActivity;
+import com.newagemedia.rtoexam.activities.practice.PracticeLevelsListActivity;
 
 /**
  * Created by Manuel Fernandez Garcia.  Email(mfgarcia87@gmail.com) on 15/12/2019.
@@ -33,7 +32,7 @@ public class MainMenuActivity extends AppCompatActivity {
         textViewPractice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainMenuActivity.this, LevelsListActivity.class);
+                Intent i = new Intent(MainMenuActivity.this, PracticeLevelsListActivity.class);
                 i.putExtra("STATE_QUIZ_NAME",stateQuizNameValue);
                 startActivity(i);
             }
