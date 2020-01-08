@@ -22,6 +22,7 @@ import com.parse.ParseQuery;
 
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -86,6 +87,8 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
     public void findLevels(final String stateQuizName,String queryLanguage) {
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery(queryLanguage);
+        //sorting object, ordering it by level number
+        query.orderByAscending("level_number");
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> result, ParseException e) {
