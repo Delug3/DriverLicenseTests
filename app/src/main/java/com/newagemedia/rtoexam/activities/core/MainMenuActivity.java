@@ -1,6 +1,7 @@
 package com.newagemedia.rtoexam.activities.core;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import com.newagemedia.rtoexam.activities.practice.PracticeLevelsListActivity;
 public class MainMenuActivity extends AppCompatActivity {
 
     private String stateQuizNameValue;
+    private ConstraintLayout constraintLayoutMainMenuPractice;
     //main activity including practice, test, reading and settings
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +29,9 @@ public class MainMenuActivity extends AppCompatActivity {
             stateQuizNameValue = extras.getString("STATE_QUIZ_NAME");
         }
 
-        TextView textViewPractice = findViewById(R.id.text_view_practice);
+        constraintLayoutMainMenuPractice = findViewById(R.id.constraint_layout_main_menu_practice);
 
-        textViewPractice.setOnClickListener(new View.OnClickListener() {
+        constraintLayoutMainMenuPractice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainMenuActivity.this, PracticeLevelsListActivity.class);
