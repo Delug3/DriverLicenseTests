@@ -244,7 +244,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_view_quiz_question"
-        tools:srcCompat="@tools:sample/avatars" />
+        />
 
     <View
         android:layout_width="match_parent"
