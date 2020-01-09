@@ -20,14 +20,14 @@
             android:id="@+id/image_view_settings"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:src="@drawable/ic_settings"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_settings" />
 
         <TextView
             android:id="@+id/text_view_settings"
@@ -39,7 +39,7 @@
             android:text="@string/settings_main_menu"
             android:textAllCaps="false"
             android:textColor="@color/colorText"
-            android:textSize="24sp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/image_view_settings"
             app:layout_constraintStart_toEndOf="@+id/image_view_settings"
             app:layout_constraintTop_toTopOf="@+id/image_view_settings" />
@@ -58,14 +58,14 @@
             android:id="@+id/image_view_reading"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:src="@drawable/ic_reading"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_reading" />
 
         <TextView
             android:id="@+id/text_view_reading"
@@ -77,7 +77,7 @@
             android:text="@string/reading_main_menu"
             android:textAllCaps="false"
             android:textColor="@color/colorText"
-            android:textSize="24sp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/image_view_reading"
             app:layout_constraintStart_toEndOf="@+id/image_view_reading"
             app:layout_constraintTop_toTopOf="@+id/image_view_reading" />
@@ -101,7 +101,7 @@
             android:fontFamily="@font/roboto"
             android:text="@string/test_main_menu"
             android:textColor="@color/colorText"
-            android:textSize="24sp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/image_view_test"
             app:layout_constraintStart_toEndOf="@+id/image_view_test"
             app:layout_constraintTop_toTopOf="@+id/image_view_test" />
@@ -110,14 +110,14 @@
             android:id="@+id/image_view_test"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:src="@drawable/ic_test"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_test" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -138,7 +138,7 @@
             android:fontFamily="@font/roboto"
             android:text="@string/traffic_sign_main_menu"
             android:textColor="@color/colorText"
-            android:textSize="24sp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/image_view_traffic_sign"
             app:layout_constraintStart_toEndOf="@+id/image_view_traffic_sign"
             app:layout_constraintTop_toTopOf="@+id/image_view_traffic_sign" />
@@ -147,14 +147,14 @@
             android:id="@+id/image_view_traffic_sign"
             android:layout_width="62dp"
             android:layout_height="62dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:src="@drawable/ic_traffic_sign"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_traffic_sign" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -176,7 +176,7 @@
             android:fontFamily="@font/roboto"
             android:text="@string/practice_main_menu"
             android:textColor="@color/colorText"
-            android:textSize="24sp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/image_view_practice"
             app:layout_constraintStart_toEndOf="@+id/image_view_practice"
             app:layout_constraintTop_toTopOf="@+id/image_view_practice" />
@@ -185,14 +185,14 @@
             android:id="@+id/image_view_practice"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:src="@drawable/ic_practice"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_practice" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -200,12 +200,12 @@
         android:id="@+id/text_view_main_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/roboto"
         android:text="@string/main_menu"
         android:textAllCaps="false"
         android:textColor="@color/colorText"
-        android:textSize="36sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -214,8 +214,8 @@
         android:id="@+id/image_view_lateral_menu"
         android:layout_width="18dp"
         android:layout_height="16dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:background="@drawable/ic_lateral_menu_blue"
         app:layout_constraintBottom_toBottomOf="@+id/text_view_main_menu"
         app:layout_constraintStart_toStartOf="parent"
