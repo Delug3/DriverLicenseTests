@@ -103,13 +103,9 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
                         //retrieving array of quiz using the state name
                         practice.quiz = result.get(i).getList(stateQuizName);
 
-                        String name = result.get(i).getString("level_name");
-                        Log.e(TAG, "Title: " + name);
-
                         //send result data to adapter->recyclerView
                         practiceList.add(practice);
                     }
-
 
                 } else {
                     // something went wrong
