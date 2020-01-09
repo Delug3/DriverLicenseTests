@@ -25,6 +25,8 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import static com.newagemedia.rtoexam.R.drawable.no_image_available;
+
 public class PracticeQuizActivity extends AppCompatActivity implements View.OnClickListener, Animation.AnimationListener {
 
     private TextView textViewQuestion;
@@ -247,7 +249,6 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
 
         //method to know if answer D includes a value, if it's null(no answer), then hide the view
         checkValueAnswerD(answerD);
-
         loadUI(question, answerA, answerB, answerC,answerD,imageUrl);
 
         loadDefaultColors();
@@ -263,11 +264,20 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
     private void loadUI(String question, String answerA, String answerB, String answerC, String answerD,String imageUrl){
 
         textViewQuestion.setText(question);
-        Picasso.get().load(imageUrl).into(imageViewQuestionImageUrl);
         textViewAnswerA.setText(answerA);
         textViewAnswerB.setText(answerB);
         textViewAnswerC.setText(answerC);
         textViewAnswerD.setText(answerD);
+
+        if (imageUrl.equals("null"))
+        {
+            imageViewQuestionImageUrl.setImageResource(no_image_available);
+
+        }
+        else
+        {
+            Picasso.get().load(imageUrl).into(imageViewQuestionImageUrl);
+        }
 
     }
 
