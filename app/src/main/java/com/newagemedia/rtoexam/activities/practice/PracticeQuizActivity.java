@@ -134,7 +134,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
 
             case R.id.text_view_quiz_answer_a:
 
-                if (correctAnswer.equals("a")) {
+                if (correctAnswer.equals("A")) {
                     constraintLayoutAnswerA.setBackgroundColor(Color.parseColor("#1D00C853"));
                     imageViewLetterA.setImageResource(R.drawable.ic_green_answer_a);
                 }
@@ -153,7 +153,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
 
             case R.id.text_view_quiz_answer_b:
 
-                if (correctAnswer.equals("b")) {
+                if (correctAnswer.equals("B")) {
                     constraintLayoutAnswerB.setBackgroundColor(Color.parseColor("#1D00C853"));
                     imageViewLetterB.setImageResource(R.drawable.ic_green_answer_b);
                 }
@@ -172,7 +172,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
 
             case R.id.text_view_quiz_answer_c:
 
-                if (correctAnswer.equals("c")) {
+                if (correctAnswer.equals("C")) {
                     constraintLayoutAnswerC.setBackgroundColor(Color.parseColor("#1D00C853"));
                     imageViewLetterC.setImageResource(R.drawable.ic_green_answer_c);
                 }
@@ -191,7 +191,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
 
             case R.id.text_view_quiz_answer_d:
 
-                if (correctAnswer.equals("d")) {
+                if (correctAnswer.equals("D")) {
                     constraintLayoutAnswerD.setBackgroundColor(Color.parseColor("#1D00C853"));
                     imageViewLetterD.setImageResource(R.drawable.ic_green_answer_d);
                 }
@@ -274,19 +274,19 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
     //draw green the constraintLayout background and the answer icon to show the correct answer
     private void showCorrectAnswer() {
         switch (correctAnswer) {
-            case "a":
+            case "A":
                 constraintLayoutAnswerA.setBackgroundColor(Color.parseColor("#1D00C853"));
                 imageViewLetterA.setImageResource(R.drawable.ic_green_answer_a);
                 break;
-            case "b":
+            case "B":
                 constraintLayoutAnswerB.setBackgroundColor(Color.parseColor("#1D00C853"));
                 imageViewLetterB.setImageResource(R.drawable.ic_green_answer_b);
                 break;
-            case "c":
+            case "C":
                 constraintLayoutAnswerC.setBackgroundColor(Color.parseColor("#1D00C853"));
                 imageViewLetterC.setImageResource(R.drawable.ic_green_answer_c);
                 break;
-            case "d":
+            case "D":
                 constraintLayoutAnswerD.setBackgroundColor(Color.parseColor("#1D00C853"));
                 imageViewLetterD.setImageResource(R.drawable.ic_green_answer_d);
                 break;
