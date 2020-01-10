@@ -46,16 +46,9 @@ public class PracticeLevelsAdapter extends RecyclerView.Adapter<PracticeLevelsAd
         holder.textViewLevelNumber.setText(String.valueOf(p.getLevel_number()));
         holder.textViewLevelName.setText(p.getLevel_name());
 
-        //filling image vector with random color
+        //filling image vector with color stored in database
         Drawable drawable = ContextCompat.getDrawable(context, R.drawable.ic_rounded_levels_number).mutate();
-
-        int r = (int) (Math.random() * 256);
-        int g = (int) (Math.random() * 256);
-        int b = (int) (Math.random() * 256);
-
-        int randomColor = Color.argb(255, r, g, b);
-
-        holder.imageViewLevelColor.setColorFilter(new PorterDuffColorFilter(randomColor, PorterDuff.Mode.SRC_IN));
+        holder.imageViewLevelColor.setColorFilter(new PorterDuffColorFilter(Color.parseColor(p.getLevel_color()), PorterDuff.Mode.SRC_IN));
         holder.imageViewLevelColor.setImageDrawable(drawable);
     }
 
