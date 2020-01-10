@@ -22,7 +22,7 @@ import com.parse.ParseQuery;
 
 
 import java.util.ArrayList;
-import java.util.Comparator;
+
 import java.util.List;
 import java.util.Locale;
 
@@ -37,7 +37,7 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
     private String stateQuizName;
     final List<Practice> practiceList = new ArrayList<>();
 
-   @Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_levels);
@@ -50,13 +50,6 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
        if(extras!=null){
            stateQuizName = extras.getString("STATE_QUIZ_NAME");
        }
-
-       Parse.initialize(new Parse.Configuration.Builder(this)
-               .applicationId(getString(R.string.back4app_app_id))
-               .clientKey(getString(R.string.back4app_client_key))
-               .server(getString(R.string.back4app_server_url))
-               .build()
-       );
 
        recyclerViewPracticeLevels = findViewById(R.id.recycler_view_practice_levels);
        recyclerViewPracticeLevels.setLayoutManager(new LinearLayoutManager(this));
@@ -100,6 +93,7 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
                         Practice practice = new Practice();
                         practice.level_number = result.get(i).getNumber("level_number");
                         practice.level_name = result.get(i).getString("level_name");
+                        practice.level_color = result.get(i).getString("level_color");
                         //retrieving array of quiz using the state name
                         practice.quiz = result.get(i).getList(stateQuizName);
 
@@ -146,7 +140,6 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
         i.putExtra("LEVEL_NUMBER", practiceList.get(position).getLevel_number());
         i.putStringArrayListExtra("LEVEL_QUIZ", (ArrayList<String>) practiceList.get(position).getQuiz());
         startActivity(i);
-
     }
 
 
