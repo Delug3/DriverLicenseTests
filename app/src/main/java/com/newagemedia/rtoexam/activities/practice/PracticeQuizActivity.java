@@ -2,10 +2,16 @@ package com.newagemedia.rtoexam.activities.practice;
 
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -317,9 +323,36 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
 
    private void startAnimationNextQuestion()
    {
-       imageViewNextQuestion.setBackgroundResource(R.drawable.next_question_imageview_animation_blink);
+       /*imageViewNextQuestion.setBackgroundResource(R.drawable.next_question_imageview_animation_blink);
        AnimationDrawable frameAnimation = (AnimationDrawable) imageViewNextQuestion.getBackground();
        frameAnimation.start();
+
+        */
+       AlphaAnimation fadeIn=new AlphaAnimation(0,1);
+
+       AlphaAnimation fadeOut=new AlphaAnimation(1,0);
+
+       final AnimationSet set = new AnimationSet(false);
+
+       set.addAnimation(fadeIn);
+       set.addAnimation(fadeOut);
+
+       fadeOut.setStartOffset(1000);
+       set.setDuration(2000);
+
+       imageViewNextQuestion.startAnimation(set);
+
+       set.setAnimationListener(new Animation.AnimationListener() {
+           @Override
+           public void onAnimationStart(Animation animation) { }
+           @Override
+           public void onAnimationRepeat(Animation animation) { }
+           @Override
+           public void onAnimationEnd(Animation animation) {
+               imageViewNextQuestion.startAnimation(set);
+           }
+       });
+
    }
 
     private void stopAnimationNextQuestion()
