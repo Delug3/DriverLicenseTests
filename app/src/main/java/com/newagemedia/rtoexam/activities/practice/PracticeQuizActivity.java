@@ -52,7 +52,9 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
     private ConstraintLayout constraintLayoutAnswerD;
     private ProgressBar progressBarQuiz;
     private Drawable OriginalBackgroundColor;
+
     private String correctAnswer;
+    private boolean shouldRepeatAnimation = true;
     private int progressStatus = 0;
     //variable to move to the next question
     private int questionNumber = 0;
@@ -102,14 +104,11 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
 
         String levelName;
         Integer levelNumber;
-       // List<String> quizList = null;
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if (extras == null) {
                 levelName = null;
                 levelNumber = null;
-                //quizList = null;
-
             } else {
                 levelNumber = extras.getInt("LEVEL_NUMBER");
                 levelName = extras.getString("LEVEL_NAME");
@@ -323,13 +322,8 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
 
    private void startAnimationNextQuestion()
    {
-       /*imageViewNextQuestion.setBackgroundResource(R.drawable.next_question_imageview_animation_blink);
-       AnimationDrawable frameAnimation = (AnimationDrawable) imageViewNextQuestion.getBackground();
-       frameAnimation.start();
-
-        */
+       shouldRepeatAnimation = true;
        AlphaAnimation fadeIn=new AlphaAnimation(0,1);
-
        AlphaAnimation fadeOut=new AlphaAnimation(1,0);
 
        final AnimationSet set = new AnimationSet(false);
@@ -349,7 +343,9 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
            public void onAnimationRepeat(Animation animation) { }
            @Override
            public void onAnimationEnd(Animation animation) {
-               imageViewNextQuestion.startAnimation(set);
+               if (shouldRepeatAnimation) {
+                   imageViewNextQuestion.startAnimation(set);
+               }
            }
        });
 
@@ -357,11 +353,8 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
 
     private void stopAnimationNextQuestion()
     {
-        imageViewNextQuestion.setBackgroundResource(R.drawable.ic_next_quiz_question);
-
-        imageViewNextQuestion.setBackgroundResource(R.drawable.next_question_imageview_animation_blink);
-        AnimationDrawable frameAnimation = (AnimationDrawable) imageViewNextQuestion.getBackground();
-        frameAnimation.stop();
+        shouldRepeatAnimation = false;
+        imageViewNextQuestion.clearAnimation();
     }
 
 
