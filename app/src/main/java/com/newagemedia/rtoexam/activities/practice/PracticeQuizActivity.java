@@ -3,22 +3,16 @@ package com.newagemedia.rtoexam.activities.practice;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintLayout.LayoutParams;
-import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.constraintlayout.widget.Constraints;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -30,8 +24,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
-
-import static com.newagemedia.rtoexam.R.drawable.no_image_available;
 
 public class PracticeQuizActivity extends AppCompatActivity implements View.OnClickListener, Animation.AnimationListener {
 
@@ -128,7 +120,6 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
         hideNextQuestionView();
         loadQuestionAndAnswers();
         updateQuizProgressBar();
-
     }
 
     //compare correct answer with answer number, if its the same, then green, not the same, red and method call
