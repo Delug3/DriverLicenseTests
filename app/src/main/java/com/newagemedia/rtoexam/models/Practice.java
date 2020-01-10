@@ -11,6 +11,7 @@ public class Practice implements Serializable {
     //correct answer-> only one is correct
 
     public Number level_number;
+    public String level_color;
     public String level_name;
     public String question;
     public String answer_a;
@@ -25,6 +26,7 @@ public class Practice implements Serializable {
 
     public Practice() {
         this.level_number = level_number;
+        this.level_color = level_color;
         this.level_name = level_name;
         this.question = question;
         this.answer_a = answer_a;
@@ -42,6 +44,14 @@ public class Practice implements Serializable {
 
     public void setLevel_number(Number level_number) {
         this.level_number = level_number;
+    }
+
+    public String getLevel_color() {
+        return level_color;
+    }
+
+    public void setLevel_color(String level_color) {
+        this.level_color = level_color;
     }
 
     public String getLevel_name() {
