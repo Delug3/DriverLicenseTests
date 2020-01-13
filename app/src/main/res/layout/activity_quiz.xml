@@ -229,8 +229,7 @@
         android:fontFamily="@font/roboto"
         android:text="@string/level_number"
         android:textColor="@color/colorText"
-        android:textSize="36sp"
-        android:visibility="gone"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/text_view_quiz_level_name"
         app:layout_constraintStart_toEndOf="@+id/text_view_quiz_level_name"
         app:layout_constraintTop_toTopOf="@+id/text_view_quiz_level_name" />
