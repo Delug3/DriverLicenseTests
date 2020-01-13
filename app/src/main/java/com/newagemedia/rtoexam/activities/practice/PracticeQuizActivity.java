@@ -1,22 +1,20 @@
 package com.newagemedia.rtoexam.activities.practice;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
-import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
+import android.preference.DialogPreference;
 import android.view.View;
-import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
@@ -52,7 +50,8 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
     private ConstraintLayout constraintLayoutAnswerD;
     private ProgressBar progressBarQuiz;
     private Drawable OriginalBackgroundColor;
-
+    private Integer levelNumber;
+    private boolean allAnswersCompleted = false;
     private String correctAnswer;
     private boolean shouldRepeatAnimation = true;
     private int progressStatus = 0;
@@ -60,7 +59,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
     private int questionNumber = 0;
     //variable to know total number of questions, to set progressbar max value
     private List<String> quizList;
-
+    private List<String> allPracticeLevels;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,18 +102,19 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
 
 
         String levelName;
-        Integer levelNumber;
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if (extras == null) {
-                levelName = null;
                 levelNumber = null;
+                levelName = null;
             } else {
                 levelNumber = extras.getInt("LEVEL_NUMBER");
                 levelName = extras.getString("LEVEL_NAME");
+                quizList = getIntent().getStringArrayListExtra("LEVEL_QUIZ");
+
+
                 textViewLevelNumber.setText((String.valueOf(levelNumber)));
                 textViewLevelName.setText(levelName);
-                quizList = getIntent().getStringArrayListExtra("LEVEL_QUIZ");
             }
         }
 
@@ -149,6 +149,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
                 }
                 disableMultipleClicks();
                 unHideNextQuestionView();
+                enableNextQuestionViewClick();
                 startAnimationNextQuestion();
                 break;
 
@@ -168,6 +169,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
                 }
                 disableMultipleClicks();
                 unHideNextQuestionView();
+                enableNextQuestionViewClick();
                 startAnimationNextQuestion();
                 break;
 
@@ -187,6 +189,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
                 }
                 disableMultipleClicks();
                 unHideNextQuestionView();
+                enableNextQuestionViewClick();
                 startAnimationNextQuestion();
                 break;
 
@@ -206,11 +209,12 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
                 }
                 disableMultipleClicks();
                 unHideNextQuestionView();
+                enableNextQuestionViewClick();
                 startAnimationNextQuestion();
                 break;
 
             case R.id.image_view_quiz_left_arrow:
-                finish();
+                showDialog();
                 break;
 
 
@@ -254,6 +258,8 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
         loadUI(question, answerA, answerB, answerC,answerD,imageUrl);
 
         loadDefaultColors();
+
+        disableNextQuestionViewClick();
 
         } catch (JSONException e) {
         e.printStackTrace();
@@ -317,6 +323,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
            snackbar.getView().setBackgroundColor(ContextCompat.getColor(PracticeQuizActivity.this, R.color.blue));
            snackbar.show();
            disableMultipleClicks();
+           allAnswersCompleted = true;
        }
    }
 
@@ -399,6 +406,17 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
         textViewAnswerD.setClickable(true);
     }
 
+
+    private void enableNextQuestionViewClick()
+    {
+        imageViewNextQuestion.setClickable(true);
+    }
+
+    private void disableNextQuestionViewClick()
+    {
+        imageViewNextQuestion.setClickable(false);
+    }
+
     private void checkValueAnswerD(String answerD)
     {
         if (answerD.equals("null"))
@@ -459,5 +477,42 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onAnimationRepeat(Animation animation) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(!allAnswersCompleted)
+        {
+            showDialog();
+        }
+        else
+        {
+            finish();
+        }
+    }
+
+    private void showDialog()
+    {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        finish();
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setTitle("Alert");
+        builder.setMessage("Do you really want to exit practice Level " + levelNumber + "?")
+                .setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("Cancel", dialogClickListener).show();
     }
 }
