@@ -9,16 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.StatesListActivity">
+        <activity android:name=".activities.StatesListActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.core.MainMenuActivity"/>
-        <activity android:name=".activities.practice.PracticeLevelsListActivity"/>
-        <activity android:name=".activities.practice.PracticeQuizActivity"/>
+        <activity android:name=".activities.core.MainMenuActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activities.practice.PracticeLevelsListActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activities.practice.PracticeQuizActivity" android:screenOrientation="portrait"/>
 
         android:name=".App"
         <meta-data
