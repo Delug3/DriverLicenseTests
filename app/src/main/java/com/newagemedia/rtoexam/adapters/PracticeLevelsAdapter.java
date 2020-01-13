@@ -2,6 +2,7 @@ package com.newagemedia.rtoexam.adapters;
 
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -13,12 +14,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.newagemedia.rtoexam.R;
 import com.newagemedia.rtoexam.models.Practice;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import static com.newagemedia.rtoexam.R.drawable.ic_color_level_1;
 
 
 public class PracticeLevelsAdapter extends RecyclerView.Adapter<PracticeLevelsAdapter.ViewHolder> {
@@ -46,10 +51,9 @@ public class PracticeLevelsAdapter extends RecyclerView.Adapter<PracticeLevelsAd
         holder.textViewLevelNumber.setText(String.valueOf(p.getLevel_number()));
         holder.textViewLevelName.setText(p.getLevel_name());
 
-        //filling image vector with color stored in database
-        Drawable drawable = ContextCompat.getDrawable(context, R.drawable.ic_rounded_levels_number).mutate();
-        holder.imageViewLevelColor.setColorFilter(new PorterDuffColorFilter(Color.parseColor(p.getLevel_color()), PorterDuff.Mode.SRC_IN));
-        holder.imageViewLevelColor.setImageDrawable(drawable);
+        int imageResource = context.getResources().getIdentifier(p.getLevel_color(), null, context.getPackageName());
+        Drawable res = context.getResources().getDrawable(imageResource);
+        holder.imageViewLevelColor.setImageDrawable(res);
     }
 
 
