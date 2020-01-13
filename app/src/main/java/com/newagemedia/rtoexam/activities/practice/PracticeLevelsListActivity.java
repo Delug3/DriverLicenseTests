@@ -2,6 +2,7 @@ package com.newagemedia.rtoexam.activities.practice;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,8 +20,6 @@ import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-
-
 import java.util.ArrayList;
 
 import java.util.List;
@@ -134,7 +133,6 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
     @Override
     public void onItemClick(View view, int position) {
         //Toast.makeText(this, "You clicked " + practiceLevelsAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
-
         Intent i = new Intent(PracticeLevelsListActivity.this, PracticeQuizActivity.class);
         i.putExtra("LEVEL_NAME", practiceList.get(position).getLevel_name());
         i.putExtra("LEVEL_NUMBER", practiceList.get(position).getLevel_number());
