@@ -1,4 +1,4 @@
-package com.newagemedia.rtoexam.activities.core;
+package com.carlicense.tests.activities.core;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -6,10 +6,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 
-import com.newagemedia.rtoexam.R;
-import com.newagemedia.rtoexam.activities.practice.PracticeLevelsListActivity;
+import com.carlicense.tests.R;
+import com.carlicense.tests.activities.practice.PracticeLevelsListActivity;
 
 /**
  * Created by Manuel Fernandez Garcia.  Email(mfgarcia87@gmail.com) on 15/12/2019.

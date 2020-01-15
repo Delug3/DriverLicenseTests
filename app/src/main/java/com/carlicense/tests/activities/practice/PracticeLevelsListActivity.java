@@ -1,9 +1,7 @@
-package com.newagemedia.rtoexam.activities.practice;
+package com.carlicense.tests.activities.practice;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -12,11 +10,10 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.newagemedia.rtoexam.R;
-import com.newagemedia.rtoexam.adapters.PracticeLevelsAdapter;
-import com.newagemedia.rtoexam.models.Practice;
+import com.carlicense.tests.R;
+import com.carlicense.tests.adapters.PracticeLevelsAdapter;
+import com.carlicense.tests.models.Practice;
 import com.parse.FindCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;

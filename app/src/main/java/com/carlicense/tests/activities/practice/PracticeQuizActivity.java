@@ -1,10 +1,9 @@
-package com.newagemedia.rtoexam.activities.practice;
+package com.carlicense.tests.activities.practice;
 
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.preference.DialogPreference;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -20,7 +19,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.newagemedia.rtoexam.R;
+import com.carlicense.tests.R;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;

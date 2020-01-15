@@ -1,4 +1,4 @@
-package com.newagemedia.rtoexam;
+package com.carlicense.tests;
 
 import org.junit.Test;
 

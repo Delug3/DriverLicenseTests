@@ -1,11 +1,7 @@
-package com.newagemedia.rtoexam.adapters;
+package com.carlicense.tests.adapters;
 
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,17 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.newagemedia.rtoexam.R;
-import com.newagemedia.rtoexam.models.Practice;
-import com.squareup.picasso.Picasso;
+import com.carlicense.tests.R;
+import com.carlicense.tests.models.Practice;
 
 import java.util.List;
-
-import static com.newagemedia.rtoexam.R.drawable.ic_color_level_1;
 
 
 public class PracticeLevelsAdapter extends RecyclerView.Adapter<PracticeLevelsAdapter.ViewHolder> {

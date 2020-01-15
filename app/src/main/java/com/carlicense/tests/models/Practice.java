@@ -1,6 +1,4 @@
-package com.newagemedia.rtoexam.models;
-
-import android.graphics.drawable.Drawable;
+package com.carlicense.tests.models;
 
 import java.io.Serializable;
 import java.util.List;

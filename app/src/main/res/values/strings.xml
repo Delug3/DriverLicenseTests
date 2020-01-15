@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RTO Exam</string>
+    <string name="app_name">Car Driving Exam</string>
 
     <string name="select_state">Select State</string>
     <string name="practice">Practice</string>

@@ -1,4 +1,4 @@
-package com.newagemedia.rtoexam.models;
+package com.carlicense.tests.models;
 
 import java.io.Serializable;
 import java.util.List;
