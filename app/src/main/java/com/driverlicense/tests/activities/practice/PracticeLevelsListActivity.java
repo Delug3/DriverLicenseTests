@@ -27,7 +27,6 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
 
     RecyclerView recyclerViewPracticeLevels;
     private PracticeLevelsAdapter practiceLevelsAdapter;
-    private static final String TAG = "RTO";
     private ImageView imageViewLevelLeftArrow;
     private String queryLanguage;
     private String stateQuizName;

@@ -32,12 +32,7 @@ public class StatesListActivity extends AppCompatActivity implements StatesAdapt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_states);
-        Parse.initialize(new Parse.Configuration.Builder(this)
-                .applicationId(getString(R.string.back4app_app_id))
-                .clientKey(getString(R.string.back4app_client_key))
-                .server(getString(R.string.back4app_server_url))
-                .build()
-        );
+
         recyclerViewStates = findViewById(R.id.recycler_view_states);
         recyclerViewStates.setLayoutManager(new LinearLayoutManager(this));
 
