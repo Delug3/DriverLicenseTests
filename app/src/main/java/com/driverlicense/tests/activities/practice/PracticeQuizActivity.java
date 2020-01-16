@@ -1,6 +1,7 @@
 package com.driverlicense.tests.activities.practice;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PracticeQuizActivity extends AppCompatActivity implements View.OnClickListener, Animation.AnimationListener {
@@ -52,6 +54,8 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
     private Integer levelNumber;
     private boolean allAnswersCompleted = false;
     private String correctAnswer;
+    private int totalNumberCorrectAnswers = 0;
+    private int totalNumberIncorrectAnswers = 0;
     private boolean shouldRepeatAnimation = true;
     private int progressStatus = 0;
     //variable to move to the next question
@@ -140,10 +144,12 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
                 if (correctAnswer.equals("A")) {
                     constraintLayoutAnswerA.setBackgroundColor(Color.parseColor("#1D00C853"));
                     imageViewLetterA.setImageResource(R.drawable.ic_green_answer_a);
+                    totalNumberCorrectAnswers++;
                 }
                 else{
                     constraintLayoutAnswerA.setBackgroundColor(Color.parseColor("#23D50000"));
                     imageViewLetterA.setImageResource(R.drawable.ic_red_answer_a);
+                    totalNumberIncorrectAnswers++;
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
@@ -160,10 +166,12 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
                 if (correctAnswer.equals("B")) {
                     constraintLayoutAnswerB.setBackgroundColor(Color.parseColor("#1D00C853"));
                     imageViewLetterB.setImageResource(R.drawable.ic_green_answer_b);
+                    totalNumberCorrectAnswers++;
                 }
                 else{
                     constraintLayoutAnswerB.setBackgroundColor(Color.parseColor("#23D50000"));
                     imageViewLetterB.setImageResource(R.drawable.ic_red_answer_b);
+                    totalNumberIncorrectAnswers++;
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
@@ -180,10 +188,12 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
                 if (correctAnswer.equals("C")) {
                     constraintLayoutAnswerC.setBackgroundColor(Color.parseColor("#1D00C853"));
                     imageViewLetterC.setImageResource(R.drawable.ic_green_answer_c);
+                    totalNumberCorrectAnswers++;
                 }
                 else{
                     constraintLayoutAnswerC.setBackgroundColor(Color.parseColor("#23D50000"));
                     imageViewLetterC.setImageResource(R.drawable.ic_red_answer_c);
+                    totalNumberIncorrectAnswers++;
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
@@ -200,10 +210,12 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
                 if (correctAnswer.equals("D")) {
                     constraintLayoutAnswerD.setBackgroundColor(Color.parseColor("#1D00C853"));
                     imageViewLetterD.setImageResource(R.drawable.ic_green_answer_d);
+                    totalNumberCorrectAnswers++;
                 }
                 else{
                     constraintLayoutAnswerD.setBackgroundColor(Color.parseColor("#23D50000"));
                     imageViewLetterD.setImageResource(R.drawable.ic_red_answer_d);
+                    totalNumberIncorrectAnswers++;
                     showCorrectAnswer();
                 }
                 disableMultipleClicks();
@@ -211,6 +223,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
                 enableNextQuestionViewClick();
                 startAnimationNextQuestion();
                 break;
+
 
             case R.id.image_view_quiz_left_arrow:
                 showDialog();
@@ -224,6 +237,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
                 updateQuizProgressBar();
                 stopAnimationNextQuestion();
                 break;
+
 
             default:
                 break;
@@ -312,18 +326,25 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
     //method called in order to update progressBar every time a new question is loaded
    private void updateQuizProgressBar()
    {
-       if(progressStatus< quizList.size()) {
+       if(progressStatus < quizList.size()) {
            progressStatus++;
            progressBarQuiz.setProgress(progressStatus);
        }
        else{
 
-           Snackbar snackbar = Snackbar.make(constraintLayoutMain,"All Questions Answered!", Snackbar.LENGTH_LONG);
-           snackbar.getView().setBackgroundColor(ContextCompat.getColor(PracticeQuizActivity.this, R.color.blue));
-           snackbar.show();
+           Snackbar snackBar = Snackbar.make(constraintLayoutMain,"All Questions Answered!", Snackbar.LENGTH_LONG);
+           snackBar.getView().setBackgroundColor(ContextCompat.getColor(PracticeQuizActivity.this, R.color.blue));
+           snackBar.show();
            disableMultipleClicks();
            allAnswersCompleted = true;
+
+          /**New Activity with results: questions correctly answered and the wrongly one, percentage**/
+           Snackbar snackBarResults = Snackbar.make(constraintLayoutMain,"Correct Answers: " + totalNumberCorrectAnswers + "Incorrect Answers: " + totalNumberIncorrectAnswers, Snackbar.LENGTH_LONG);
+           snackBarResults.getView().setBackgroundColor(ContextCompat.getColor(PracticeQuizActivity.this, R.color.green));
+           snackBarResults.show();
+
        }
+
    }
 
    private void startAnimationNextQuestion()
@@ -408,12 +429,12 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
 
     private void enableNextQuestionViewClick()
     {
-        imageViewNextQuestion.setClickable(true);
+        //imageViewNextQuestion.setClickable(true);
     }
 
     private void disableNextQuestionViewClick()
     {
-        imageViewNextQuestion.setClickable(false);
+        //imageViewNextQuestion.setClickable(false);
     }
 
     private void checkValueAnswerD(String answerD)
