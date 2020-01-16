@@ -338,13 +338,19 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
            disableMultipleClicks();
            allAnswersCompleted = true;
 
-          /**New Activity with results: questions correctly answered and the wrongly one, percentage**/
-           Snackbar snackBarResults = Snackbar.make(constraintLayoutMain,"Correct Answers: " + totalNumberCorrectAnswers + "Incorrect Answers: " + totalNumberIncorrectAnswers, Snackbar.LENGTH_LONG);
-           snackBarResults.getView().setBackgroundColor(ContextCompat.getColor(PracticeQuizActivity.this, R.color.green));
-           snackBarResults.show();
-
+           showQuizResults();
        }
 
+   }
+
+   private void showQuizResults()
+   {
+       finish();
+
+       Intent i = new Intent(PracticeQuizActivity.this, PracticeQuizResultsActivity.class);
+       i.putExtra("TOTAL_CORRECT_ANSWERS", totalNumberCorrectAnswers);
+       i.putExtra("TOTAL_INCORRECT_ANSWERS", totalNumberIncorrectAnswers);
+       startActivity(i);
    }
 
    private void startAnimationNextQuestion()
