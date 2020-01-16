@@ -1,4 +1,4 @@
-package com.carlicense.tests;
+package com.driverlicense.tests;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.carlicense.tests.activities.practice;
+package com.driverlicense.tests.activities.practice;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.carlicense.tests.R;
-import com.carlicense.tests.adapters.PracticeLevelsAdapter;
-import com.carlicense.tests.models.Practice;
+import com.driverlicense.tests.R;
+import com.driverlicense.tests.adapters.PracticeLevelsAdapter;
+import com.driverlicense.tests.models.Practice;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;

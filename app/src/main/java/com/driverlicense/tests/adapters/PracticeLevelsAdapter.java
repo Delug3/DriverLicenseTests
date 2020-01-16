@@ -1,4 +1,4 @@
-package com.carlicense.tests.adapters;
+package com.driverlicense.tests.adapters;
 
 
 import android.content.Context;
@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.carlicense.tests.R;
-import com.carlicense.tests.models.Practice;
+import com.driverlicense.tests.R;
+import com.driverlicense.tests.models.Practice;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.carlicense.tests.activities.core;
+package com.driverlicense.tests.activities.core;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -7,8 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.carlicense.tests.R;
-import com.carlicense.tests.activities.practice.PracticeLevelsListActivity;
+import com.driverlicense.tests.R;
+import com.driverlicense.tests.activities.practice.PracticeLevelsListActivity;
 
 /**
  * Created by Manuel Fernandez Garcia.  Email(mfgarcia87@gmail.com) on 15/12/2019.

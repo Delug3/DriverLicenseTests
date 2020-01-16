@@ -1,4 +1,4 @@
-package com.carlicense.tests.models;
+package com.driverlicense.tests.models;
 
 import java.io.Serializable;
 import java.util.List;

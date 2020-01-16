@@ -1,4 +1,4 @@
-package com.carlicense.tests.adapters;
+package com.driverlicense.tests.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,8 +8,8 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
-import com.carlicense.tests.R;
-import com.carlicense.tests.models.States;
+import com.driverlicense.tests.R;
+import com.driverlicense.tests.models.States;
 
 import java.util.List;
 

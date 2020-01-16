@@ -1,4 +1,4 @@
-package com.carlicense.tests.activities.practice;
+package com.driverlicense.tests.activities.practice;
 
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -19,7 +19,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.carlicense.tests.R;
+import com.driverlicense.tests.R;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
