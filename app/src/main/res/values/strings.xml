@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Car Driving Exam</string>
+    <string name="app_name">Driver License Tests</string>
 
     <string name="select_state">Select State</string>
     <string name="practice">Practice</string>
@@ -17,8 +17,8 @@
     <string name="next_question">Next</string>
 
 
-    <string name="back4app_app_id">5DB2WXV29AhOv6Ug23n6BSr3WAoZH169EpZ9q21y</string>
-    <string name="back4app_client_key">l2VyHiH6G2NssWGsIeBmUzLrNOlDa7vQRDtEZngF</string>
+    <string name="back4app_app_id">lmj5p9coFxtlfHx5EY6ZMZEmZwZkB6UqSM7tP5vj</string>
+    <string name="back4app_client_key">1lD4V2Nbw6KwnG8FUbUAM56KsvwMYlxEVK89Py6d</string>
     <string name="back4app_server_url">https://parseapi.back4app.com</string>
 
 </resources>
