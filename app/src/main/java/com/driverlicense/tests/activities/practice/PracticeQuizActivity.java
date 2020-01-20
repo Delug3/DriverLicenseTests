@@ -1,8 +1,9 @@
 package com.driverlicense.tests.activities.practice;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -26,8 +27,8 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PracticeQuizActivity extends AppCompatActivity implements View.OnClickListener, Animation.AnimationListener {
@@ -50,7 +51,9 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
     private ConstraintLayout constraintLayoutAnswerC;
     private ConstraintLayout constraintLayoutAnswerD;
     private ProgressBar progressBarQuiz;
+    private Dialog resultDialog;
     private Drawable OriginalBackgroundColor;
+    private String levelName;
     private Integer levelNumber;
     private boolean allAnswersCompleted = false;
     private String correctAnswer;
@@ -62,7 +65,6 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
     private int questionNumber = 0;
     //variable to know total number of questions, to set progressbar max value
     private List<String> quizList;
-    private List<String> allPracticeLevels;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,7 +106,6 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
         imageViewNextQuestion.setOnClickListener(this);
 
 
-        String levelName;
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if (extras == null) {
@@ -345,12 +346,41 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
 
    private void showQuizResults()
    {
-       finish();
+       //finish();
 
-       Intent i = new Intent(PracticeQuizActivity.this, PracticeQuizResultsActivity.class);
-       i.putExtra("TOTAL_CORRECT_ANSWERS", totalNumberCorrectAnswers);
-       i.putExtra("TOTAL_INCORRECT_ANSWERS", totalNumberIncorrectAnswers);
-       startActivity(i);
+       //Intent i = new Intent(PracticeQuizActivity.this, PracticeQuizResultsActivity.class);
+       //i.putExtra("TOTAL_CORRECT_ANSWERS", totalNumberCorrectAnswers);
+       //i.putExtra("TOTAL_INCORRECT_ANSWERS", totalNumberIncorrectAnswers);
+       //startActivity(i);
+
+       resultDialog = new Dialog(this);
+       resultDialog.setContentView(R.layout.activity_quiz_results);
+
+       TextView textViewLevelName = resultDialog.findViewById(R.id.text_view_result_level_name);
+       TextView textViewLevelNumber = resultDialog.findViewById(R.id.text_view_result_level_number);
+       TextView textViewClose = resultDialog.findViewById(R.id.text_view_result_close);
+       TextView textViewCorrectAnswers = resultDialog.findViewById(R.id.text_view_result_correct_answers);
+       TextView textViewIncorrectAnswers = resultDialog.findViewById(R.id.text_view_result_incorrect_answers);
+       TextView textViewTotalAnswers = resultDialog.findViewById(R.id.text_view_result_total_answers);
+
+       textViewClose.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               resultDialog.dismiss();
+               finish();
+           }
+       });
+
+       textViewLevelName.setText(levelName);
+       textViewLevelNumber.setText(String.valueOf(levelNumber));
+       textViewCorrectAnswers.setText(String.valueOf(totalNumberCorrectAnswers));
+       textViewIncorrectAnswers.setText(String.valueOf(totalNumberIncorrectAnswers));
+       textViewTotalAnswers.setText(String.valueOf(quizList.size()));
+
+
+       resultDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+       resultDialog.setCancelable(false);
+       resultDialog.show();
    }
 
    private void startAnimationNextQuestion()
