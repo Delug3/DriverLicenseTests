@@ -24,7 +24,7 @@
         <activity android:name="com.driverlicense.tests.activities.core.MainMenuActivity" android:screenOrientation="portrait"/>
         <activity android:name="com.driverlicense.tests.activities.practice.PracticeLevelsListActivity" android:screenOrientation="portrait"/>
         <activity android:name="com.driverlicense.tests.activities.practice.PracticeQuizActivity" android:screenOrientation="portrait"/>
-        <activity android:name="com.driverlicense.tests.activities.practice.PracticeQuizResultsActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.driverlicense.tests.activities.practice.PracticeQuizResultsActivity" android:screenOrientation="portrait" android:theme="@style/Theme.AppCompat.Dialog.Alert"/>
 
 
         <meta-data
