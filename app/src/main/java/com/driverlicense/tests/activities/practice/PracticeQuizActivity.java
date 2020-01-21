@@ -65,6 +65,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
     private int questionNumber = 0;
     //variable to know total number of questions, to set progressbar max value
     private List<String> quizList;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -346,13 +347,6 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
 
    private void showQuizResults()
    {
-       //finish();
-
-       //Intent i = new Intent(PracticeQuizActivity.this, PracticeQuizResultsActivity.class);
-       //i.putExtra("TOTAL_CORRECT_ANSWERS", totalNumberCorrectAnswers);
-       //i.putExtra("TOTAL_INCORRECT_ANSWERS", totalNumberIncorrectAnswers);
-       //startActivity(i);
-
        resultDialog = new Dialog(this);
        resultDialog.setContentView(R.layout.activity_quiz_results);
 
@@ -381,6 +375,8 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
        resultDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
        resultDialog.setCancelable(false);
        resultDialog.show();
+
+
    }
 
    private void startAnimationNextQuestion()
@@ -465,12 +461,12 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
 
     private void enableNextQuestionViewClick()
     {
-        //imageViewNextQuestion.setClickable(true);
+        imageViewNextQuestion.setClickable(true);
     }
 
     private void disableNextQuestionViewClick()
     {
-        //imageViewNextQuestion.setClickable(false);
+        imageViewNextQuestion.setClickable(false);
     }
 
     private void checkValueAnswerD(String answerD)
