@@ -1,8 +1,10 @@
-package com.driverlicense.tests.activities;
+package com.driverlicense.tests.activities.states;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,7 +15,6 @@ import com.driverlicense.tests.activities.core.MainMenuActivity;
 import com.driverlicense.tests.adapters.StatesAdapter;
 import com.driverlicense.tests.models.States;
 import com.parse.FindCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -31,6 +32,10 @@ public class StatesListActivity extends AppCompatActivity implements StatesAdapt
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
         setContentView(R.layout.activity_states);
 
         recyclerViewStates = findViewById(R.id.recycler_view_states);
@@ -73,13 +78,10 @@ public class StatesListActivity extends AppCompatActivity implements StatesAdapt
 
     @Override
     public void onItemClick(View view, int position) {
-        //Toast.makeText(this, "You clicked " + statesAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
 
         Intent i = new Intent(StatesListActivity.this, MainMenuActivity.class);
         i.putExtra("STATE_QUIZ_NAME", dataStates.get(position).getState_quiz_name());
         startActivity(i);
-
-
     }
 
 

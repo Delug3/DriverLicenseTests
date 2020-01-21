@@ -5,6 +5,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.driverlicense.tests.R;
@@ -21,6 +22,11 @@ public class MainMenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("MAIN MENU");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         setContentView(R.layout.activity_main);
 
         Bundle extras = getIntent().getExtras();
@@ -38,6 +44,23 @@ public class MainMenuActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+        case android.R.id.home:
+
+            finish();
+
+            return true;
+
+        default:
+            return super.onOptionsItemSelected(item);
+    }
 
     }
 }
