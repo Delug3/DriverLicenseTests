@@ -1,226 +1,222 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.core.MainMenuActivity">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+    <include layout="@layout/custom_toolbar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint_layout_main_menu_settings"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/constraint_border_lines"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraint_layout_main_menu_reading">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activities.core.MainMenuActivity">
 
-        <ImageView
-            android:id="@+id/image_view_settings"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_settings" />
 
-        <TextView
-            android:id="@+id/text_view_settings"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_layout_main_menu_settings"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:fontFamily="@font/roboto"
-            android:text="@string/settings_main_menu"
-            android:textAllCaps="false"
-            android:textColor="@color/colorText"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/image_view_settings"
-            app:layout_constraintStart_toEndOf="@+id/image_view_settings"
-            app:layout_constraintTop_toTopOf="@+id/image_view_settings" />
+            android:background="@drawable/constraint_border_lines"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraint_layout_main_menu_reading">
+
+            <ImageView
+                android:id="@+id/image_view_settings"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_settings" />
+
+            <TextView
+                android:id="@+id/text_view_settings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/settings_main_menu"
+                android:textAllCaps="false"
+                android:textColor="@color/colorText"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/image_view_settings"
+                app:layout_constraintStart_toEndOf="@+id/image_view_settings"
+                app:layout_constraintTop_toTopOf="@+id/image_view_settings" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_layout_main_menu_reading"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/constraint_border_lines"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraint_layout_main_menu_test">
+
+            <ImageView
+                android:id="@+id/image_view_reading"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_reading" />
+
+            <TextView
+                android:id="@+id/text_view_reading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/reading_main_menu"
+                android:textAllCaps="false"
+                android:textColor="@color/colorText"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/image_view_reading"
+                app:layout_constraintStart_toEndOf="@+id/image_view_reading"
+                app:layout_constraintTop_toTopOf="@+id/image_view_reading" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_layout_main_menu_test"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/constraint_border_lines"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraint_layout_main_menu_traffic_sign">
+
+            <TextView
+                android:id="@+id/text_view_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/test_main_menu"
+                android:textColor="@color/colorText"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/image_view_test"
+                app:layout_constraintStart_toEndOf="@+id/image_view_test"
+                app:layout_constraintTop_toTopOf="@+id/image_view_test" />
+
+            <ImageView
+                android:id="@+id/image_view_test"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_test" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_layout_main_menu_traffic_sign"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/constraint_border_lines"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraint_layout_main_menu_practice">
+
+            <TextView
+                android:id="@+id/text_view_traffic_sign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/traffic_sign_main_menu"
+                android:textColor="@color/colorText"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/image_view_traffic_sign"
+                app:layout_constraintStart_toEndOf="@+id/image_view_traffic_sign"
+                app:layout_constraintTop_toTopOf="@+id/image_view_traffic_sign" />
+
+            <ImageView
+                android:id="@+id/image_view_traffic_sign"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_traffic_sign" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_layout_main_menu_practice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="90dp"
+            android:background="@drawable/constraint_border_lines"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/text_view_practice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/practice_main_menu"
+                android:textColor="@color/colorText"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/image_view_practice"
+                app:layout_constraintStart_toEndOf="@+id/image_view_practice"
+                app:layout_constraintTop_toTopOf="@+id/image_view_practice" />
+
+            <ImageView
+                android:id="@+id/image_view_practice"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_practice" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint_layout_main_menu_reading"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/constraint_border_lines"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraint_layout_main_menu_test">
 
-        <ImageView
-            android:id="@+id/image_view_reading"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_reading" />
-
-        <TextView
-            android:id="@+id/text_view_reading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:fontFamily="@font/roboto"
-            android:text="@string/reading_main_menu"
-            android:textAllCaps="false"
-            android:textColor="@color/colorText"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/image_view_reading"
-            app:layout_constraintStart_toEndOf="@+id/image_view_reading"
-            app:layout_constraintTop_toTopOf="@+id/image_view_reading" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint_layout_main_menu_test"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/constraint_border_lines"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraint_layout_main_menu_traffic_sign">
-
-        <TextView
-            android:id="@+id/text_view_test"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:fontFamily="@font/roboto"
-            android:text="@string/test_main_menu"
-            android:textColor="@color/colorText"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/image_view_test"
-            app:layout_constraintStart_toEndOf="@+id/image_view_test"
-            app:layout_constraintTop_toTopOf="@+id/image_view_test" />
-
-        <ImageView
-            android:id="@+id/image_view_test"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_test" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint_layout_main_menu_traffic_sign"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/constraint_border_lines"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraint_layout_main_menu_practice">
-
-        <TextView
-            android:id="@+id/text_view_traffic_sign"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:fontFamily="@font/roboto"
-            android:text="@string/traffic_sign_main_menu"
-            android:textColor="@color/colorText"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/image_view_traffic_sign"
-            app:layout_constraintStart_toEndOf="@+id/image_view_traffic_sign"
-            app:layout_constraintTop_toTopOf="@+id/image_view_traffic_sign" />
-
-        <ImageView
-            android:id="@+id/image_view_traffic_sign"
-            android:layout_width="62dp"
-            android:layout_height="62dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_traffic_sign" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint_layout_main_menu_practice"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/constraint_border_lines"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_main_menu">
-
-        <TextView
-            android:id="@+id/text_view_practice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:fontFamily="@font/roboto"
-            android:text="@string/practice_main_menu"
-            android:textColor="@color/colorText"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/image_view_practice"
-            app:layout_constraintStart_toEndOf="@+id/image_view_practice"
-            app:layout_constraintTop_toTopOf="@+id/image_view_practice" />
-
-        <ImageView
-            android:id="@+id/image_view_practice"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_practice" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/text_view_main_menu"
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_main_menu"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/roboto"
-        android:text="@string/main_menu"
-        android:textAllCaps="false"
-        android:textColor="@color/colorText"
-        android:textSize="24sp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:menu="@menu/nav_items"
+        />
 
-    <ImageView
-        android:id="@+id/image_view_lateral_menu"
-        android:layout_width="18dp"
-        android:layout_height="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:background="@drawable/ic_lateral_menu_blue"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/text_view_main_menu"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/text_view_main_menu" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
