@@ -64,7 +64,7 @@ public class MainMenuActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
-        actionbar.setHomeAsUpIndicator(R.drawable.ic_lateral_menu_blue);
+        actionbar.setHomeAsUpIndicator(R.drawable.ic_lateral_menu_white);
         actionbar.setTitle("Main Menu");
         actionbar.setDisplayHomeAsUpEnabled(true);
     }
