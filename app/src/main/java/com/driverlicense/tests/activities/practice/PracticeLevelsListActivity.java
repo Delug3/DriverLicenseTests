@@ -2,6 +2,7 @@ package com.driverlicense.tests.activities.practice;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -35,6 +36,10 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Practice");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         setContentView(R.layout.activity_levels);
 
         imageViewLevelLeftArrow = findViewById(R.id.image_view_levels_left_arrow);
@@ -128,7 +133,6 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
 
     @Override
     public void onItemClick(View view, int position) {
-        //Toast.makeText(this, "You clicked " + practiceLevelsAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
         Intent i = new Intent(PracticeLevelsListActivity.this, PracticeQuizActivity.class);
         i.putExtra("LEVEL_NAME", practiceList.get(position).getLevel_name());
         i.putExtra("LEVEL_NUMBER", practiceList.get(position).getLevel_number());
@@ -142,6 +146,21 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
 
         finish();
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+
+                finish();
+
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
 
 }
