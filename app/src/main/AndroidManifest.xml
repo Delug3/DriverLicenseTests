@@ -21,7 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="com.driverlicense.tests.activities.core.MainMenuActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.driverlicense.tests.activities.core.MainMenuActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
         <activity android:name="com.driverlicense.tests.activities.practice.PracticeLevelsListActivity" android:screenOrientation="portrait"/>
         <activity android:name="com.driverlicense.tests.activities.practice.PracticeQuizActivity" android:screenOrientation="portrait"/>
 
