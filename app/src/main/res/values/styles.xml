@@ -8,9 +8,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="progressBarBlue" parent="@style/Theme.AppCompat">
+    <style name="MyAppTheme" parent="@style/AppTheme"/>
+
+    <style name="ProgressBarBlue" parent="@style/Theme.AppCompat">
         <item name="colorAccent">@color/blue</item>
     </style>
 
-    <style name="MyAppTheme" parent="@style/AppTheme"/>
+    <style name="ToolBarStyle" parent="Theme.AppCompat">
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+        <item name="actionMenuTextColor">@android:color/white</item>
+    </style>
+
 </resources>
