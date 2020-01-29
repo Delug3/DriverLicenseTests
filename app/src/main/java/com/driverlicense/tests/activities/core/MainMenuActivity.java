@@ -64,29 +64,33 @@ public class MainMenuActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
-        actionbar.setHomeAsUpIndicator(R.drawable.ic_lateral_menu_white);
-        actionbar.setTitle("Main Menu");
-        actionbar.setDisplayHomeAsUpEnabled(true);
+        if(actionbar != null) {
+            actionbar.setHomeAsUpIndicator(R.drawable.ic_lateral_menu_white);
+            actionbar.setTitle("Main Menu");
+            actionbar.setDisplayHomeAsUpEnabled(true);
+        }
     }
     private void configureNavigationDrawer() {
-        drawerLayoutMainMenu = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerLayoutMainMenu = findViewById(R.id.drawer_layout);
         NavigationView navView = findViewById(R.id.navigation_main_menu);
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
                 int itemId = menuItem.getItemId();
-                if (itemId == R.id.refresh) {
+                if (itemId == R.id.nav_state_selection) {
                     Snackbar snackBar = Snackbar.make(drawerLayoutMainMenu,"First Option", Snackbar.LENGTH_LONG);
                     snackBar.getView().setBackgroundColor(ContextCompat.getColor(MainMenuActivity.this, R.color.blue));
                     snackBar.show();
-                } else if (itemId == R.id.stop) {
+                } else if (itemId == R.id.nav_language_selection) {
                     Snackbar snackBar = Snackbar.make(drawerLayoutMainMenu,"Second Option", Snackbar.LENGTH_LONG);
                     snackBar.getView().setBackgroundColor(ContextCompat.getColor(MainMenuActivity.this, R.color.blue));
                     snackBar.show();
+                } else if (itemId == R.id.nav_share) {
+                    Snackbar snackBar = Snackbar.make(drawerLayoutMainMenu,"Third Option", Snackbar.LENGTH_LONG);
+                    snackBar.getView().setBackgroundColor(ContextCompat.getColor(MainMenuActivity.this, R.color.blue));
+                    snackBar.show();
                 }
-
-
 
                 return false;
             }
@@ -100,7 +104,6 @@ public class MainMenuActivity extends AppCompatActivity {
 
         case android.R.id.home:
 
-           // finish();
             drawerLayoutMainMenu.openDrawer(GravityCompat.START);
             return true;
 

@@ -6,7 +6,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,7 +30,6 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
 
     RecyclerView recyclerViewPracticeLevels;
     private PracticeLevelsAdapter practiceLevelsAdapter;
-    private ImageView imageViewLevelLeftArrow;
     private String queryLanguage;
     private String stateQuizName;
     final List<Practice> practiceList = new ArrayList<>();
@@ -36,13 +37,9 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("Practice");
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
         setContentView(R.layout.activity_levels);
 
-        imageViewLevelLeftArrow = findViewById(R.id.image_view_levels_left_arrow);
+        configureToolbar();
 
         //obtain state/capital from extras(activity where user select state) and then pass that to findLevels
        //String stateQuizNameValue="andhra_pradesh_quiz";
@@ -58,12 +55,7 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
        recyclerViewPracticeLevels.setHasFixedSize(true);
        practiceLevelsAdapter.setClickListener(this);
 
-       imageViewLevelLeftArrow.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               finish();
-           }
-       });
+
 
        //this method get data class with the device language
        getQueryLanguage();
@@ -161,6 +153,16 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+
+    private void configureToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolBar);
+        setSupportActionBar(toolbar);
+        ActionBar actionbar = getSupportActionBar();
+        if(actionbar != null) {
+            actionbar.setTitle("Practice");
+            actionbar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
 }

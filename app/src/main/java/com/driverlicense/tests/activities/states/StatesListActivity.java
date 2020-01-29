@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,11 +34,9 @@ public class StatesListActivity extends AppCompatActivity implements StatesAdapt
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if(getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
         setContentView(R.layout.activity_states);
+
+        configureToolbar();
 
         recyclerViewStates = findViewById(R.id.recycler_view_states);
         recyclerViewStates.setLayoutManager(new LinearLayoutManager(this));
@@ -84,6 +84,14 @@ public class StatesListActivity extends AppCompatActivity implements StatesAdapt
         startActivity(i);
     }
 
+    private void configureToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolBar);
+        setSupportActionBar(toolbar);
+        ActionBar actionbar = getSupportActionBar();
+        if(actionbar != null) {
+            actionbar.setTitle("Select State");
+        }
+    }
 
 
 }
