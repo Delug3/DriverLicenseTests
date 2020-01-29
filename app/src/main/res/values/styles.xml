@@ -14,4 +14,7 @@
         <item name="colorAccent">@color/blue</item>
     </style>
 
+    <style name="ToolBar.TitleText" parent="@style/Base.TextAppearance.AppCompat.Title">
+        <item name="android:textSize">36sp</item>
+    </style>
 </resources>
