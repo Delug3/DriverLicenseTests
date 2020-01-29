@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Driver License Tests</string>
+    <string name="back4app_app_id">lmj5p9coFxtlfHx5EY6ZMZEmZwZkB6UqSM7tP5vj</string>
+    <string name="back4app_client_key">1lD4V2Nbw6KwnG8FUbUAM56KsvwMYlxEVK89Py6d</string>
+    <string name="back4app_server_url">https://parseapi.back4app.com</string>
 
     <string name="select_state">Select State</string>
     <string name="practice">Practice</string>
@@ -15,10 +18,8 @@
     <string name="settings_main_menu">Settings</string>
     <string name="test_content">Any direction, but set the parking break. Any direction, but set the parking break."</string>
     <string name="next_question">Next</string>
-
-
-    <string name="back4app_app_id">lmj5p9coFxtlfHx5EY6ZMZEmZwZkB6UqSM7tP5vj</string>
-    <string name="back4app_client_key">1lD4V2Nbw6KwnG8FUbUAM56KsvwMYlxEVK89Py6d</string>
-    <string name="back4app_server_url">https://parseapi.back4app.com</string>
+    <string name="state_selection">State selection</string>
+    <string name="language_selection">Language selection</string>
+    <string name="share">Share</string>
 
 </resources>
