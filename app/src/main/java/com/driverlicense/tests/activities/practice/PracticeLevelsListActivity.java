@@ -139,6 +139,7 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
 
         finish();
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
