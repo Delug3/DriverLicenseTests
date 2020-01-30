@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.driverlicense.tests.R;
 import com.driverlicense.tests.activities.practice.PracticeLevelsListActivity;
@@ -62,14 +63,18 @@ public class MainMenuActivity extends AppCompatActivity {
 
     private void configureToolbar() {
         Toolbar toolbar = findViewById(R.id.toolBar);
+        TextView textViewToolBarTitle = toolbar.findViewById(R.id.toolbar_title);
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
         if(actionbar != null) {
             actionbar.setHomeAsUpIndicator(R.drawable.ic_lateral_menu_white);
-            actionbar.setTitle("Main Menu");
             actionbar.setDisplayHomeAsUpEnabled(true);
+            actionbar.setDisplayShowTitleEnabled(false);
+
         }
+        textViewToolBarTitle.setText("Main Menu");
     }
+
     private void configureNavigationDrawer() {
         drawerLayoutMainMenu = findViewById(R.id.drawer_layout);
         NavigationView navView = findViewById(R.id.navigation_main_menu);

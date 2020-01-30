@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -157,12 +158,14 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
 
     private void configureToolbar() {
         Toolbar toolbar = findViewById(R.id.toolBar);
+        TextView textViewToolBarTitle = toolbar.findViewById(R.id.toolbar_title);
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
         if(actionbar != null) {
-            actionbar.setTitle("Practice");
             actionbar.setDisplayHomeAsUpEnabled(true);
+            actionbar.setDisplayShowTitleEnabled(false);
         }
+        textViewToolBarTitle.setText("Practice");
     }
 
 }

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -86,11 +87,13 @@ public class StatesListActivity extends AppCompatActivity implements StatesAdapt
 
     private void configureToolbar() {
         Toolbar toolbar = findViewById(R.id.toolBar);
+        TextView textViewToolBarTitle = toolbar.findViewById(R.id.toolbar_title);
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
         if(actionbar != null) {
-            actionbar.setTitle("Select State");
+            actionbar.setDisplayShowTitleEnabled(false);
         }
+        textViewToolBarTitle.setText("Select State");
     }
 
 
