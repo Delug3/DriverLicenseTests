@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -15,8 +16,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
@@ -72,17 +75,12 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_quiz);
 
         constraintLayoutMain = findViewById(R.id.constraint_layout_quiz_main);
-        TextView textViewLevelNumber = findViewById(R.id.text_view_quiz_level_number);
-        TextView textViewLevelName = findViewById(R.id.text_view_quiz_level_name);
-
-
         textViewQuestion = findViewById(R.id.text_view_quiz_question);
         textViewAnswerA = findViewById(R.id.text_view_quiz_answer_a);
         textViewAnswerB = findViewById(R.id.text_view_quiz_answer_b);
         textViewAnswerC = findViewById(R.id.text_view_quiz_answer_c);
         textViewAnswerD = findViewById(R.id.text_view_quiz_answer_d);
         imageViewQuestionImageUrl = findViewById(R.id.image_view_quiz_image_url);
-        imageViewLeftArrow = findViewById(R.id.image_view_quiz_left_arrow);
         imageViewNextQuestion = findViewById(R.id.image_view_next_question);
         imageViewLetterA = findViewById(R.id.image_view_quiz_letter_a);
         imageViewLetterB = findViewById(R.id.image_view_quiz_letter_b);
@@ -103,7 +101,6 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
         textViewAnswerB.setOnClickListener(this);
         textViewAnswerC.setOnClickListener(this);
         textViewAnswerD.setOnClickListener(this);
-        imageViewLeftArrow.setOnClickListener(this);
         imageViewNextQuestion.setOnClickListener(this);
 
 
@@ -117,10 +114,9 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
                 levelName = extras.getString("LEVEL_NAME");
                 quizList = getIntent().getStringArrayListExtra("LEVEL_QUIZ");
 
-
-                textViewLevelNumber.setText((String.valueOf(levelNumber)));
-                textViewLevelName.setText(levelName);
             }
+
+            configureToolbar();
         }
 
         OriginalBackgroundColor = textViewQuestion.getBackground();
@@ -224,11 +220,6 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
                 unHideNextQuestionView();
                 enableNextQuestionViewClick();
                 startAnimationNextQuestion();
-                break;
-
-
-            case R.id.image_view_quiz_left_arrow:
-                showDialog();
                 break;
 
 
@@ -566,5 +557,41 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
         builder.setMessage("Do you really want to exit practice Level " + levelNumber + "?")
                 .setPositiveButton("Yes", dialogClickListener)
                 .setNegativeButton("Cancel", dialogClickListener).show();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+
+                if(!allAnswersCompleted)
+                {
+                    showDialog();
+                }
+                else
+                {
+                    finish();
+                }
+
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+    private void configureToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolBar);
+        TextView textViewToolBarTitle = toolbar.findViewById(R.id.toolbar_title);
+        setSupportActionBar(toolbar);
+        ActionBar actionbar = getSupportActionBar();
+        if(actionbar != null) {
+            actionbar.setDisplayHomeAsUpEnabled(true);
+            actionbar.setDisplayShowTitleEnabled(false);
+        }
+        textViewToolBarTitle.setText(levelName + " " + levelNumber);
+
     }
 }
