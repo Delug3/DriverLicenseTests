@@ -21,5 +21,6 @@
     <string name="state_selection">State selection</string>
     <string name="language_selection">Language selection</string>
     <string name="share">Share</string>
+    <string name="toolbar_title">ToolBar Title</string>
 
 </resources>
