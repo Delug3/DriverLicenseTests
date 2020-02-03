@@ -3,6 +3,9 @@ package com.driverlicense.tests.activities.core;
 import android.app.Application;
 
 import com.driverlicense.tests.R;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.parse.Parse;
 
 
@@ -16,5 +19,6 @@ public class App extends Application {
                 .server(getString(R.string.back4app_server_url))
                 .build()
         );
+
     }
 }

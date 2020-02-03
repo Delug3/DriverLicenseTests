@@ -17,6 +17,11 @@ import android.widget.TextView;
 
 import com.driverlicense.tests.R;
 import com.driverlicense.tests.activities.practice.PracticeLevelsListActivity;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -28,6 +33,7 @@ public class MainMenuActivity extends AppCompatActivity {
     private String stateQuizNameValue;
     private ConstraintLayout constraintLayoutMainMenuPractice;
     private DrawerLayout drawerLayoutMainMenu;
+    private AdView mAdView;
     //main activity including practice, test, reading and settings
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
         configureNavigationDrawer();
         configureToolbar();
+        loadAds();
 
         Bundle extras = getIntent().getExtras();
         if(extras!=null){
@@ -101,6 +108,19 @@ public class MainMenuActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void loadAds()
+    {
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        mAdView = findViewById(R.id.adview_main_menu);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
