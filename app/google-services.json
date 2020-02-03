@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "265246644202",
+    "firebase_url": "https://driver-license-test-101ef.firebaseio.com",
+    "project_id": "driver-license-test-101ef",
+    "storage_bucket": "driver-license-test-101ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:265246644202:android:2341776ae045bb6f7f0493",
+        "android_client_info": {
+          "package_name": "com.driverlicense.tests"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "265246644202-ro16qrc45q6prhk4ta0ov0t4m3m2874s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8COwAZEO-FiEU7XqbZQmckAbzBPz52xs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "265246644202-ro16qrc45q6prhk4ta0ov0t4m3m2874s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
