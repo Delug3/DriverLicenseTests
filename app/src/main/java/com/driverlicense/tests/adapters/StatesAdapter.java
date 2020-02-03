@@ -20,6 +20,7 @@ public class StatesAdapter extends RecyclerView.Adapter<StatesAdapter.ViewHolder
     private LayoutInflater mInflater;
     private StatesAdapter.ItemClickListener mClickListener;
     private int lastSelectedPosition = -1;
+
     public StatesAdapter(Context context, List<States> dataStates) {
         this.context=context;
         this.mInflater = LayoutInflater.from(context);
