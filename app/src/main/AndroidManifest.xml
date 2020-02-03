@@ -23,7 +23,8 @@
         </activity>
         <activity android:name="com.driverlicense.tests.activities.core.MainMenuActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
         <activity android:name="com.driverlicense.tests.activities.practice.PracticeLevelsListActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
-        <activity android:name="com.driverlicense.tests.activities.practice.PracticeQuizActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.driverlicense.tests.activities.practice.PracticeQuizActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
+        <activity android:name="com.driverlicense.tests.activities.settings.SettingsActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
 
 
         <meta-data
