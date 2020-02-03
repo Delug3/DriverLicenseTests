@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/white"
-        android:text="ToolBar Title"
+        android:text="@string/toolbar_title"
         style="@style/ToolBar.TitleText"
         android:layout_gravity="center" />
 
