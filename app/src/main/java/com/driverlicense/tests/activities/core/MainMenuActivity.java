@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.driverlicense.tests.R;
 import com.driverlicense.tests.activities.practice.PracticeLevelsListActivity;
+import com.driverlicense.tests.activities.settings.SettingsActivity;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -31,7 +32,7 @@ import com.google.android.material.snackbar.Snackbar;
 public class MainMenuActivity extends AppCompatActivity {
 
     private String stateQuizNameValue;
-    private ConstraintLayout constraintLayoutMainMenuPractice;
+    private ConstraintLayout constraintLayoutMainMenuPractice, constraintLayoutMainMenuSettings;
     private DrawerLayout drawerLayoutMainMenu;
     private AdView mAdView;
     //main activity including practice, test, reading and settings
@@ -50,12 +51,22 @@ public class MainMenuActivity extends AppCompatActivity {
         }
 
         constraintLayoutMainMenuPractice = findViewById(R.id.constraint_layout_main_menu_practice);
+        constraintLayoutMainMenuSettings = findViewById(R.id.constraint_layout_main_menu_settings);
 
         constraintLayoutMainMenuPractice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainMenuActivity.this, PracticeLevelsListActivity.class);
                 i.putExtra("STATE_QUIZ_NAME",stateQuizNameValue);
+                startActivity(i);
+            }
+        });
+
+
+        constraintLayoutMainMenuSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainMenuActivity.this, SettingsActivity.class);
                 startActivity(i);
             }
         });
