@@ -36,30 +36,15 @@ import java.util.List;
 
 public class PracticeQuizActivity extends AppCompatActivity implements View.OnClickListener, Animation.AnimationListener {
 
-    private TextView textViewQuestion;
-    private TextView textViewAnswerA;
-    private TextView textViewAnswerB;
-    private TextView textViewAnswerC;
-    private TextView textViewAnswerD;
-    private ImageView imageViewQuestionImageUrl;
-    private ImageView imageViewLeftArrow;
-    private ImageView imageViewNextQuestion;
-    private ImageView imageViewLetterA;
-    private ImageView imageViewLetterB;
-    private ImageView imageViewLetterC;
-    private ImageView imageViewLetterD;
-    private ConstraintLayout constraintLayoutMain;
-    private ConstraintLayout constraintLayoutAnswerA;
-    private ConstraintLayout constraintLayoutAnswerB;
-    private ConstraintLayout constraintLayoutAnswerC;
-    private ConstraintLayout constraintLayoutAnswerD;
+    private TextView textViewQuestion, textViewAnswerA, textViewAnswerB, textViewAnswerC, textViewAnswerD , textViewQuestionNumber;
+    private ImageView imageViewQuestionImageUrl, imageViewNextQuestion, imageViewLetterA, imageViewLetterB , imageViewLetterC, imageViewLetterD;
+    private ConstraintLayout constraintLayoutMain, constraintLayoutAnswerA, constraintLayoutAnswerB, constraintLayoutAnswerC, constraintLayoutAnswerD;
     private ProgressBar progressBarQuiz;
     private Dialog resultDialog;
     private Drawable OriginalBackgroundColor;
-    private String levelName;
+    private String levelName, correctAnswer;
     private Integer levelNumber;
     private boolean allAnswersCompleted = false;
-    private String correctAnswer;
     private int totalNumberCorrectAnswers = 0;
     private int totalNumberIncorrectAnswers = 0;
     private boolean shouldRepeatAnimation = true;
@@ -76,6 +61,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
 
         constraintLayoutMain = findViewById(R.id.constraint_layout_quiz_main);
         textViewQuestion = findViewById(R.id.text_view_quiz_question);
+        textViewQuestionNumber = findViewById(R.id.text_view_quiz_question_number);
         textViewAnswerA = findViewById(R.id.text_view_quiz_answer_a);
         textViewAnswerB = findViewById(R.id.text_view_quiz_answer_b);
         textViewAnswerC = findViewById(R.id.text_view_quiz_answer_c);
@@ -113,7 +99,6 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
                 levelNumber = extras.getInt("LEVEL_NUMBER");
                 levelName = extras.getString("LEVEL_NAME");
                 quizList = getIntent().getStringArrayListExtra("LEVEL_QUIZ");
-
             }
 
             configureToolbar();
@@ -126,6 +111,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
         hideNextQuestionView();
         loadQuestionAndAnswers();
         updateQuizProgressBar();
+        showQuestionNumber();
     }
 
     //compare correct answer with answer number, if its the same, then green, not the same, red and method call
@@ -229,6 +215,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
                 loadQuestionAndAnswers();
                 updateQuizProgressBar();
                 stopAnimationNextQuestion();
+                showQuestionNumber();
                 break;
 
 
@@ -333,6 +320,17 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
 
            showQuizResults();
        }
+
+   }
+
+
+   private void showQuestionNumber()
+   {
+
+    String actualQuestionNumberAndTotals = progressStatus + "/" + quizList.size();
+    textViewQuestionNumber.setText(actualQuestionNumberAndTotals);
+
+
 
    }
 
@@ -591,7 +589,9 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
             actionbar.setDisplayHomeAsUpEnabled(true);
             actionbar.setDisplayShowTitleEnabled(false);
         }
-        textViewToolBarTitle.setText(levelName + " " + levelNumber);
+
+        String levelNameAndNumber = levelName + " " + levelNumber;
+        textViewToolBarTitle.setText(levelNameAndNumber);
 
     }
 }
