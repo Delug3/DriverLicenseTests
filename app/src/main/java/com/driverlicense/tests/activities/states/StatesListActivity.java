@@ -83,6 +83,7 @@ public class StatesListActivity extends AppCompatActivity implements StatesAdapt
         Intent i = new Intent(StatesListActivity.this, MainMenuActivity.class);
         i.putExtra("STATE_QUIZ_NAME", dataStates.get(position).getState_quiz_name());
         startActivity(i);
+        finish();
     }
 
     private void configureToolbar() {
