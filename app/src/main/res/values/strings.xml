@@ -22,5 +22,6 @@
     <string name="language_selection">Language selection</string>
     <string name="share">Share</string>
     <string name="toolbar_title">ToolBar Title</string>
+    <string name="question_number">1/10</string>
 
 </resources>
