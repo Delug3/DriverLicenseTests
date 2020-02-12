@@ -90,7 +90,7 @@ public class MainMenuActivity extends AppCompatActivity {
             actionbar.setDisplayShowTitleEnabled(false);
 
         }
-        textViewToolBarTitle.setText("Main Menu");
+        textViewToolBarTitle.setText(R.string.main_menu);
     }
 
     private void configureNavigationDrawer() {
