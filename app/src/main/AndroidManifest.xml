@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.driverlicense.tests.activities.states.StatesListActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme">
+        <activity android:name="com.driverlicense.tests.activities.core.SplashActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <action android:name="android.intent.action.MAIN"/>
@@ -21,10 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="com.driverlicense.tests.activities.core.MainMenuActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
+        <activity android:name="com.driverlicense.tests.activities.menu.MainMenuActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
         <activity android:name="com.driverlicense.tests.activities.practice.PracticeLevelsListActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
         <activity android:name="com.driverlicense.tests.activities.practice.PracticeQuizActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
         <activity android:name="com.driverlicense.tests.activities.settings.SettingsActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
+        <activity android:name="com.driverlicense.tests.activities.states.StatesListActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
 
 
         <meta-data
