@@ -1,4 +1,4 @@
-package com.driverlicense.tests.activities.core;
+package com.driverlicense.tests.activities.menu;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
