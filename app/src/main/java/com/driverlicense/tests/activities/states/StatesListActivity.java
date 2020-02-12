@@ -93,7 +93,7 @@ public class StatesListActivity extends AppCompatActivity implements StatesAdapt
         if(actionbar != null) {
             actionbar.setDisplayShowTitleEnabled(false);
         }
-        textViewToolBarTitle.setText("Select State");
+        textViewToolBarTitle.setText(R.string.select_state);
     }
 
 
