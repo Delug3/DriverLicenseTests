@@ -51,7 +51,7 @@ public class SettingsActivity extends AppCompatActivity {
             actionbar.setDisplayShowTitleEnabled(false);
 
         }
-        textViewToolBarTitle.setText("Settings");
+        textViewToolBarTitle.setText(R.string.settings_main_menu);
     }
 
 

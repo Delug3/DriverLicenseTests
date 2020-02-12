@@ -166,7 +166,7 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
             actionbar.setDisplayHomeAsUpEnabled(true);
             actionbar.setDisplayShowTitleEnabled(false);
         }
-        textViewToolBarTitle.setText("Practice");
+        textViewToolBarTitle.setText(R.string.practice);
     }
 
 }
