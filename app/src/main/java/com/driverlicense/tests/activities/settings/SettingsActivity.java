@@ -13,7 +13,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.driverlicense.tests.R;
-import com.driverlicense.tests.activities.core.MainMenuActivity;
 import com.driverlicense.tests.activities.states.StatesListActivity;
 
 public class SettingsActivity extends AppCompatActivity {
