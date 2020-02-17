@@ -29,7 +29,6 @@
         android:textColor="@color/colorText"
         android:textSize="26sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image_view_level_color"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,5 +44,16 @@
         app:layout_constraintEnd_toEndOf="@+id/image_view_level_color"
         app:layout_constraintStart_toStartOf="@+id/image_view_level_color"
         app:layout_constraintTop_toTopOf="@+id/image_view_level_color" />
+
+    <ImageView
+        android:id="@+id/image_view_level_pass"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_view_item_level_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_view_item_level_name"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
