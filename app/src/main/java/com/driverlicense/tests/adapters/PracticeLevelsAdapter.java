@@ -45,6 +45,10 @@ public class PracticeLevelsAdapter extends RecyclerView.Adapter<PracticeLevelsAd
         int imageResource = context.getResources().getIdentifier(p.getLevel_color(), null, context.getPackageName());
         Drawable res = context.getResources().getDrawable(imageResource);
         holder.imageViewLevelColor.setImageDrawable(res);
+
+        if(p.getLevel_passed()) {
+            holder.imageViewLevelPass.setImageResource(R.drawable.ic_level_pass);
+        }
     }
 
 
@@ -61,12 +65,13 @@ public class PracticeLevelsAdapter extends RecyclerView.Adapter<PracticeLevelsAd
         TextView textViewLevelNumber;
         TextView textViewLevelName;
         ImageView imageViewLevelColor;
-
+        ImageView imageViewLevelPass;
         ViewHolder(View itemView) {
             super(itemView);
             textViewLevelNumber = itemView.findViewById(R.id.text_view_item_level_number);
             textViewLevelName = itemView.findViewById(R.id.text_view_item_level_name);
             imageViewLevelColor = itemView.findViewById(R.id.image_view_level_color);
+            imageViewLevelPass = itemView.findViewById(R.id.image_view_level_pass);
 
             itemView.setOnClickListener(this);
         }
