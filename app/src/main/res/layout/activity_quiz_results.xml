@@ -9,19 +9,6 @@
     android:background="#0678FA">
 
     <TextView
-        android:id="@+id/text_view_result_level_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:text="@string/level_number"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/text_view_result_level_name"
-        app:layout_constraintStart_toEndOf="@+id/text_view_result_level_name"
-        app:layout_constraintTop_toTopOf="@+id/text_view_result_level_name" />
-
-    <TextView
         android:id="@+id/text_view_result_close"
         android:layout_width="28dp"
         android:layout_height="30dp"
@@ -54,8 +41,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:gravity="center"
         android:text="Level"
         android:textColor="@color/white"
