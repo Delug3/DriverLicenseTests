@@ -88,6 +88,7 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
                         practice.level_number = result.get(i).getNumber("level_number");
                         practice.level_name = result.get(i).getString("level_name");
                         practice.level_color = result.get(i).getString("level_color");
+                        practice.level_passed = result.get(i).getBoolean("level_passed");
                         //retrieving array of quiz using the state name
                         practice.quiz = result.get(i).getList(stateQuizName);
 
