@@ -9,7 +9,7 @@ public class Practice implements Serializable {
     //images: load one image from url
     //answers->4 answers(a,b,c,d), answer can be of different number (a,b,c,d) or just (a,b,c)
     //correct answer-> only one is correct
-
+    public String level_id;
     public Number level_number;
     public String level_color;
     public String level_name;
@@ -25,6 +25,7 @@ public class Practice implements Serializable {
     public List<String> quiz;
 
     public Practice() {
+        this.level_id = level_id;
         this.level_number = level_number;
         this.level_color = level_color;
         this.level_name = level_name;
@@ -36,6 +37,14 @@ public class Practice implements Serializable {
         this.correct_answer = correct_answer;
         this.image_url = image_url;
         this.quiz = quiz;
+    }
+
+    public String getLevel_id() {
+        return level_id;
+    }
+
+    public void setLevel_id(String level_id) {
+        this.level_id = level_id;
     }
 
     public Number getLevel_number() {
