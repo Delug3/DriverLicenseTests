@@ -351,7 +351,6 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
        resultDialog.setContentView(R.layout.activity_quiz_results);
 
        TextView textViewLevelName = resultDialog.findViewById(R.id.text_view_result_level_name);
-       TextView textViewLevelNumber = resultDialog.findViewById(R.id.text_view_result_level_number);
        TextView textViewClose = resultDialog.findViewById(R.id.text_view_result_close);
        TextView textViewCorrectAnswers = resultDialog.findViewById(R.id.text_view_result_correct_answers);
        TextView textViewIncorrectAnswers = resultDialog.findViewById(R.id.text_view_result_incorrect_answers);
@@ -366,7 +365,6 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
        });
 
        textViewLevelName.setText(levelName);
-       textViewLevelNumber.setText(String.valueOf(levelNumber));
        textViewCorrectAnswers.setText(String.valueOf(totalNumberCorrectAnswers));
        textViewIncorrectAnswers.setText(String.valueOf(totalNumberIncorrectAnswers));
        textViewTotalAnswers.setText(String.valueOf(quizList.size()));
@@ -618,7 +616,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
             actionbar.setDisplayShowTitleEnabled(false);
         }
 
-        String levelNameAndNumber = levelName + " " + levelNumber;
+        String levelNameAndNumber = levelName;
         textViewToolBarTitle.setText(levelNameAndNumber);
 
     }
