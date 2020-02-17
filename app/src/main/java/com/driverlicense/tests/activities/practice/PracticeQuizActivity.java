@@ -25,12 +25,16 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.driverlicense.tests.R;
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.SaveCallback;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -42,7 +46,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
     private ProgressBar progressBarQuiz;
     private Dialog resultDialog;
     private Drawable OriginalBackgroundColor;
-    private String levelName, correctAnswer;
+    private String levelId, levelName, queryLanguage, correctAnswer;
     private Integer levelNumber;
     private boolean allAnswersCompleted = false;
     private int totalNumberCorrectAnswers = 0;
@@ -93,9 +97,13 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if (extras == null) {
+                levelId = null;
                 levelNumber = null;
                 levelName = null;
+                queryLanguage = null;
             } else {
+                queryLanguage = extras.getString("QUERY_LANGUAGE");
+                levelId = extras.getString("LEVEL_ID");
                 levelNumber = extras.getInt("LEVEL_NUMBER");
                 levelName = extras.getString("LEVEL_NAME");
                 quizList = getIntent().getStringArrayListExtra("LEVEL_QUIZ");
@@ -249,6 +257,8 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
         //method to know if answer D includes a value, if it's null(no answer), then hide the view
         checkValueAnswerD(answerD);
         loadUI(question, answerA, answerB, answerC,answerD,imageUrl);
+        /**remove this later, just for testing purposes**/
+        levelPassed();
 
         loadDefaultColors();
 
@@ -318,6 +328,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
            disableMultipleClicks();
            allAnswersCompleted = true;
 
+           levelPassed();
            showQuizResults();
        }
 
@@ -366,6 +377,23 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
        resultDialog.show();
 
 
+   }
+
+   private void levelPassed()
+   {
+       ParseQuery<ParseObject> query = ParseQuery.getQuery(queryLanguage);
+
+       // Retrieve the object by id
+       query.getInBackground(levelId, new GetCallback<ParseObject>() {
+           public void done(ParseObject entity, ParseException e) {
+               if (e == null) {
+                   // Update the fields we want to
+                   entity.put("level_passed", true);
+                   // All other fields will remain the same
+                   entity.saveInBackground();
+               }
+           }
+       });
    }
 
    private void startAnimationNextQuestion()
