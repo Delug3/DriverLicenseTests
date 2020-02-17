@@ -19,6 +19,7 @@ public class Practice implements Serializable {
     public String answer_c;
     public String answer_d;
     public String correct_answer;
+    public Boolean level_passed;
     public String image_url;
 
     //quiz: array of objects containing the questions,answers,image and correct answer
@@ -35,6 +36,7 @@ public class Practice implements Serializable {
         this.answer_c = answer_c;
         this.answer_d = answer_d;
         this.correct_answer = correct_answer;
+        this.level_passed = level_passed;
         this.image_url = image_url;
         this.quiz = quiz;
     }
@@ -117,6 +119,14 @@ public class Practice implements Serializable {
 
     public void setCorrect_answer(String correct_answer) {
         this.correct_answer = correct_answer;
+    }
+
+    public Boolean getLevel_passed() {
+        return level_passed;
+    }
+
+    public void setLevel_passed(Boolean level_passed) {
+        this.level_passed = level_passed;
     }
 
     public String getImage_url() {
