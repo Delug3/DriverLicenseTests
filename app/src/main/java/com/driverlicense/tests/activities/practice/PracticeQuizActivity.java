@@ -258,7 +258,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
         checkValueAnswerD(answerD);
         loadUI(question, answerA, answerB, answerC,answerD,imageUrl);
         /**remove this later, just for testing purposes**/
-        levelPassed();
+        //levelPassed();
 
         loadDefaultColors();
 
