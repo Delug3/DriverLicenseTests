@@ -84,6 +84,7 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
                     for (int i = 0; i < result.size(); i++) {
 
                         Practice practice = new Practice();
+                        practice.level_id = result.get(i).getObjectId();
                         practice.level_number = result.get(i).getNumber("level_number");
                         practice.level_name = result.get(i).getString("level_name");
                         practice.level_color = result.get(i).getString("level_color");
@@ -127,8 +128,10 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
     @Override
     public void onItemClick(View view, int position) {
         Intent i = new Intent(PracticeLevelsListActivity.this, PracticeQuizActivity.class);
+        i.putExtra("LEVEL_ID", practiceList.get(position).getLevel_id());
         i.putExtra("LEVEL_NAME", practiceList.get(position).getLevel_name());
         i.putExtra("LEVEL_NUMBER", practiceList.get(position).getLevel_number());
+        i.putExtra("QUERY_LANGUAGE", queryLanguage);
         i.putStringArrayListExtra("LEVEL_QUIZ", (ArrayList<String>) practiceList.get(position).getQuiz());
         startActivity(i);
     }
