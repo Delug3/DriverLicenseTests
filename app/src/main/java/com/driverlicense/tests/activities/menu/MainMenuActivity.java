@@ -45,11 +45,6 @@ public class MainMenuActivity extends AppCompatActivity {
         configureToolbar();
         loadAds();
 
-        Bundle extras = getIntent().getExtras();
-        if(extras!=null){
-            stateQuizNameValue = extras.getString("STATE_QUIZ_NAME");
-        }
-
         constraintLayoutMainMenuPractice = findViewById(R.id.constraint_layout_main_menu_practice);
         constraintLayoutMainMenuSettings = findViewById(R.id.constraint_layout_main_menu_settings);
 
@@ -57,7 +52,6 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainMenuActivity.this, PracticeLevelsListActivity.class);
-                i.putExtra("STATE_QUIZ_NAME",stateQuizNameValue);
                 startActivity(i);
             }
         });
