@@ -2,6 +2,7 @@ package com.driverlicense.tests.activities.practice;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -258,7 +259,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
         checkValueAnswerD(answerD);
         loadUI(question, answerA, answerB, answerC,answerD,imageUrl);
         /**remove this later, just for testing purposes**/
-        //levelPassed();
+        levelPassed();
 
         loadDefaultColors();
 
@@ -565,6 +566,8 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
             public void onClick(DialogInterface dialog, int which) {
                 switch (which){
                     case DialogInterface.BUTTON_POSITIVE:
+                        Intent returnIntent = new Intent();
+                        setResult(RESULT_OK, returnIntent);
                         finish();
                         break;
 
