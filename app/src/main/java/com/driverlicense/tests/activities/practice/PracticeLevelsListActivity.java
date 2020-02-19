@@ -1,6 +1,8 @@
 package com.driverlicense.tests.activities.practice;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -48,6 +50,8 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
        if(extras!=null){
            stateQuizName = extras.getString("STATE_QUIZ_NAME");
        }
+        SharedPreferences sharedPref = getSharedPreferences("states_prefs", Activity.MODE_PRIVATE);
+        String stateQuizNameSharedPref = sharedPref.getString("state_quiz_name", "state");
 
        recyclerViewPracticeLevels = findViewById(R.id.recycler_view_practice_levels);
        recyclerViewPracticeLevels.setLayoutManager(new LinearLayoutManager(this));
@@ -90,7 +94,7 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
                         practice.level_color = result.get(i).getString("level_color");
                         practice.level_passed = result.get(i).getBoolean("level_passed");
                         //retrieving array of quiz using the state name
-                        practice.quiz = result.get(i).getList(stateQuizName);
+                        practice.quiz = result.get(i).getList("andhra_pradesh_quiz");
 
                         //send result data to adapter->recyclerView
                         practiceList.add(practice);
@@ -134,9 +138,18 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
         i.putExtra("LEVEL_NUMBER", practiceList.get(position).getLevel_number());
         i.putExtra("QUERY_LANGUAGE", queryLanguage);
         i.putStringArrayListExtra("LEVEL_QUIZ", (ArrayList<String>) practiceList.get(position).getQuiz());
-        startActivity(i);
+        startActivityForResult(i,1);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK){
+            Intent refresh = new Intent(this, PracticeLevelsListActivity.class);
+            startActivity(refresh);
+            this.finish();
+        }
+    }
 
     @Override
     public void onBackPressed() {
