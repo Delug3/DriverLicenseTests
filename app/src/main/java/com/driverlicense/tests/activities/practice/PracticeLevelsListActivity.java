@@ -34,7 +34,6 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
     RecyclerView recyclerViewPracticeLevels;
     private PracticeLevelsAdapter practiceLevelsAdapter;
     private String queryLanguage;
-    private String stateQuizName;
     final List<Practice> practiceList = new ArrayList<>();
 
     @Override
@@ -44,21 +43,18 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
 
         configureToolbar();
 
-        //obtain state/capital from extras(activity where user select state) and then pass that to findLevels
+        //obtain state/capital from shared preferences(activity where user select state) and then pass that to findLevels
        //String stateQuizNameValue="andhra_pradesh_quiz";
-       Bundle extras = getIntent().getExtras();
-       if(extras!=null){
-           stateQuizName = extras.getString("STATE_QUIZ_NAME");
-       }
+
         SharedPreferences sharedPref = getSharedPreferences("states_prefs", Activity.MODE_PRIVATE);
         String stateQuizNameSharedPref = sharedPref.getString("state_quiz_name", "state");
 
-       recyclerViewPracticeLevels = findViewById(R.id.recycler_view_practice_levels);
-       recyclerViewPracticeLevels.setLayoutManager(new LinearLayoutManager(this));
-       recyclerViewPracticeLevels.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-       practiceLevelsAdapter = new PracticeLevelsAdapter(this, practiceList);
-       recyclerViewPracticeLevels.setHasFixedSize(true);
-       practiceLevelsAdapter.setClickListener(this);
+        recyclerViewPracticeLevels = findViewById(R.id.recycler_view_practice_levels);
+        recyclerViewPracticeLevels.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewPracticeLevels.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        practiceLevelsAdapter = new PracticeLevelsAdapter(this, practiceList);
+        recyclerViewPracticeLevels.setHasFixedSize(true);
+        practiceLevelsAdapter.setClickListener(this);
 
 
 
@@ -66,7 +62,7 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
        getQueryLanguage();
 
        //this method load all levels in the recyclerView with the selected state
-       findLevels(stateQuizName,queryLanguage);
+       findLevels(stateQuizNameSharedPref,queryLanguage);
     }
 
 
@@ -74,7 +70,7 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
      * Json Array inside Json Object
      * Need to retrieve object position from "result" json object parsing it.
      */
-    public void findLevels(final String stateQuizName,String queryLanguage) {
+    public void findLevels(final String stateQuizNameSharedPref,String queryLanguage) {
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery(queryLanguage);
         //sorting object, ordering it by level number
@@ -94,7 +90,7 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
                         practice.level_color = result.get(i).getString("level_color");
                         practice.level_passed = result.get(i).getBoolean("level_passed");
                         //retrieving array of quiz using the state name
-                        practice.quiz = result.get(i).getList("andhra_pradesh_quiz");
+                        practice.quiz = result.get(i).getList(stateQuizNameSharedPref);
 
                         //send result data to adapter->recyclerView
                         practiceList.add(practice);
