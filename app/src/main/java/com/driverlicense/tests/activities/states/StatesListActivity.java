@@ -1,6 +1,9 @@
 package com.driverlicense.tests.activities.states;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -13,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.driverlicense.tests.R;
+import com.driverlicense.tests.activities.core.App;
 import com.driverlicense.tests.activities.menu.MainMenuActivity;
 import com.driverlicense.tests.adapters.StatesAdapter;
 import com.driverlicense.tests.models.States;
@@ -80,7 +84,12 @@ public class StatesListActivity extends AppCompatActivity implements StatesAdapt
     public void onItemClick(View view, int position) {
 
         Intent i = new Intent(StatesListActivity.this, MainMenuActivity.class);
-        i.putExtra("STATE_QUIZ_NAME", dataStates.get(position).getState_quiz_name());
+
+        SharedPreferences sharedPref = getSharedPreferences("states_prefs", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("state_quiz_name", dataStates.get(position).getState_quiz_name());
+        editor.apply();
+
         startActivity(i);
         finish();
     }
