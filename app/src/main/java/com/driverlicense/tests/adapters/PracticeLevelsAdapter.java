@@ -66,6 +66,7 @@ public class PracticeLevelsAdapter extends RecyclerView.Adapter<PracticeLevelsAd
         TextView textViewLevelName;
         ImageView imageViewLevelColor;
         ImageView imageViewLevelPass;
+
         ViewHolder(View itemView) {
             super(itemView);
             textViewLevelNumber = itemView.findViewById(R.id.text_view_item_level_number);
