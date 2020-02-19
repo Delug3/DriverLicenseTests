@@ -330,6 +330,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
            allAnswersCompleted = true;
 
            levelPassed();
+
            showQuizResults();
        }
 
