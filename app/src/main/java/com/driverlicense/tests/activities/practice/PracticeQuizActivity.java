@@ -258,9 +258,6 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
         //method to know if answer D includes a value, if it's null(no answer), then hide the view
         checkValueAnswerD(answerD);
         loadUI(question, answerA, answerB, answerC,answerD,imageUrl);
-        /**remove this later, just for testing purposes**/
-        levelPassed();
-
         loadDefaultColors();
 
         disableNextQuestionViewClick();
@@ -322,10 +319,6 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
            progressBarQuiz.setProgress(progressStatus);
        }
        else{
-
-           Snackbar snackBar = Snackbar.make(constraintLayoutMain,"All Questions Answered!", Snackbar.LENGTH_LONG);
-           snackBar.getView().setBackgroundColor(ContextCompat.getColor(PracticeQuizActivity.this, R.color.blue));
-           snackBar.show();
            disableMultipleClicks();
            allAnswersCompleted = true;
 
@@ -342,8 +335,6 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
 
     String actualQuestionNumberAndTotals = progressStatus + "/" + quizList.size();
     textViewQuestionNumber.setText(actualQuestionNumberAndTotals);
-
-
 
    }
 
@@ -362,6 +353,8 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
            @Override
            public void onClick(View v) {
                resultDialog.dismiss();
+               Intent returnIntent = new Intent();
+               setResult(RESULT_OK, returnIntent);
                finish();
            }
        });
@@ -398,6 +391,17 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
 
    private void startAnimationNextQuestion()
    {
+
+       if(progressStatus < quizList.size())
+       {
+       imageViewNextQuestion.setImageResource(R.drawable.ic_next_quiz_question);
+       }
+
+       else
+       {
+        imageViewNextQuestion.setImageResource(R.drawable.ic_results);
+       }
+
        shouldRepeatAnimation = true;
        AlphaAnimation fadeIn=new AlphaAnimation(0,1);
        AlphaAnimation fadeOut=new AlphaAnimation(1,0);
@@ -409,7 +413,6 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
 
        fadeOut.setStartOffset(1000);
        set.setDuration(2000);
-
        imageViewNextQuestion.startAnimation(set);
 
        set.setAnimationListener(new Animation.AnimationListener() {
@@ -424,7 +427,6 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
                }
            }
        });
-
    }
 
     private void stopAnimationNextQuestion()
