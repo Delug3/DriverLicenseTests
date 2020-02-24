@@ -3,6 +3,7 @@ package com.driverlicense.tests.activities.core;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.widget.Toast;
@@ -17,7 +18,13 @@ public class MyGlobals {
         this.mContext = mContext;
     }
 
-    public BroadcastReceiver mConnReceiver = new BroadcastReceiver() {
+    public void checkConnectivityChanges()
+    {
+        getApplicationContext().registerReceiver(this.mConnReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+
+
+    private BroadcastReceiver mConnReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
             boolean noConnectivity = intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
             String reason = intent.getStringExtra(ConnectivityManager.EXTRA_REASON);
@@ -26,13 +33,12 @@ public class MyGlobals {
             NetworkInfo currentNetworkInfo = intent.getParcelableExtra(ConnectivityManager.EXTRA_NETWORK_INFO);
             NetworkInfo otherNetworkInfo = intent.getParcelableExtra(ConnectivityManager.EXTRA_OTHER_NETWORK_INFO);
 
-            if(currentNetworkInfo.isConnected()){
-                Toast.makeText(getApplicationContext(), "Connected", Toast.LENGTH_LONG).show();
-            }else{
+            if(!currentNetworkInfo.isConnected()){
                 Toast.makeText(getApplicationContext(), "Not Connected", Toast.LENGTH_LONG).show();
             }
         }
     };
+
 
 
 }
