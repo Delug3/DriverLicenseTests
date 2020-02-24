@@ -7,7 +7,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,6 +15,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.driverlicense.tests.R;
+import com.driverlicense.tests.activities.core.MyGlobals;
 import com.driverlicense.tests.activities.practice.PracticeLevelsListActivity;
 import com.driverlicense.tests.activities.settings.SettingsActivity;
 import com.google.android.gms.ads.AdRequest;
@@ -31,7 +31,7 @@ import com.google.android.material.snackbar.Snackbar;
  */
 public class MainMenuActivity extends AppCompatActivity {
 
-    private String stateQuizNameValue;
+    MyGlobals myGlobals;
     private ConstraintLayout constraintLayoutMainMenuPractice, constraintLayoutMainMenuSettings;
     private DrawerLayout drawerLayoutMainMenu;
     private AdView mAdView;
@@ -40,6 +40,9 @@ public class MainMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        myGlobals = new MyGlobals(getApplicationContext());
+        myGlobals.checkConnectivityChanges();
 
         configureNavigationDrawer();
         configureToolbar();
@@ -65,7 +68,6 @@ public class MainMenuActivity extends AppCompatActivity {
             }
         });
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -125,7 +127,6 @@ public class MainMenuActivity extends AppCompatActivity {
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
