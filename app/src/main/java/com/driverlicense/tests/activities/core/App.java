@@ -1,7 +1,6 @@
 package com.driverlicense.tests.activities.core;
 
 import android.app.Application;
-
 import com.driverlicense.tests.R;
 import com.parse.Parse;
 
@@ -17,4 +16,6 @@ public class App extends Application {
         );
 
     }
+
+
 }
