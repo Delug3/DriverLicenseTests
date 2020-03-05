@@ -61,7 +61,7 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
        getQueryLanguage();
 
        //this method load all levels in the recyclerView with the selected state
-       findLevels(stateQuizNameSharedPref,queryLanguage);
+       getLevels(stateQuizNameSharedPref,queryLanguage);
     }
 
 
@@ -69,7 +69,7 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
      * Json Array inside Json Object
      * Need to retrieve object position from "result" json object parsing it.
      */
-    public void findLevels(final String stateQuizNameSharedPref,String queryLanguage) {
+    public void getLevels(final String stateQuizNameSharedPref, String queryLanguage) {
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery(queryLanguage);
         //sorting object, ordering it by level number
