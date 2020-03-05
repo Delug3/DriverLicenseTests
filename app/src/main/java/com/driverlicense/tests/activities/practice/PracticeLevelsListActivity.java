@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
@@ -17,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.driverlicense.tests.R;
-import com.driverlicense.tests.adapters.PracticeLevelsAdapter;
+import com.driverlicense.tests.adapters.PracticeAdapter;
 import com.driverlicense.tests.models.Practice;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -29,10 +28,10 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class PracticeLevelsListActivity extends AppCompatActivity implements PracticeLevelsAdapter.ItemClickListener {
+public class PracticeLevelsListActivity extends AppCompatActivity implements PracticeAdapter.ItemClickListener {
 
     RecyclerView recyclerViewPracticeLevels;
-    private PracticeLevelsAdapter practiceLevelsAdapter;
+    private PracticeAdapter practiceAdapter;
     private String queryLanguage;
     final List<Practice> practiceList = new ArrayList<>();
 
@@ -52,9 +51,9 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
         recyclerViewPracticeLevels = findViewById(R.id.recycler_view_practice_levels);
         recyclerViewPracticeLevels.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewPracticeLevels.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        practiceLevelsAdapter = new PracticeLevelsAdapter(this, practiceList);
+        practiceAdapter = new PracticeAdapter(this, practiceList);
         recyclerViewPracticeLevels.setHasFixedSize(true);
-        practiceLevelsAdapter.setClickListener(this);
+        practiceAdapter.setClickListener(this);
 
 
 
@@ -99,7 +98,7 @@ public class PracticeLevelsListActivity extends AppCompatActivity implements Pra
                 } else {
                     // something went wrong
                 }
-                recyclerViewPracticeLevels.setAdapter(practiceLevelsAdapter);
+                recyclerViewPracticeLevels.setAdapter(practiceAdapter);
             }
         });
 

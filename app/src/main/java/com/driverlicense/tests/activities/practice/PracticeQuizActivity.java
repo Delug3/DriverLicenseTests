@@ -94,7 +94,6 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
         textViewAnswerD.setOnClickListener(this);
         imageViewNextQuestion.setOnClickListener(this);
 
-
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if (extras == null) {
