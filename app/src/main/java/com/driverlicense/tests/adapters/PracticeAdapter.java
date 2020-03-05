@@ -17,14 +17,14 @@ import com.driverlicense.tests.models.Practice;
 import java.util.List;
 
 
-public class PracticeLevelsAdapter extends RecyclerView.Adapter<PracticeLevelsAdapter.ViewHolder> {
+public class PracticeAdapter extends RecyclerView.Adapter<PracticeAdapter.ViewHolder> {
 
     private List<Practice> practiceList;
     private Context context;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
-    public PracticeLevelsAdapter(Context context, List<Practice> practiceList) {
+    public PracticeAdapter(Context context, List<Practice> practiceList) {
         this.context=context;
         this.mInflater = LayoutInflater.from(context);
         this.practiceList = practiceList;
