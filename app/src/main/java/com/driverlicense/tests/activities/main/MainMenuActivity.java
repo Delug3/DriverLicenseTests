@@ -1,4 +1,4 @@
-package com.driverlicense.tests.activities.menu;
+package com.driverlicense.tests.activities.main;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +19,7 @@ import com.driverlicense.tests.R;
 import com.driverlicense.tests.activities.core.MyGlobals;
 import com.driverlicense.tests.activities.practice.PracticeLevelsListActivity;
 import com.driverlicense.tests.activities.settings.SettingsActivity;
+import com.driverlicense.tests.activities.signs.TrafficSignsListActivity;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -33,7 +34,7 @@ import com.google.android.material.snackbar.Snackbar;
 public class MainMenuActivity extends AppCompatActivity {
 
     MyGlobals myGlobals;
-    private ConstraintLayout constraintLayoutMainMenuPractice, constraintLayoutMainMenuSettings;
+    private ConstraintLayout constraintLayoutMainMenuPractice, constraintLayoutMainMenuSettings, constraintLayoutMainMenuTrafficSigns;
     private DrawerLayout drawerLayoutMainMenu;
     private AdView mAdView;
     //main activity including practice, test, reading and settings
@@ -48,9 +49,8 @@ public class MainMenuActivity extends AppCompatActivity {
         configureNavigationDrawer();
         configureToolbar();
         loadAds();
+        initViews();
 
-        constraintLayoutMainMenuPractice = findViewById(R.id.constraint_layout_main_menu_practice);
-        constraintLayoutMainMenuSettings = findViewById(R.id.constraint_layout_main_menu_settings);
 
         constraintLayoutMainMenuPractice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +68,22 @@ public class MainMenuActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        constraintLayoutMainMenuTrafficSigns.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainMenuActivity.this, TrafficSignsListActivity.class);
+                startActivity(i);
+            }
+        });
+
+
+    }
+
+    private void initViews() {
+        constraintLayoutMainMenuPractice = findViewById(R.id.constraint_layout_main_menu_practice);
+        constraintLayoutMainMenuSettings = findViewById(R.id.constraint_layout_main_menu_settings);
+        constraintLayoutMainMenuTrafficSigns = findViewById(R.id.constraint_layout_main_menu_traffic_signs);
     }
 
     @Override
