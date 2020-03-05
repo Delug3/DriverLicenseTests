@@ -1,7 +1,6 @@
 package com.driverlicense.tests.activities.states;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,8 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.driverlicense.tests.R;
-import com.driverlicense.tests.activities.core.App;
-import com.driverlicense.tests.activities.menu.MainMenuActivity;
+import com.driverlicense.tests.activities.main.MainMenuActivity;
 import com.driverlicense.tests.adapters.StatesAdapter;
 import com.driverlicense.tests.models.States;
 import com.parse.FindCallback;
