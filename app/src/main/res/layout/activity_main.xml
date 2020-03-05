@@ -15,7 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activities.menu.MainMenuActivity">
+        tools:context=".activities.main.MainMenuActivity">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -102,7 +102,7 @@
             android:background="@drawable/constraint_border_lines"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraint_layout_main_menu_traffic_sign">
+            app:layout_constraintTop_toBottomOf="@+id/constraint_layout_main_menu_traffic_signs">
 
             <TextView
                 android:id="@+id/text_view_test"
@@ -133,7 +133,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraint_layout_main_menu_traffic_sign"
+            android:id="@+id/constraint_layout_main_menu_traffic_signs"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/constraint_border_lines"
