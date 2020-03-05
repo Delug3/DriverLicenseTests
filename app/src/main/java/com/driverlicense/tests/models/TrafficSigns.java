@@ -6,13 +6,16 @@ public class TrafficSigns {
 
     @SerializedName("traffic_sign_name")
     @Expose
-    private String trafficSignName;
+    public String trafficSignName;
     @SerializedName("traffic_sign_definition")
     @Expose
-    private String trafficSignDefinition;
+    public String trafficSignDefinition;
     @SerializedName("traffic_sign_image_url")
     @Expose
-    private String trafficSignImageUrl;
+    public String trafficSignImageUrl;
+
+
+
 
     public String getTrafficSignName() {
         return trafficSignName;
