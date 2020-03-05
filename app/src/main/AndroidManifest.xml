@@ -21,11 +21,13 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="com.driverlicense.tests.activities.menu.MainMenuActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
+        <activity android:name="com.driverlicense.tests.activities.main.MainMenuActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
         <activity android:name="com.driverlicense.tests.activities.practice.PracticeLevelsListActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
         <activity android:name="com.driverlicense.tests.activities.practice.PracticeQuizActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
         <activity android:name="com.driverlicense.tests.activities.settings.SettingsActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
         <activity android:name="com.driverlicense.tests.activities.states.StatesListActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
+        <activity android:name="com.driverlicense.tests.activities.signs.TrafficSignsListActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
+        <activity android:name="com.driverlicense.tests.activities.signs.TrafficSignsDetailsActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
 
 
         <meta-data
