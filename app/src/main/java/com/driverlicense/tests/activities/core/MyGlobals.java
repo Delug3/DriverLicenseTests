@@ -37,10 +37,10 @@ public class MyGlobals {
             NetworkInfo currentNetworkInfo = intent.getParcelableExtra(ConnectivityManager.EXTRA_NETWORK_INFO);
             NetworkInfo otherNetworkInfo = intent.getParcelableExtra(ConnectivityManager.EXTRA_OTHER_NETWORK_INFO);
 
-            if(!currentNetworkInfo.isConnected()){
+            if(currentNetworkInfo.isConnected()){
                 Toast.makeText(getApplicationContext(), "Connected", Toast.LENGTH_LONG).show();
             }else{
-                connectivityDialog = new Dialog(mContext);
+                connectivityDialog = new Dialog(getApplicationContext());
                 connectivityDialog.setContentView(R.layout.activity_connectivity_changes);
                 connectivityDialog.setCancelable(false);
                 connectivityDialog.show();
