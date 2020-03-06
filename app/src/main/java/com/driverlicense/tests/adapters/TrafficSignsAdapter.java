@@ -108,7 +108,7 @@ public class TrafficSignsAdapter extends RecyclerView.Adapter<TrafficSignsAdapte
 
             super(itemView);
             textViewName = itemView.findViewById(R.id.text_view_traffic_sign_name);
-            imageViewUrl = itemView.findViewById(R.id.image_view_traffic_signs);
+            imageViewUrl = itemView.findViewById(R.id.image_view_traffic_signs_image_url);
             itemView.setOnClickListener(this);
 
         }
