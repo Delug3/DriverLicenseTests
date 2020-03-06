@@ -24,8 +24,8 @@
     <string name="toolbar_title">ToolBar Title</string>
     <string name="question_number">1/10</string>
     <string name="whooops">WHOOOPS</string>
-    <string name="trying_to_connect">Trying to connect...</string>
+    <string name="trying_to_connect">Trying to connect…</string>
     <string name="connect_phone">Make sure your phone is connected to the Internet.</string>
-    <string name="action_search">Search Traffic Sign...</string>
+    <string name="action_search">Search for traffic sign…</string>
 
 </resources>
