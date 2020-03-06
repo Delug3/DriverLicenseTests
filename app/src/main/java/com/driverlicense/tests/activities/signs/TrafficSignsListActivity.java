@@ -1,29 +1,23 @@
 package com.driverlicense.tests.activities.signs;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
+
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.driverlicense.tests.R;
 import com.driverlicense.tests.adapters.TrafficSignsAdapter;
-import com.driverlicense.tests.models.Practice;
-import com.driverlicense.tests.models.States;
 import com.driverlicense.tests.models.TrafficSigns;
-import com.parse.FindCallback;
-import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
@@ -33,7 +27,6 @@ import java.util.Locale;
 
 public class TrafficSignsListActivity extends AppCompatActivity implements TrafficSignsAdapter.ItemClickListener {
 
-    private static final String TAG = "TRAFFICSIGNS";
     private String queryLanguage;
     RecyclerView recyclerViewTrafficSigns;
     TrafficSignsAdapter trafficSignsAdapter;
@@ -45,11 +38,34 @@ public class TrafficSignsListActivity extends AppCompatActivity implements Traff
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_traffic_signs);
 
+        configureToolbar();
+
+        setUpSearchView();
+
         setUpRecyclerView();
 
         getQueryLanguage();
 
         getTrafficSigns(queryLanguage);
+    }
+
+    private void setUpSearchView() {
+
+        searchViewTrafficSigns = findViewById(R.id.search_view_traffic_signs);
+        searchViewTrafficSigns.setQueryHint("Search for traffic sign");
+        searchViewTrafficSigns.setIconifiedByDefault(false);
+        searchViewTrafficSigns.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+                trafficSignsAdapter.getFilter().filter(query);
+                return false;
+            }
+        });
     }
 
     private void setUpRecyclerView() {
@@ -92,11 +108,10 @@ public class TrafficSignsListActivity extends AppCompatActivity implements Traff
               //something went wrong
             }
         });
-
     }
 
     //Obtaining language of device to load query with the appropriate data
-    //class Traffic Signs: EN,HI....
+    //class Traffic Signs: EN,HI...
     private void getQueryLanguage()
     {
 
@@ -127,6 +142,35 @@ public class TrafficSignsListActivity extends AppCompatActivity implements Traff
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+
+                finish();
+
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    private void configureToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolBar);
+        TextView textViewToolBarTitle = toolbar.findViewById(R.id.toolbar_title);
+        setSupportActionBar(toolbar);
+        ActionBar actionbar = getSupportActionBar();
+        if(actionbar != null) {
+            actionbar.setDisplayHomeAsUpEnabled(true);
+            actionbar.setDisplayShowTitleEnabled(false);
+        }
+        textViewToolBarTitle.setText(R.string.traffic_sign_main_menu);
+    }
+
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
 
@@ -170,4 +214,6 @@ public class TrafficSignsListActivity extends AppCompatActivity implements Traff
         }
         super.onBackPressed();
     }
+    */
+
 }
