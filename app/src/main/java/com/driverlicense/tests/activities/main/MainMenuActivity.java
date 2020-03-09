@@ -43,9 +43,7 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        myGlobals = new MyGlobals(getApplicationContext());
-        myGlobals.checkConnectivityChanges();
-
+        checkInternetConnection();
         configureNavigationDrawer();
         configureToolbar();
         loadAds();
@@ -77,6 +75,12 @@ public class MainMenuActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    private void checkInternetConnection() {
+        myGlobals = new MyGlobals(MainMenuActivity.this);
+        myGlobals.checkConnectivityChanges();
 
     }
 
