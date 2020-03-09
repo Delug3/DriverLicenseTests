@@ -7,24 +7,23 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.TextView;
 
 import com.driverlicense.tests.R;
 
-import static com.parse.Parse.getApplicationContext;
-
 public class MyGlobals {
 
-    private Context mContext;
+    private Context context;
     private Dialog connectivityDialog;
 
     public MyGlobals(Context mContext) {
-        this.mContext = mContext;
+        this.context = mContext;
     }
 
     public void checkConnectivityChanges()
     {
-        getApplicationContext().registerReceiver(this.mConnReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+        context.registerReceiver(this.mConnReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
 
 
@@ -34,17 +33,22 @@ public class MyGlobals {
             String reason = intent.getStringExtra(ConnectivityManager.EXTRA_REASON);
             boolean isFailover = intent.getBooleanExtra(ConnectivityManager.EXTRA_IS_FAILOVER, false);
 
-            NetworkInfo currentNetworkInfo = intent.getParcelableExtra(ConnectivityManager.EXTRA_NETWORK_INFO);
-            NetworkInfo otherNetworkInfo = intent.getParcelableExtra(ConnectivityManager.EXTRA_OTHER_NETWORK_INFO);
+            //NetworkInfo currentNetworkInfo = intent.getParcelableExtra(ConnectivityManager.EXTRA_NETWORK_INFO);
+            //NetworkInfo otherNetworkInfo = intent.getParcelableExtra(ConnectivityManager.EXTRA_OTHER_NETWORK_INFO);
 
-            if(currentNetworkInfo.isConnected()){
-                Toast.makeText(getApplicationContext(), "Connected", Toast.LENGTH_LONG).show();
-            }else{
-                connectivityDialog = new Dialog(getApplicationContext());
+            ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo currentNetworkInfo = connectivityManager.getActiveNetworkInfo();
+
+            if(!currentNetworkInfo.isConnected()){
+                connectivityDialog = new Dialog(MyGlobals.this.context);
                 connectivityDialog.setContentView(R.layout.activity_connectivity_changes);
-                connectivityDialog.setCancelable(false);
+                connectivityDialog.setCancelable(true);
                 connectivityDialog.show();
             }
+
+
+
+
         }
     };
 
