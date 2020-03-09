@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
@@ -33,12 +34,16 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
+                android:fontFamily="@font/roboto"
                 android:gravity="center"
+                android:textAppearance="@style/ToolBar.TitleText"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image_view_traffic_signs_image_url" />
+                app:layout_constraintTop_toBottomOf="@+id/image_view_traffic_signs_image_url"
+                tools:text="@string/traffic_sign_main_menu" />
 
             <ImageView
                 android:id="@+id/image_view_traffic_signs_image_url"
