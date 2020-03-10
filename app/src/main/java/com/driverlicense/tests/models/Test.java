@@ -8,25 +8,25 @@ import java.io.Serializable;
 public class Test implements Serializable {
     @SerializedName("question")
     @Expose
-    private String question;
+    public String question;
     @SerializedName("answer_a")
     @Expose
-    private String answerA;
+    public String answerA;
     @SerializedName("answer_b")
     @Expose
-    private String answerB;
+    public String answerB;
     @SerializedName("answer_c")
     @Expose
-    private String answerC;
+    public String answerC;
     @SerializedName("answer_d")
     @Expose
-    private String answerD;
+    public String answerD;
     @SerializedName("image_url")
     @Expose
-    private String imageUrl;
+    public String imageUrl;
     @SerializedName("correct_answer")
     @Expose
-    private String correctAnswer;
+    public String correctAnswer;
 
     public String getQuestion() {
         return question;
