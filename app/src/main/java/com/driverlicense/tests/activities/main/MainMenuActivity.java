@@ -20,6 +20,7 @@ import com.driverlicense.tests.activities.core.MyGlobals;
 import com.driverlicense.tests.activities.practice.PracticeLevelsListActivity;
 import com.driverlicense.tests.activities.settings.SettingsActivity;
 import com.driverlicense.tests.activities.signs.TrafficSignsListActivity;
+import com.driverlicense.tests.activities.test.TestActivity;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -34,7 +35,7 @@ import com.google.android.material.snackbar.Snackbar;
 public class MainMenuActivity extends AppCompatActivity {
 
     MyGlobals myGlobals;
-    private ConstraintLayout constraintLayoutMainMenuPractice, constraintLayoutMainMenuSettings, constraintLayoutMainMenuTrafficSigns;
+    private ConstraintLayout constraintLayoutMainMenuPractice, constraintLayoutMainMenuSettings, constraintLayoutMainMenuTrafficSigns, constraintLayoutMainMenuTest;
     private DrawerLayout drawerLayoutMainMenu;
     private AdView mAdView;
     //main activity including practice, test, reading and settings
@@ -75,6 +76,13 @@ public class MainMenuActivity extends AppCompatActivity {
             }
         });
 
+        constraintLayoutMainMenuTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainMenuActivity.this, TestActivity.class);
+                startActivity(i);
+            }
+        });
 
     }
 
@@ -88,6 +96,7 @@ public class MainMenuActivity extends AppCompatActivity {
         constraintLayoutMainMenuPractice = findViewById(R.id.constraint_layout_main_menu_practice);
         constraintLayoutMainMenuSettings = findViewById(R.id.constraint_layout_main_menu_settings);
         constraintLayoutMainMenuTrafficSigns = findViewById(R.id.constraint_layout_main_menu_traffic_signs);
+        constraintLayoutMainMenuTest = findViewById(R.id.constraint_layout_main_menu_test);
     }
 
     @Override
