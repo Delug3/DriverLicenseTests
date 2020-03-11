@@ -64,35 +64,8 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        constraintLayoutMain = findViewById(R.id.constraint_layout_quiz_main);
-        textViewQuestion = findViewById(R.id.text_view_quiz_question);
-        textViewQuestionNumber = findViewById(R.id.text_view_quiz_question_number);
-        textViewAnswerA = findViewById(R.id.text_view_quiz_answer_a);
-        textViewAnswerB = findViewById(R.id.text_view_quiz_answer_b);
-        textViewAnswerC = findViewById(R.id.text_view_quiz_answer_c);
-        textViewAnswerD = findViewById(R.id.text_view_quiz_answer_d);
-        imageViewQuestionImageUrl = findViewById(R.id.image_view_quiz_image_url);
-        imageViewNextQuestion = findViewById(R.id.image_view_next_question);
-        imageViewLetterA = findViewById(R.id.image_view_quiz_letter_a);
-        imageViewLetterB = findViewById(R.id.image_view_quiz_letter_b);
-        imageViewLetterC = findViewById(R.id.image_view_quiz_letter_c);
-        imageViewLetterD = findViewById(R.id.image_view_quiz_letter_d);
-        constraintLayoutAnswerA = findViewById(R.id.constraint_layout_quiz_answer_a);
-        constraintLayoutAnswerB = findViewById(R.id.constraint_layout_quiz_answer_b);
-        constraintLayoutAnswerC = findViewById(R.id.constraint_layout_quiz_answer_c);
-        constraintLayoutAnswerD = findViewById(R.id.constraint_layout_quiz_answer_d);
-        progressBarQuiz = findViewById(R.id.progress_bar_quiz);
-
-
-        imageViewLetterA.setOnClickListener(this);
-        imageViewLetterB.setOnClickListener(this);
-        imageViewLetterC.setOnClickListener(this);
-        imageViewLetterD.setOnClickListener(this);
-        textViewAnswerA.setOnClickListener(this);
-        textViewAnswerB.setOnClickListener(this);
-        textViewAnswerC.setOnClickListener(this);
-        textViewAnswerD.setOnClickListener(this);
-        imageViewNextQuestion.setOnClickListener(this);
+        initViews();
+        setListeners();
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -113,13 +86,50 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
         }
 
         OriginalBackgroundColor = textViewQuestion.getBackground();
-        //set max value of progress bar depending on quizList size
-        progressBarQuiz.setMax(quizList.size());
 
+        setProgressBarSize();
         hideNextQuestionView();
         loadQuestionAndAnswers();
         updateQuizProgressBar();
         showQuestionNumber();
+    }
+
+    private void setProgressBarSize() {
+        //set max value of progress bar depending on quizList size
+        progressBarQuiz.setMax(quizList.size());
+    }
+
+    private void setListeners() {
+        imageViewLetterA.setOnClickListener(this);
+        imageViewLetterB.setOnClickListener(this);
+        imageViewLetterC.setOnClickListener(this);
+        imageViewLetterD.setOnClickListener(this);
+        textViewAnswerA.setOnClickListener(this);
+        textViewAnswerB.setOnClickListener(this);
+        textViewAnswerC.setOnClickListener(this);
+        textViewAnswerD.setOnClickListener(this);
+        imageViewNextQuestion.setOnClickListener(this);
+    }
+
+    private void initViews() {
+        constraintLayoutMain = findViewById(R.id.constraint_layout_quiz_main);
+        textViewQuestion = findViewById(R.id.text_view_quiz_question);
+        textViewQuestionNumber = findViewById(R.id.text_view_quiz_question_number);
+        textViewAnswerA = findViewById(R.id.text_view_quiz_answer_a);
+        textViewAnswerB = findViewById(R.id.text_view_quiz_answer_b);
+        textViewAnswerC = findViewById(R.id.text_view_quiz_answer_c);
+        textViewAnswerD = findViewById(R.id.text_view_quiz_answer_d);
+        imageViewQuestionImageUrl = findViewById(R.id.image_view_quiz_image_url);
+        imageViewNextQuestion = findViewById(R.id.image_view_next_question);
+        imageViewLetterA = findViewById(R.id.image_view_quiz_letter_a);
+        imageViewLetterB = findViewById(R.id.image_view_quiz_letter_b);
+        imageViewLetterC = findViewById(R.id.image_view_quiz_letter_c);
+        imageViewLetterD = findViewById(R.id.image_view_quiz_letter_d);
+        constraintLayoutAnswerA = findViewById(R.id.constraint_layout_quiz_answer_a);
+        constraintLayoutAnswerB = findViewById(R.id.constraint_layout_quiz_answer_b);
+        constraintLayoutAnswerC = findViewById(R.id.constraint_layout_quiz_answer_c);
+        constraintLayoutAnswerD = findViewById(R.id.constraint_layout_quiz_answer_d);
+        progressBarQuiz = findViewById(R.id.progress_bar_quiz);
     }
 
     //compare correct answer with answer number, if its the same, then green, not the same, red and method call
