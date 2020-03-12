@@ -31,7 +31,7 @@ public class TrafficSignsListActivity extends AppCompatActivity implements Traff
     RecyclerView recyclerViewTrafficSigns;
     TrafficSignsAdapter trafficSignsAdapter;
     SearchView searchViewTrafficSigns;
-    List<TrafficSigns> trafficSignsList;
+    private List<TrafficSigns> trafficSignsList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
