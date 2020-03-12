@@ -447,7 +447,6 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
 
     //loading default colors of both, constraintLayout background and icon number
     private void loadDefaultColors(){
-
         //set default colors every time user press Next
         constraintLayoutAnswerA.setBackground(OriginalBackgroundColor);
         constraintLayoutAnswerB.setBackground(OriginalBackgroundColor);
