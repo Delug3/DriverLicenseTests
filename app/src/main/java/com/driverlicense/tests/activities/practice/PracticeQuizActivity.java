@@ -22,15 +22,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.driverlicense.tests.R;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.SaveCallback;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -49,7 +46,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
     private Drawable OriginalBackgroundColor;
     private String levelId, levelName, queryLanguage, correctAnswer;
     private Integer levelNumber;
-    private boolean allAnswersCompleted = false;
+    private boolean allQuestionsCompleted = false;
     private int totalNumberCorrectAnswers = 0;
     private int totalNumberIncorrectAnswers = 0;
     private boolean shouldRepeatAnimation = true;
@@ -329,7 +326,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
        }
        else{
            disableMultipleClicks();
-           allAnswersCompleted = true;
+           allQuestionsCompleted = true;
 
            levelPassed();
 
@@ -560,7 +557,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onBackPressed() {
-        if(!allAnswersCompleted)
+        if(!allQuestionsCompleted)
         {
             showDialog();
         }
@@ -604,7 +601,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
 
             case android.R.id.home:
 
-                if(!allAnswersCompleted)
+                if(!allQuestionsCompleted)
                 {
                     showDialog();
                 }
