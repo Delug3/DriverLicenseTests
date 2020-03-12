@@ -1,8 +1,11 @@
 package com.driverlicense.tests.activities.test;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -19,6 +22,7 @@ import com.parse.ParseQuery;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -28,9 +32,12 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView imageViewQuestionImageUrl, imageViewNextQuestion, imageViewLetterA, imageViewLetterB , imageViewLetterC, imageViewLetterD;
     private ConstraintLayout constraintLayoutMain, constraintLayoutAnswerA, constraintLayoutAnswerB, constraintLayoutAnswerC, constraintLayoutAnswerD;
     private ProgressBar progressBarQuiz;
-    Random rand = new Random();
+    private String correctAnswer;
+    private Random rand = new Random();
     private int questionNumber = 0;
-
+    private int progressStatus = 0;
+    private boolean allQuestionsCompleted = false;
+    private boolean shouldRepeatAnimation = true;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,8 +47,14 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         initViews();
         setListeners();
         getRandomQuestions();
+        setProgressBarSize();
+        hideNextQuestionView();
         loadQuestionAndAnswers();
+        updateQuizProgressBar();
+        showQuestionNumber();
     }
+
+
 
     public List<Test> getRandomQuestions() {
 
@@ -71,7 +84,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         return testList;
     }
 
-        private void loadQuestionAndAnswers() {
+    private void loadQuestionAndAnswers() {
 
         List<Test> testList = getRandomQuestions();
 
@@ -81,12 +94,26 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         String answerC = testList.get(questionNumber).getAnswerC();
         String answerD = testList.get(questionNumber).getAnswerD();
         String imageUrl = testList.get(questionNumber).getImageUrl();
-        String correctAnswer = testList.get(questionNumber).getCorrectAnswer();
+        correctAnswer = testList.get(questionNumber).getCorrectAnswer();
 
         loadUI(question, answerA, answerB, answerC,answerD,imageUrl);
 
         questionNumber++;
     }
+
+
+    private void setProgressBarSize() {
+        //set max value of progress bar depending on list size
+        List<Test> testList = getRandomQuestions();
+        progressBarQuiz.setMax(testList.size());
+    }
+
+    private void hideNextQuestionView()
+    {
+        imageViewNextQuestion.setVisibility(View.GONE);
+    }
+
+
 
 
     private void loadUI(String question, String answerA, String answerB, String answerC, String answerD, String imageUrl) {
@@ -110,11 +137,53 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void unHideQuestionImageUrl() {
-
+        imageViewQuestionImageUrl.setVisibility(View.VISIBLE);
     }
 
     private void hideQuestionImageUrl() {
+        imageViewQuestionImageUrl.setVisibility(View.GONE);
+    }
 
+
+    private void updateQuizProgressBar()
+    {
+        List<Test> testList = getRandomQuestions();
+        if(progressStatus < testList.size()) {
+            progressStatus++;
+            progressBarQuiz.setProgress(progressStatus);
+        }
+        else{
+            disableMultipleClicks();
+            allQuestionsCompleted = true;
+            testPassed();
+            showTestResults();
+        }
+
+    }
+
+    private void showTestResults() {
+    }
+
+    private void testPassed() {
+    }
+
+
+    private void disableMultipleClicks(){
+        imageViewLetterA.setClickable(false);
+        imageViewLetterB.setClickable(false);
+        imageViewLetterC.setClickable(false);
+        imageViewLetterD.setClickable(false);
+        textViewAnswerA.setClickable(false);
+        textViewAnswerB.setClickable(false);
+        textViewAnswerC.setClickable(false);
+        textViewAnswerD.setClickable(false);
+    }
+
+    private void showQuestionNumber()
+    {
+        List<Test> testList = getRandomQuestions();
+        String actualQuestionNumberAndTotals = progressStatus + "/" + testList.size();
+        textViewQuestionNumber.setText(actualQuestionNumberAndTotals);
     }
 
     private void initViews() {
@@ -150,9 +219,162 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         imageViewNextQuestion.setOnClickListener(this);
     }
 
-    @Override
-    public void onClick(View view) {
+    public void onClick(View v) {
+        switch (v.getId()) {
 
+            case R.id.image_view_test_letter_a:
+
+            case R.id.text_view_test_answer_a:
+
+                if (correctAnswer.equals("A")) {
+
+                    //totalNumberCorrectAnswers++;
+                }
+                else{
+
+                    //totalNumberIncorrectAnswers++;
+                    //showCorrectAnswer();
+                }
+                disableMultipleClicks();
+                unHideNextQuestionView();
+                enableNextQuestionViewClick();
+                startAnimationNextQuestion();
+                break;
+
+
+            case R.id.image_view_test_letter_b:
+
+            case R.id.text_view_test_answer_b:
+
+                if (correctAnswer.equals("B")) {
+
+                }
+                else{
+
+                }
+                disableMultipleClicks();
+                unHideNextQuestionView();
+                enableNextQuestionViewClick();
+                startAnimationNextQuestion();
+                break;
+
+
+            case R.id.image_view_test_letter_c:
+
+            case R.id.text_view_test_answer_c:
+
+                if (correctAnswer.equals("C")) {
+
+                }
+                else{
+
+                }
+                disableMultipleClicks();
+                unHideNextQuestionView();
+                enableNextQuestionViewClick();
+                startAnimationNextQuestion();
+                break;
+
+
+            case R.id.image_view_test_letter_d:
+
+            case R.id.text_view_test_answer_d:
+
+                if (correctAnswer.equals("D")) {
+
+                }
+                else{
+
+                }
+                disableMultipleClicks();
+                unHideNextQuestionView();
+                enableNextQuestionViewClick();
+                startAnimationNextQuestion();
+                break;
+
+
+            case R.id.image_view_next_question:
+
+                enableSingleClick();
+                loadQuestionAndAnswers();
+                updateQuizProgressBar();
+                stopAnimationNextQuestion();
+                showQuestionNumber();
+                break;
+
+
+            default:
+                break;
+        }
+
+    }
+
+    private void unHideNextQuestionView()
+    {
+        imageViewNextQuestion.setVisibility(View.VISIBLE);
+    }
+
+    private void enableNextQuestionViewClick()
+    {
+        imageViewNextQuestion.setClickable(true);
+    }
+
+    private void startAnimationNextQuestion()
+    {
+        List<Test> testList = getRandomQuestions();
+        if(progressStatus < testList.size())
+        {
+            imageViewNextQuestion.setImageResource(R.drawable.ic_next_quiz_question);
+        }
+
+        else
+        {
+            imageViewNextQuestion.setImageResource(R.drawable.ic_results);
+        }
+
+        shouldRepeatAnimation = true;
+        AlphaAnimation fadeIn=new AlphaAnimation(0,1);
+        AlphaAnimation fadeOut=new AlphaAnimation(1,0);
+
+        final AnimationSet set = new AnimationSet(false);
+
+        set.addAnimation(fadeIn);
+        set.addAnimation(fadeOut);
+
+        fadeOut.setStartOffset(1000);
+        set.setDuration(2000);
+        imageViewNextQuestion.startAnimation(set);
+
+        set.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) { }
+            @Override
+            public void onAnimationRepeat(Animation animation) { }
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                if (shouldRepeatAnimation) {
+                    imageViewNextQuestion.startAnimation(set);
+                }
+            }
+        });
+    }
+
+    private void enableSingleClick(){
+        imageViewLetterA.setClickable(true);
+        imageViewLetterB.setClickable(true);
+        imageViewLetterC.setClickable(true);
+        imageViewLetterD.setClickable(true);
+        textViewAnswerA.setClickable(true);
+        textViewAnswerB.setClickable(true);
+        textViewAnswerC.setClickable(true);
+        textViewAnswerD.setClickable(true);
+    }
+
+
+    private void stopAnimationNextQuestion()
+    {
+        shouldRepeatAnimation = false;
+        imageViewNextQuestion.clearAnimation();
     }
 
     @Override
