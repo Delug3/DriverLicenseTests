@@ -1,6 +1,5 @@
 package com.driverlicense.tests.activities.test;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -22,7 +21,6 @@ import com.parse.ParseQuery;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -34,6 +32,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
     private ProgressBar progressBarQuiz;
     private String correctAnswer;
     private Random rand = new Random();
+    private List<Test> testList = new ArrayList<>();
     private int questionNumber = 0;
     private int progressStatus = 0;
     private boolean allQuestionsCompleted = false;
@@ -56,9 +55,8 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-    public List<Test> getRandomQuestions() {
+    public void getRandomQuestions() {
 
-        List<Test> testList = new ArrayList<>();;
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Test_EN");
         query.setLimit(200);
         try {
@@ -81,12 +79,10 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return testList;
+
     }
 
     private void loadQuestionAndAnswers() {
-
-        List<Test> testList = getRandomQuestions();
 
         String question = testList.get(questionNumber).getQuestion();
         String answerA = testList.get(questionNumber).getAnswerA();
@@ -96,15 +92,38 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         String imageUrl = testList.get(questionNumber).getImageUrl();
         correctAnswer = testList.get(questionNumber).getCorrectAnswer();
 
+        checkValueAnswerD(answerD);
         loadUI(question, answerA, answerB, answerC,answerD,imageUrl);
+        disableNextQuestionViewClick();
 
         questionNumber++;
     }
 
+    private void checkValueAnswerD(String answerD) {
+        if (answerD.equals("null"))
+        {
+            hideAnswer();
+        }
+        else
+        {
+            unHideAnswer();
+        }
+    }
+
+    private void unHideAnswer() {
+        constraintLayoutAnswerD.setVisibility(View.VISIBLE);
+        imageViewLetterD.setVisibility(View.VISIBLE);
+        textViewAnswerD.setVisibility(View.VISIBLE);
+    }
+
+    private void hideAnswer() {
+        constraintLayoutAnswerD.setVisibility(View.GONE);
+        imageViewLetterD.setVisibility(View.GONE);
+        textViewAnswerD.setVisibility(View.GONE);
+    }
+
 
     private void setProgressBarSize() {
-        //set max value of progress bar depending on list size
-        List<Test> testList = getRandomQuestions();
         progressBarQuiz.setMax(testList.size());
     }
 
@@ -147,7 +166,6 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
     private void updateQuizProgressBar()
     {
-        List<Test> testList = getRandomQuestions();
         if(progressStatus < testList.size()) {
             progressStatus++;
             progressBarQuiz.setProgress(progressStatus);
@@ -181,7 +199,6 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
     private void showQuestionNumber()
     {
-        List<Test> testList = getRandomQuestions();
         String actualQuestionNumberAndTotals = progressStatus + "/" + testList.size();
         textViewQuestionNumber.setText(actualQuestionNumberAndTotals);
     }
@@ -286,6 +303,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 else{
 
                 }
+
                 disableMultipleClicks();
                 unHideNextQuestionView();
                 enableNextQuestionViewClick();
@@ -293,7 +311,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
 
-            case R.id.image_view_next_question:
+            case R.id.image_view_test_next_question:
 
                 enableSingleClick();
                 loadQuestionAndAnswers();
@@ -319,9 +337,13 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         imageViewNextQuestion.setClickable(true);
     }
 
+    private void disableNextQuestionViewClick()
+    {
+        imageViewNextQuestion.setClickable(false);
+    }
+
     private void startAnimationNextQuestion()
     {
-        List<Test> testList = getRandomQuestions();
         if(progressStatus < testList.size())
         {
             imageViewNextQuestion.setImageResource(R.drawable.ic_next_quiz_question);
