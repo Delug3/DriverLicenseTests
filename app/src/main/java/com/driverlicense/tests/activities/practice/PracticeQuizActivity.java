@@ -117,7 +117,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
         textViewAnswerC = findViewById(R.id.text_view_quiz_answer_c);
         textViewAnswerD = findViewById(R.id.text_view_quiz_answer_d);
         imageViewQuestionImageUrl = findViewById(R.id.image_view_quiz_image_url);
-        imageViewNextQuestion = findViewById(R.id.image_view_next_question);
+        imageViewNextQuestion = findViewById(R.id.image_view_quiz_next_question);
         imageViewLetterA = findViewById(R.id.image_view_quiz_letter_a);
         imageViewLetterB = findViewById(R.id.image_view_quiz_letter_b);
         imageViewLetterC = findViewById(R.id.image_view_quiz_letter_c);
@@ -224,7 +224,7 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
                 break;
 
 
-            case R.id.image_view_next_question:
+            case R.id.image_view_quiz_next_question:
 
                 enableSingleClick();
                 loadQuestionAndAnswers();
