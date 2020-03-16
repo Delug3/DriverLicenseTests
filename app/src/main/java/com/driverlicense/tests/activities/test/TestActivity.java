@@ -10,6 +10,7 @@ import android.view.animation.AnimationSet;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -23,6 +24,8 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +71,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         query.setLimit(200);
         try {
             List<ParseObject> result = query.find();
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 2; i++) {
 
                 int randomIndex = rand.nextInt(result.size());
 
@@ -91,19 +94,22 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
     private void loadQuestionAndAnswers() {
 
-        String question = testList.get(questionNumber).getQuestion();
-        String answerA = testList.get(questionNumber).getAnswerA();
-        String answerB = testList.get(questionNumber).getAnswerB();
-        String answerC = testList.get(questionNumber).getAnswerC();
-        String answerD = testList.get(questionNumber).getAnswerD();
-        String imageUrl = testList.get(questionNumber).getImageUrl();
-        correctAnswer = testList.get(questionNumber).getCorrectAnswer();
+        try {
+            String question = testList.get(questionNumber).getQuestion();
+            String answerA = testList.get(questionNumber).getAnswerA();
+            String answerB = testList.get(questionNumber).getAnswerB();
+            String answerC = testList.get(questionNumber).getAnswerC();
+            String answerD = testList.get(questionNumber).getAnswerD();
+            String imageUrl = testList.get(questionNumber).getImageUrl();
+            correctAnswer = testList.get(questionNumber).getCorrectAnswer();
 
-        checkValueAnswerD(answerD);
-        loadUI(question, answerA, answerB, answerC, answerD, imageUrl);
-        loadDefaultColors();
-        disableNextQuestionViewClick();
-
+            checkValueAnswerD(answerD);
+            loadUI(question, answerA, answerB, answerC, answerD, imageUrl);
+            loadDefaultColors();
+            disableNextQuestionViewClick();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         questionNumber++;
     }
 
@@ -193,7 +199,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             disableMultipleClicks();
             allQuestionsCompleted = true;
             testPassed();
-            showTestResults();
+            //showTestResults();
         }
 
     }
@@ -202,6 +208,8 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void testPassed() {
+        Toast.makeText(this, "Test Passed",Toast.LENGTH_SHORT).show();
+
     }
 
 
