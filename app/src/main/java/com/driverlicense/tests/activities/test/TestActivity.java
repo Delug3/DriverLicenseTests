@@ -1,5 +1,7 @@
 package com.driverlicense.tests.activities.test;
 
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -10,7 +12,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.driverlicense.tests.R;
@@ -30,6 +34,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView imageViewQuestionImageUrl, imageViewNextQuestion, imageViewLetterA, imageViewLetterB , imageViewLetterC, imageViewLetterD;
     private ConstraintLayout constraintLayoutMain, constraintLayoutAnswerA, constraintLayoutAnswerB, constraintLayoutAnswerC, constraintLayoutAnswerD;
     private ProgressBar progressBarQuiz;
+    private Drawable OriginalBackgroundColor;
     private String correctAnswer;
     private Random rand = new Random();
     private List<Test> testList = new ArrayList<>();
@@ -45,6 +50,8 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
         initViews();
         setListeners();
+        getBackgroundColor();
+        configureToolbar();
         getRandomQuestions();
         setProgressBarSize();
         hideNextQuestionView();
@@ -93,10 +100,22 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         correctAnswer = testList.get(questionNumber).getCorrectAnswer();
 
         checkValueAnswerD(answerD);
-        loadUI(question, answerA, answerB, answerC,answerD,imageUrl);
+        loadUI(question, answerA, answerB, answerC, answerD, imageUrl);
+        loadDefaultColors();
         disableNextQuestionViewClick();
 
         questionNumber++;
+    }
+
+    private void loadDefaultColors() {
+        constraintLayoutAnswerA.setBackground(OriginalBackgroundColor);
+        constraintLayoutAnswerB.setBackground(OriginalBackgroundColor);
+        constraintLayoutAnswerC.setBackground(OriginalBackgroundColor);
+        constraintLayoutAnswerD.setBackground(OriginalBackgroundColor);
+        imageViewLetterA.setImageResource(R.drawable.ic_white_answer_a);
+        imageViewLetterB.setImageResource(R.drawable.ic_white_answer_b);
+        imageViewLetterC.setImageResource(R.drawable.ic_white_answer_c);
+        imageViewLetterD.setImageResource(R.drawable.ic_white_answer_d);
     }
 
     private void checkValueAnswerD(String answerD) {
@@ -203,6 +222,11 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         textViewQuestionNumber.setText(actualQuestionNumberAndTotals);
     }
 
+    private void getBackgroundColor()
+    {
+        OriginalBackgroundColor = textViewQuestion.getBackground();
+    }
+
     private void initViews() {
         constraintLayoutMain = findViewById(R.id.constraint_layout_test_main);
         textViewQuestion = findViewById(R.id.text_view_test_question);
@@ -252,6 +276,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                     //totalNumberIncorrectAnswers++;
                     //showCorrectAnswer();
                 }
+                showSelectedAnswer("A");
                 disableMultipleClicks();
                 unHideNextQuestionView();
                 enableNextQuestionViewClick();
@@ -269,6 +294,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 else{
 
                 }
+                showSelectedAnswer("B");
                 disableMultipleClicks();
                 unHideNextQuestionView();
                 enableNextQuestionViewClick();
@@ -286,6 +312,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 else{
 
                 }
+                showSelectedAnswer("C");
                 disableMultipleClicks();
                 unHideNextQuestionView();
                 enableNextQuestionViewClick();
@@ -303,7 +330,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 else{
 
                 }
-
+                showSelectedAnswer("D");
                 disableMultipleClicks();
                 unHideNextQuestionView();
                 enableNextQuestionViewClick();
@@ -392,11 +419,33 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         textViewAnswerD.setClickable(true);
     }
 
-
     private void stopAnimationNextQuestion()
     {
         shouldRepeatAnimation = false;
         imageViewNextQuestion.clearAnimation();
+    }
+
+    private void showSelectedAnswer(String id)
+    {
+        switch (id){
+
+            case "A":
+                constraintLayoutAnswerA.setBackgroundColor(Color.parseColor("#abcfff"));
+                imageViewLetterA.setImageResource(R.drawable.ic_blue_answer_a);
+                break;
+            case "B":
+                constraintLayoutAnswerB.setBackgroundColor(Color.parseColor("#abcfff"));
+                imageViewLetterB.setImageResource(R.drawable.ic_blue_answer_b);
+                break;
+            case "C":
+                constraintLayoutAnswerC.setBackgroundColor(Color.parseColor("#abcfff"));
+                imageViewLetterC.setImageResource(R.drawable.ic_blue_answer_c);
+                break;
+            case "D":
+                constraintLayoutAnswerD.setBackgroundColor(Color.parseColor("#abcfff"));
+                imageViewLetterD.setImageResource(R.drawable.ic_blue_answer_d);
+                break;
+        }
     }
 
     @Override
@@ -411,6 +460,19 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onAnimationRepeat(Animation animation) {
+
+    }
+
+    private void configureToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolBar);
+        TextView textViewToolBarTitle = toolbar.findViewById(R.id.toolbar_title);
+        setSupportActionBar(toolbar);
+        ActionBar actionbar = getSupportActionBar();
+        if(actionbar != null) {
+            actionbar.setDisplayHomeAsUpEnabled(true);
+            actionbar.setDisplayShowTitleEnabled(false);
+        }
+        textViewToolBarTitle.setText(R.string.Test);
 
     }
 }
