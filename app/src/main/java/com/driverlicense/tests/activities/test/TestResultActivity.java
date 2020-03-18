@@ -1,5 +1,6 @@
 package com.driverlicense.tests.activities.test;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,10 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.driverlicense.tests.R;
+import com.driverlicense.tests.activities.share.ShareActivity;
+import com.driverlicense.tests.activities.sheet.AnswerSheetActivity;
 
 public class TestResultActivity extends AppCompatActivity implements View.OnClickListener{
-    private TextView textViewTestResult, textViewTestScore, textViewTestPercentage, textViewTestTry;
-    private ImageView imageViewTestPercentage, imageViewTestTry;
+    private TextView textViewTestResult, textViewTestScore, textViewTestPercentage, textViewTestTry, textViewTestAnswerSheet, textViewTestShare ;
+    private ImageView imageViewTestPercentage, imageViewTestTry, imageViewTestAnswerSheet, imageViewTestShare;
     private int totalNumberCorrectAnswers = 0;
 
     @Override
@@ -36,7 +39,6 @@ public class TestResultActivity extends AppCompatActivity implements View.OnClic
                 setContent();
             }
         }
-
     }
 
     private void initViews() {
@@ -46,10 +48,19 @@ public class TestResultActivity extends AppCompatActivity implements View.OnClic
         textViewTestTry = findViewById(R.id.text_view_test_try);
         imageViewTestPercentage = findViewById(R.id.image_view_test_percentage);
         imageViewTestTry = findViewById(R.id.image_view_test_try);
+        imageViewTestAnswerSheet = findViewById(R.id.image_view_test_answer_sheet);
+        imageViewTestShare = findViewById(R.id.image_view_test_share);
+        textViewTestAnswerSheet = findViewById(R.id.text_view_test_sheet);
+        textViewTestShare = findViewById(R.id.text_view_test_share);
     }
 
     private void setListeners(){
-
+        imageViewTestTry.setOnClickListener(this);
+        textViewTestTry.setOnClickListener(this);
+        imageViewTestAnswerSheet.setOnClickListener(this);
+        textViewTestAnswerSheet.setOnClickListener(this);
+        imageViewTestShare.setOnClickListener(this);
+        textViewTestShare.setOnClickListener(this);
     }
 
     private int getScorePercentage() {
@@ -89,6 +100,29 @@ public class TestResultActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.text_view_test_try:
+            case R.id.image_view_test_try:
+                Intent intentTest = new Intent(TestResultActivity.this, TestActivity.class);
+                startActivity(intentTest);
+                finish();
+                break;
 
+            case R.id.text_view_test_sheet:
+            case R.id.image_view_test_answer_sheet:
+                Intent intentAnswerSheet = new Intent(TestResultActivity.this, AnswerSheetActivity.class);
+                startActivity(intentAnswerSheet);
+                finish();
+                break;
+
+            case R.id.text_view_test_share:
+            case R.id.image_view_test_share:
+                Intent intentShare = new Intent(TestResultActivity.this, ShareActivity.class);
+                startActivity(intentShare);
+                break;
+
+            default:
+                break;
+        }
     }
 }
