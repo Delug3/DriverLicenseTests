@@ -1,5 +1,6 @@
 package com.driverlicense.tests.activities.test;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -19,13 +20,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.driverlicense.tests.R;
+import com.driverlicense.tests.activities.settings.SettingsActivity;
 import com.driverlicense.tests.models.Test;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.squareup.picasso.Picasso;
-
-import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +43,8 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
     private List<Test> testList = new ArrayList<>();
     private int questionNumber = 0;
     private int progressStatus = 0;
+    private int totalNumberCorrectAnswers = 0;
+    private int totalNumberIncorrectAnswers = 0;
     private boolean allQuestionsCompleted = false;
     private boolean shouldRepeatAnimation = true;
 
@@ -63,15 +65,13 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         showQuestionNumber();
     }
 
-
-
     public void getRandomQuestions() {
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Test_EN");
         query.setLimit(200);
         try {
             List<ParseObject> result = query.find();
-            for (int i = 0; i < 2; i++) {
+            for (int i = 0; i < 1; i++) {
 
                 int randomIndex = rand.nextInt(result.size());
 
@@ -89,7 +89,6 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
     }
 
     private void loadQuestionAndAnswers() {
@@ -147,7 +146,6 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         textViewAnswerD.setVisibility(View.GONE);
     }
 
-
     private void setProgressBarSize() {
         progressBarQuiz.setMax(testList.size());
     }
@@ -156,9 +154,6 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
     {
         imageViewNextQuestion.setVisibility(View.GONE);
     }
-
-
-
 
     private void loadUI(String question, String answerA, String answerB, String answerC, String answerD, String imageUrl) {
 
@@ -198,20 +193,19 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         else{
             disableMultipleClicks();
             allQuestionsCompleted = true;
-            testPassed();
-            //showTestResults();
+            showTestResults();
         }
-
     }
 
     private void showTestResults() {
+        finish();
+        Intent i = new Intent(TestActivity.this, TestResultActivity.class);
+        i.putExtra("CORRECT_ANSWERS", totalNumberCorrectAnswers);
+        i.putExtra("INCORRECT_ANSWERS", totalNumberIncorrectAnswers);
+        i.putExtra("TOTAL_QUESTIONS", testList.size());
+        startActivity(i);
+
     }
-
-    private void testPassed() {
-        Toast.makeText(this, "Test Passed",Toast.LENGTH_SHORT).show();
-
-    }
-
 
     private void disableMultipleClicks(){
         imageViewLetterA.setClickable(false);
@@ -276,13 +270,10 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.text_view_test_answer_a:
 
                 if (correctAnswer.equals("A")) {
-
-                    //totalNumberCorrectAnswers++;
+                    totalNumberCorrectAnswers++;
                 }
                 else{
-
-                    //totalNumberIncorrectAnswers++;
-                    //showCorrectAnswer();
+                    totalNumberIncorrectAnswers++;
                 }
                 showSelectedAnswer("A");
                 disableMultipleClicks();
@@ -291,16 +282,15 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 startAnimationNextQuestion();
                 break;
 
-
             case R.id.image_view_test_letter_b:
 
             case R.id.text_view_test_answer_b:
 
                 if (correctAnswer.equals("B")) {
-
+                    totalNumberCorrectAnswers++;
                 }
                 else{
-
+                    totalNumberIncorrectAnswers++;
                 }
                 showSelectedAnswer("B");
                 disableMultipleClicks();
@@ -309,16 +299,15 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 startAnimationNextQuestion();
                 break;
 
-
             case R.id.image_view_test_letter_c:
 
             case R.id.text_view_test_answer_c:
 
                 if (correctAnswer.equals("C")) {
-
+                    totalNumberCorrectAnswers++;
                 }
                 else{
-
+                    totalNumberIncorrectAnswers++;
                 }
                 showSelectedAnswer("C");
                 disableMultipleClicks();
@@ -327,16 +316,15 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 startAnimationNextQuestion();
                 break;
 
-
             case R.id.image_view_test_letter_d:
 
             case R.id.text_view_test_answer_d:
 
                 if (correctAnswer.equals("D")) {
-
+                    totalNumberCorrectAnswers++;
                 }
                 else{
-
+                    totalNumberIncorrectAnswers++;
                 }
                 showSelectedAnswer("D");
                 disableMultipleClicks();
@@ -344,7 +332,6 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 enableNextQuestionViewClick();
                 startAnimationNextQuestion();
                 break;
-
 
             case R.id.image_view_test_next_question:
 
@@ -355,11 +342,9 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 showQuestionNumber();
                 break;
 
-
             default:
                 break;
         }
-
     }
 
     private void unHideNextQuestionView()
