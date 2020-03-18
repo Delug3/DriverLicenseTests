@@ -22,6 +22,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.driverlicense.tests.R;
 import com.driverlicense.tests.activities.settings.SettingsActivity;
 import com.driverlicense.tests.models.Test;
+import com.google.android.gms.common.util.Strings;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -38,9 +39,10 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
     private ConstraintLayout constraintLayoutMain, constraintLayoutAnswerA, constraintLayoutAnswerB, constraintLayoutAnswerC, constraintLayoutAnswerD;
     private ProgressBar progressBarQuiz;
     private Drawable OriginalBackgroundColor;
-    private String correctAnswer;
+    private String question, answerA, answerB, answerC, answerD, imageUrl, correctAnswer;
     private Random rand = new Random();
     private List<Test> testList = new ArrayList<>();
+    private List<Strings> savedAnswersList = new ArrayList<>();
     private int questionNumber = 0;
     private int progressStatus = 0;
     private int totalNumberCorrectAnswers = 0;
@@ -94,16 +96,16 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
     private void loadQuestionAndAnswers() {
 
         try {
-            String question = testList.get(questionNumber).getQuestion();
-            String answerA = testList.get(questionNumber).getAnswerA();
-            String answerB = testList.get(questionNumber).getAnswerB();
-            String answerC = testList.get(questionNumber).getAnswerC();
-            String answerD = testList.get(questionNumber).getAnswerD();
-            String imageUrl = testList.get(questionNumber).getImageUrl();
+            question = testList.get(questionNumber).getQuestion();
+            answerA = testList.get(questionNumber).getAnswerA();
+            answerB = testList.get(questionNumber).getAnswerB();
+            answerC = testList.get(questionNumber).getAnswerC();
+            answerD = testList.get(questionNumber).getAnswerD();
+            imageUrl = testList.get(questionNumber).getImageUrl();
             correctAnswer = testList.get(questionNumber).getCorrectAnswer();
 
-            checkValueAnswerD(answerD);
-            loadUI(question, answerA, answerB, answerC, answerD, imageUrl);
+            checkValueAnswerD();
+            loadUI();
             loadDefaultColors();
             disableNextQuestionViewClick();
         } catch (Exception e) {
@@ -123,7 +125,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         imageViewLetterD.setImageResource(R.drawable.ic_white_answer_d);
     }
 
-    private void checkValueAnswerD(String answerD) {
+    private void checkValueAnswerD() {
         if (answerD.equals("null"))
         {
             hideAnswer();
@@ -155,7 +157,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         imageViewNextQuestion.setVisibility(View.GONE);
     }
 
-    private void loadUI(String question, String answerA, String answerB, String answerC, String answerD, String imageUrl) {
+    private void loadUI() {
 
         textViewQuestion.setText(question);
         textViewAnswerA.setText(answerA);
@@ -262,6 +264,8 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void onClick(View v) {
+        String savedCorrectAnswer, savedIncorrectAnswer = null;
+
         switch (v.getId()) {
 
             case R.id.image_view_test_letter_a:
@@ -269,11 +273,15 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.text_view_test_answer_a:
 
                 if (correctAnswer.equals("A")) {
+                   savedCorrectAnswer = getAnswer(correctAnswer);
                     totalNumberCorrectAnswers++;
                 }
                 else{
+                    savedCorrectAnswer = getAnswer(correctAnswer);
+                    savedIncorrectAnswer = getAnswer("A");
                     totalNumberIncorrectAnswers++;
                 }
+                saveAnswers(savedCorrectAnswer, savedIncorrectAnswer);
                 showSelectedAnswer("A");
                 disableMultipleClicks();
                 unHideNextQuestionView();
@@ -286,9 +294,12 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.text_view_test_answer_b:
 
                 if (correctAnswer.equals("B")) {
+                    savedCorrectAnswer = getAnswer(correctAnswer);
                     totalNumberCorrectAnswers++;
                 }
                 else{
+                    savedCorrectAnswer = getAnswer(correctAnswer);
+                    savedIncorrectAnswer = getAnswer("B");
                     totalNumberIncorrectAnswers++;
                 }
                 showSelectedAnswer("B");
@@ -303,9 +314,12 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.text_view_test_answer_c:
 
                 if (correctAnswer.equals("C")) {
+                    savedCorrectAnswer = getAnswer(correctAnswer);
                     totalNumberCorrectAnswers++;
                 }
                 else{
+                    savedCorrectAnswer = getAnswer(correctAnswer);
+                    savedIncorrectAnswer = getAnswer("C");
                     totalNumberIncorrectAnswers++;
                 }
                 showSelectedAnswer("C");
@@ -320,11 +334,15 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.text_view_test_answer_d:
 
                 if (correctAnswer.equals("D")) {
+                    savedCorrectAnswer = getAnswer(correctAnswer);
                     totalNumberCorrectAnswers++;
                 }
                 else{
+                    savedCorrectAnswer = getAnswer(correctAnswer);
+                    savedIncorrectAnswer = getAnswer("D");
                     totalNumberIncorrectAnswers++;
                 }
+
                 showSelectedAnswer("D");
                 disableMultipleClicks();
                 unHideNextQuestionView();
@@ -417,9 +435,9 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         imageViewNextQuestion.clearAnimation();
     }
 
-    private void showSelectedAnswer(String id)
+    private void showSelectedAnswer(String answerId)
     {
-        switch (id){
+        switch (answerId){
 
             case "A":
                 constraintLayoutAnswerA.setBackgroundColor(Color.parseColor("#abcfff"));
@@ -439,6 +457,38 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
+
+    private String getAnswer(String id)
+    {
+        String answer = null;
+
+        switch (id){
+
+            case "A":
+                answer = answerA;
+                break;
+            case "B":
+                answer = answerB;
+                break;
+            case "C":
+                answer = answerC;
+                break;
+            case "D":
+                answer = answerD;
+                break;
+            default:
+                break;
+        }
+        return answer;
+    }
+
+    private void saveAnswers(String savedCorrectAnswer, String savedIncorrectAnswer)
+    {
+        for (int i = 0; i < testList.size() ; i++)
+        {
+        }
+    }
+
 
     @Override
     public void onAnimationStart(Animation animation) {
