@@ -198,13 +198,12 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void showTestResults() {
-        finish();
         Intent i = new Intent(TestActivity.this, TestResultActivity.class);
         i.putExtra("CORRECT_ANSWERS", totalNumberCorrectAnswers);
         i.putExtra("INCORRECT_ANSWERS", totalNumberIncorrectAnswers);
         i.putExtra("TOTAL_QUESTIONS", testList.size());
         startActivity(i);
-
+        finish();
     }
 
     private void disableMultipleClicks(){
