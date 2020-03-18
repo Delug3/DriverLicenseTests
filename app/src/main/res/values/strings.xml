@@ -28,5 +28,13 @@
     <string name="connect_phone">Make sure your phone is connected to the Internet.</string>
     <string name="action_search">Search for traffic sign…</string>
     <string name="Test">Test</string>
+    <string name="test_passed">You Passed the test!</string>
+    <string name="test_score">Test Score</string>
+    <string name="test_not_passed">The next time you must be better!</string>
+    <string name="answer_sheet">Answer Sheet</string>
+    <string name="share_the_app">Share the App</string>
+    <string name="try_again">Try again</string>
+    <string name="do_new_test">Do a new test</string>
+
 
 </resources>
