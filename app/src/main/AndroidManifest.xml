@@ -29,6 +29,7 @@
         <activity android:name="com.driverlicense.tests.activities.signs.TrafficSignsListActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
         <activity android:name="com.driverlicense.tests.activities.signs.TrafficSignsDetailsActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
         <activity android:name="com.driverlicense.tests.activities.test.TestActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
+        <activity android:name="com.driverlicense.tests.activities.test.TestResultActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
 
 
         <meta-data
