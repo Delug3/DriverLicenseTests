@@ -2,6 +2,7 @@ package com.driverlicense.tests.activities.test;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,11 +14,16 @@ import androidx.core.content.ContextCompat;
 import com.driverlicense.tests.R;
 import com.driverlicense.tests.activities.share.ShareActivity;
 import com.driverlicense.tests.activities.sheet.AnswerSheetActivity;
+import com.driverlicense.tests.models.SavedAnswers;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestResultActivity extends AppCompatActivity implements View.OnClickListener{
     private TextView textViewTestResult, textViewTestScore, textViewTestPercentage, textViewTestTry, textViewTestAnswerSheet, textViewTestShare ;
     private ImageView imageViewTestPercentage, imageViewTestTry, imageViewTestAnswerSheet, imageViewTestShare;
     private int totalNumberCorrectAnswers = 0;
+    private List<SavedAnswers> savedAnswersList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,6 +32,7 @@ public class TestResultActivity extends AppCompatActivity implements View.OnClic
 
         initViews();
         setListeners();
+
         Integer totalNumberIncorrectAnswers, totalQuestions;
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -36,6 +43,8 @@ public class TestResultActivity extends AppCompatActivity implements View.OnClic
                 totalNumberCorrectAnswers = extras.getInt("CORRECT_ANSWERS");
                 totalNumberIncorrectAnswers = extras.getInt("INCORRECT_ANSWERS");
                 totalQuestions = extras.getInt("TOTAL_QUESTIONS");
+                savedAnswersList = extras.getParcelableArrayList("SAVED_ANSWERS");
+
                 setContent();
             }
         }
@@ -111,6 +120,7 @@ public class TestResultActivity extends AppCompatActivity implements View.OnClic
             case R.id.text_view_test_sheet:
             case R.id.image_view_test_answer_sheet:
                 Intent intentAnswerSheet = new Intent(TestResultActivity.this, AnswerSheetActivity.class);
+                intentAnswerSheet.putParcelableArrayListExtra("SAVED_ANSWERS", (ArrayList<? extends Parcelable>) savedAnswersList);
                 startActivity(intentAnswerSheet);
                 finish();
                 break;
