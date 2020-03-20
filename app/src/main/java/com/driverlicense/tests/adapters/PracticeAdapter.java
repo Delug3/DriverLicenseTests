@@ -25,7 +25,7 @@ public class PracticeAdapter extends RecyclerView.Adapter<PracticeAdapter.ViewHo
     private ItemClickListener mClickListener;
 
     public PracticeAdapter(Context context, List<Practice> practiceList) {
-        this.context=context;
+        this.context = context;
         this.mInflater = LayoutInflater.from(context);
         this.practiceList = practiceList;
     }
