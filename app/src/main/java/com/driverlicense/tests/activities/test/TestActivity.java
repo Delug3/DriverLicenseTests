@@ -22,7 +22,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.driverlicense.tests.R;
-import com.driverlicense.tests.models.SavedAnswers;
+import com.driverlicense.tests.models.Sheet;
 import com.driverlicense.tests.models.Test;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -30,10 +30,8 @@ import com.parse.ParseQuery;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 public class TestActivity extends AppCompatActivity implements View.OnClickListener, Animation.AnimationListener {
 
@@ -45,7 +43,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
     private String question, answerA, answerB, answerC, answerD, imageUrl, correctAnswer;
     private Random rand = new Random();
     private List<Test> testList = new ArrayList<>();
-    private List<SavedAnswers> savedAnswersList = new ArrayList<>();
+    private List<Sheet> sheetList = new ArrayList<>();
     private int questionNumber = 0;
     private int progressStatus = 0;
     private int totalNumberCorrectAnswers = 0;
@@ -206,7 +204,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
     private void saveAnswersInPreferences() {
         SharedPreferences sharedPref = getSharedPreferences("test_prefs", Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("SAVED_ANSWERS", String.valueOf(savedAnswersList));
+        editor.putString("SAVED_ANSWERS", String.valueOf(sheetList));
         editor.apply();
     }
 
@@ -216,7 +214,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         i.putExtra("CORRECT_ANSWERS", totalNumberCorrectAnswers);
         i.putExtra("INCORRECT_ANSWERS", totalNumberIncorrectAnswers);
         i.putExtra("TOTAL_QUESTIONS", testList.size());
-        i.putParcelableArrayListExtra("SAVED_ANSWERS", (ArrayList<? extends Parcelable>) savedAnswersList);
+        i.putParcelableArrayListExtra("SAVED_ANSWERS", (ArrayList<? extends Parcelable>) sheetList);
         startActivity(i);
         finish();
     }
@@ -294,7 +292,8 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                     savedIncorrectAnswer = getAnswer("A");
                     totalNumberIncorrectAnswers++;
                 }
-                saveAnswers(savedCorrectAnswer, savedIncorrectAnswer);
+
+                saveQuestionAndAnswers(savedCorrectAnswer, savedIncorrectAnswer);
                 showSelectedAnswer("A");
                 disableMultipleClicks();
                 unHideNextQuestionView();
@@ -315,7 +314,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                     savedIncorrectAnswer = getAnswer("B");
                     totalNumberIncorrectAnswers++;
                 }
-                saveAnswers(savedCorrectAnswer, savedIncorrectAnswer);
+                saveQuestionAndAnswers(savedCorrectAnswer, savedIncorrectAnswer);
                 showSelectedAnswer("B");
                 disableMultipleClicks();
                 unHideNextQuestionView();
@@ -336,7 +335,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                     savedIncorrectAnswer = getAnswer("C");
                     totalNumberIncorrectAnswers++;
                 }
-                saveAnswers(savedCorrectAnswer, savedIncorrectAnswer);
+                saveQuestionAndAnswers(savedCorrectAnswer, savedIncorrectAnswer);
                 showSelectedAnswer("C");
                 disableMultipleClicks();
                 unHideNextQuestionView();
@@ -357,7 +356,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                     savedIncorrectAnswer = getAnswer("D");
                     totalNumberIncorrectAnswers++;
                 }
-                saveAnswers(savedCorrectAnswer, savedIncorrectAnswer);
+                saveQuestionAndAnswers(savedCorrectAnswer, savedIncorrectAnswer);
                 showSelectedAnswer("D");
                 disableMultipleClicks();
                 unHideNextQuestionView();
@@ -497,9 +496,9 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         return answer;
     }
 
-    private void saveAnswers(String savedCorrectAnswer, String savedIncorrectAnswer)
+    private void saveQuestionAndAnswers(String savedCorrectAnswer, String savedIncorrectAnswer)
     {
-        savedAnswersList.add(new SavedAnswers(savedCorrectAnswer, savedIncorrectAnswer));
+        sheetList.add(new Sheet(questionNumber,question,savedCorrectAnswer, savedIncorrectAnswer));
     }
 
 
