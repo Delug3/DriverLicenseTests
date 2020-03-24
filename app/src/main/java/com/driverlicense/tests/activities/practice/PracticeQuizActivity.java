@@ -324,24 +324,21 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
            progressStatus++;
            progressBarQuiz.setProgress(progressStatus);
        }
-       else{
+       else {
            disableMultipleClicks();
            allQuestionsCompleted = true;
 
-           levelPassed();
-
+           if (totalNumberCorrectAnswers == quizList.size()){
+               levelPassed();
+         }
            showQuizResults();
        }
-
    }
-
 
    private void showQuestionNumber()
    {
-
     String actualQuestionNumberAndTotals = progressStatus + "/" + quizList.size();
     textViewQuestionNumber.setText(actualQuestionNumberAndTotals);
-
    }
 
    private void showQuizResults()
@@ -370,18 +367,14 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
        textViewIncorrectAnswers.setText(String.valueOf(totalNumberIncorrectAnswers));
        textViewTotalAnswers.setText(String.valueOf(quizList.size()));
 
-
        resultDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
        resultDialog.setCancelable(false);
        resultDialog.show();
-
-
    }
 
    private void levelPassed()
    {
        ParseQuery<ParseObject> query = ParseQuery.getQuery(queryLanguage);
-
        // Retrieve the object by id
        query.getInBackground(levelId, new GetCallback<ParseObject>() {
            public void done(ParseObject entity, ParseException e) {
@@ -397,7 +390,6 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
 
    private void startAnimationNextQuestion()
    {
-
        if(progressStatus < quizList.size())
        {
        imageViewNextQuestion.setImageResource(R.drawable.ic_next_quiz_question);
@@ -407,7 +399,6 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
        {
         imageViewNextQuestion.setImageResource(R.drawable.ic_results);
        }
-
        shouldRepeatAnimation = true;
        AlphaAnimation fadeIn=new AlphaAnimation(0,1);
        AlphaAnimation fadeOut=new AlphaAnimation(1,0);
