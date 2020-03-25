@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.driverlicense.tests.R;
 import com.driverlicense.tests.activities.core.MyGlobals;
 import com.driverlicense.tests.activities.practice.PracticeLevelsListActivity;
+import com.driverlicense.tests.activities.reading.ReadingListActivity;
 import com.driverlicense.tests.activities.settings.SettingsActivity;
 import com.driverlicense.tests.activities.signs.TrafficSignsListActivity;
 import com.driverlicense.tests.activities.test.TestActivity;
@@ -35,7 +36,7 @@ import com.google.android.material.snackbar.Snackbar;
 public class MainMenuActivity extends AppCompatActivity {
 
     MyGlobals myGlobals;
-    private ConstraintLayout constraintLayoutMainMenuPractice, constraintLayoutMainMenuSettings, constraintLayoutMainMenuTrafficSigns, constraintLayoutMainMenuTest;
+    private ConstraintLayout constraintLayoutMainMenuPractice, constraintLayoutMainMenuSettings, constraintLayoutMainMenuTrafficSigns, constraintLayoutMainMenuTest, constraintLayoutMainMenuReading;
     private DrawerLayout drawerLayoutMainMenu;
     private AdView mAdView;
     //main activity including practice, test, reading and settings
@@ -84,6 +85,14 @@ public class MainMenuActivity extends AppCompatActivity {
             }
         });
 
+        constraintLayoutMainMenuReading.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainMenuActivity.this, ReadingListActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 
     private void checkInternetConnection() {
@@ -97,6 +106,7 @@ public class MainMenuActivity extends AppCompatActivity {
         constraintLayoutMainMenuSettings = findViewById(R.id.constraint_layout_main_menu_settings);
         constraintLayoutMainMenuTrafficSigns = findViewById(R.id.constraint_layout_main_menu_traffic_signs);
         constraintLayoutMainMenuTest = findViewById(R.id.constraint_layout_main_menu_test);
+        constraintLayoutMainMenuReading = findViewById(R.id.constraint_layout_main_menu_reading);
     }
 
     @Override
