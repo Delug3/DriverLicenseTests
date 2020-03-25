@@ -233,11 +233,9 @@ public class PracticeQuizActivity extends AppCompatActivity implements View.OnCl
                 showQuestionNumber();
                 break;
 
-
             default:
                 break;
         }
-
     }
 
     /** Values are placed in Json Array.
