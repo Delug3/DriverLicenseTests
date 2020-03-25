@@ -32,6 +32,7 @@
         <activity android:name="com.driverlicense.tests.activities.test.TestResultActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
         <activity android:name="com.driverlicense.tests.activities.sheet.AnswerSheetActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
         <activity android:name="com.driverlicense.tests.activities.share.ShareActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
+        <activity android:name="com.driverlicense.tests.activities.reading.ReadingListActivity" android:screenOrientation="portrait" android:theme="@style/MyAppTheme"/>
 
 
         <meta-data
